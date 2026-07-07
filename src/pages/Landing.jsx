@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import PublicNavbar from "../components/public/PublicNavbar";
+import Footer from "../components/public/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   ArrowRight, Users, Globe, Target, Eye, Heart, 
@@ -59,45 +61,11 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
 
 
 export default function Landing() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#2563EB] selection:text-white font-sans overflow-x-hidden text-[#0F172A]">
       
-      {/* 1. TRANSPARENT STICKY HEADER */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md border-b border-[#E2E8F0] shadow-sm py-3' : 'bg-transparent py-5'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#2563EB] text-white font-bold text-lg shadow-sm">D</span>
-            <span className="font-bold text-slate-900 text-xl tracking-tight hidden sm:block">DISHA</span>
-          </div>
-          
-          <div className="hidden lg:flex items-center gap-8">
-            <a href="#home" className="text-sm font-bold text-[#2563EB]">Home</a>
-            <a href="#about" className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">About</a>
-            <Link to="/our-programs" className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">Programs</Link>
-            <Link to="/our-impact" className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">Impact</Link>
-            <Link to="/blogs" className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">Blogs</Link>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link to="/login" className="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors hidden sm:block">
-              Login
-            </Link>
-            <Link to="/register" className="inline-flex items-center justify-center rounded-[10px] bg-[#2563EB] px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#1D4ED8] active:scale-[0.98] shadow-sm">
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </nav>
+      {/* 1. STICKY HEADER */}
+      <PublicNavbar />
 
       {/* 2. HERO SECTION */}
       <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-white border-b border-[#E2E8F0]">
@@ -129,9 +97,9 @@ export default function Landing() {
                   Be a Volunteer with Disha
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link to="/our-programs" className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-8 py-4 text-sm font-bold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-slate-300 transition-all active:scale-[0.98] shadow-sm">
+                <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-8 py-4 text-sm font-bold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-slate-300 transition-all active:scale-[0.98] shadow-sm">
                   Explore Programs
-                </Link>
+                </a>
               </motion.div>
             </motion.div>
 
@@ -307,7 +275,132 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* 6. WHY CHOOSE DISHA (Asymmetric Layout) */}
+      <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            
+            {/* Left: Text & Features */}
+            <div className="lg:w-1/2">
+              <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#F97316] bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-6">
+                Why Choose Us
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display text-[#0F172A] mb-6">
+                Why Choose Disha For India?
+              </h2>
+              <p className="text-slate-500 text-lg leading-relaxed mb-12">
+                Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.
+              </p>
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {[
+                  {
+                    icon: Search,
+                    iconColor: "text-[#2563EB]",
+                    iconBg: "bg-blue-50",
+                    title: "Meaningful Volunteering",
+                    desc: "Engage in purpose-driven campaigns across education, healthcare, and sustainability to create measurable, real-world impact.",
+                  },
+                  {
+                    icon: BookOpenCheck,
+                    iconColor: "text-[#F97316]",
+                    iconBg: "bg-orange-50",
+                    title: "Practical Skill Building",
+                    desc: "Cultivate essential competencies in leadership, communication, and project management through hands-on experience and expert mentorship.",
+                  },
+                  {
+                    icon: Target,
+                    iconColor: "text-emerald-600",
+                    iconBg: "bg-emerald-50",
+                    title: "Empowered Leadership",
+                    desc: "Spearhead grassroots initiatives, coordinate volunteer cohorts, and execute high-impact projects that drive lasting social change.",
+                  },
+                  {
+                    icon: LineChart,
+                    iconColor: "text-purple-600",
+                    iconBg: "bg-purple-50",
+                    title: "Accelerated Career Growth",
+                    desc: "Fortify your professional portfolio with demonstrable social impact, distinguishing yourself for top-tier internships and higher education.",
+                  },
+                  {
+                    icon: Award,
+                    iconColor: "text-rose-500",
+                    iconBg: "bg-rose-50",
+                    title: "Verified Certification",
+                    desc: "Earn officially recognized credentials that validate your dedication, leadership, and tangible contributions to the community.",
+                  },
+                  {
+                    icon: Globe,
+                    iconColor: "text-indigo-600",
+                    iconBg: "bg-indigo-50",
+                    title: "Sustainable Impact",
+                    desc: "Play a pivotal role in scalable initiatives designed to uplift marginalized groups, democratize education, and build resilient societies.",
+                  }
+                ].map((f, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="flex flex-col"
+                  >
+                    <div className={`h-12 w-12 rounded-xl ${f.iconBg} flex items-center justify-center mb-4`}>
+                      <f.icon className={`h-6 w-6 ${f.iconColor}`} />
+                    </div>
+                    <h4 className="text-lg font-bold text-[#0F172A] mb-2">{f.title}</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed font-medium">{f.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Modern 4-Image Grid */}
+            <div className="lg:w-1/2 w-full relative">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
+                    <img src="/disha-event1.jpg" alt="DISHA Seminar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
+                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
+                    <img src="/disha-event2.jpg" alt="DISHA Event" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
+                </div>
+                <div className="space-y-4 pt-12">
+                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
+                    <img src="/disha-event3.jpg" alt="DISHA Workshop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
+                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
+                    <img src="/disha-event4.jpg" alt="DISHA Training" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative Floating Element */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-xl z-10 flex items-center gap-4 border border-white/40"
+              >
+                <div className="bg-[#2563EB]/10 p-3 rounded-full">
+                  <Heart className="h-6 w-6 text-[#2563EB] fill-[#2563EB]" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Lives Touched</p>
+                  <p className="text-2xl font-black text-[#0F172A]">100,000+</p>
+                </div>
+              </motion.div>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
 
       {/* 9. SUCCESS STORIES */}
@@ -346,95 +439,36 @@ export default function Landing() {
 
 
       {/* 14. FINAL CALL TO ACTION */}
-      <section className="py-32 bg-[#2563EB] text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent" />
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight font-display mb-6">
-            Become a Volunteer.<br/>Create Impact. Build Your Future.
-          </h2>
-          <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto font-medium">
-            Join the fastest growing network of young change-makers in India.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-white px-10 py-5 text-base font-bold text-[#2563EB] transition-all hover:bg-slate-50 active:scale-[0.98] shadow-2xl">
-              Register Now
-            </Link>
-            <Link to="/our-programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-transparent border-2 border-white/20 px-10 py-5 text-base font-bold text-white transition-all hover:bg-white/10 active:scale-[0.98]">
-              Explore Programs
-            </Link>
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="bg-[#0F172A] rounded-[32px] overflow-hidden relative shadow-2xl">
+            {/* Dark background elements */}
+            <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4" />
+            
+            <div className="relative z-10 py-24 px-6 text-center max-w-4xl mx-auto">
+              <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight font-display mb-6 leading-tight">
+                Become a Volunteer.<br />Create Impact. Build Your Future.
+              </h2>
+              <p className="text-slate-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-medium">
+                Join the fastest growing network of young change-makers in India. Elevate your skills and transform communities today.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white px-10 py-5 text-base font-bold text-[#0F172A] transition-all hover:bg-slate-100 active:scale-[0.98] shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)]">
+                  Register Now <ArrowRight className="h-5 w-5" />
+                </Link>
+                <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 px-10 py-5 text-base font-bold text-white transition-all hover:bg-white/10 active:scale-[0.98] backdrop-blur-sm">
+                  Explore Programs
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 15. FOOTER */}
-      <footer id="contact" className="bg-white border-t border-[#E2E8F0] pt-20 pb-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
-            <div className="col-span-2 lg:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#2563EB] text-white font-bold text-lg shadow-sm">D</span>
-                <span className="font-bold text-[#0F172A] text-xl tracking-tight">DISHA FOR INDIA</span>
-              </div>
-              <p className="text-sm text-slate-500 max-w-xs leading-relaxed font-medium mb-6">
-                Empowering India's youth through structured volunteering, skill development, and verifiable impact.
-              </p>
-              {/* Newsletter Subscription */}
-              <div className="flex items-center gap-2 max-w-xs">
-                <input type="email" placeholder="Enter your email" className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]" />
-                <button className="bg-[#0F172A] text-white px-4 py-2.5 rounded-lg text-sm font-bold hover:bg-slate-800 transition-colors">Subscribe</button>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-bold text-[#0F172A] mb-4">Quick Links</h4>
-              <ul className="space-y-3">
-                <li><a href="#home" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Home</a></li>
-                <li><a href="#about" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">About Us</a></li>
-                <li><Link to="/our-programs" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Programs</Link></li>
-                <li><a href="#events" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Events</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-[#0F172A] mb-4">Resources</h4>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Help Center</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Volunteer Guidelines</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Blog</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">NGO Portal</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-[#0F172A] mb-4">Support</h4>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Contact Us</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">FAQ</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Feedback</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-[#0F172A] mb-4">Legal</h4>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Cookie Policy</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-[#E2E8F0] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm font-medium text-slate-400">
-              © {new Date().getFullYear()} DISHA for India. All rights reserved. Built with ❤️ for India.
-            </p>
-            <div className="flex items-center gap-6">
-              <a href="#" className="text-slate-400 hover:text-[#2563EB] transition-colors"><Globe className="h-5 w-5" /></a>
-              {/* Add social icons here */}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
     </div>
   );
