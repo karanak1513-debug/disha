@@ -15,34 +15,34 @@ export default function Blogs() {
 
       {/* Indu Aggarwal Intro */}
       <section className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgb(0,0,0,0.05)] border border-[#E2E8F0] grid lg:grid-cols-2"
+            className="bg-white rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgb(0,0,0,0.05)] border border-[#E2E8F0] flex flex-col"
           >
-            <div className="relative overflow-hidden h-64 lg:h-auto">
+            <div className="relative w-full bg-slate-50 border-b border-[#E2E8F0]">
               <img 
                 src="/indu_aggarwal_about.jpg" 
                 alt="Indu Aggarwal" 
-                className="absolute inset-0 w-full h-full object-cover"
+                className="w-full h-auto object-cover"
               />
-              <div className="absolute top-6 left-6 px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold text-[#2563EB] tracking-wide uppercase">
+              <div className="absolute top-6 left-6 px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold text-[#2563EB] tracking-wide uppercase shadow-sm">
                 We Make The Difference
               </div>
             </div>
-            <div className="p-10 lg:p-16 flex flex-col justify-center">
-              <h2 className="text-3xl font-bold font-display mb-2 text-slate-900 leading-tight">
+            <div className="p-8 md:p-16 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold font-display mb-3 text-slate-900 leading-tight">
                 Indu Aggarwal
               </h2>
-              <div className="text-sm font-bold text-[#2563EB] uppercase tracking-wide mb-6">
+              <div className="text-sm font-bold text-[#2563EB] uppercase tracking-wide mb-8">
                 Entrepreneur & Emotional Wellness Coach
               </div>
-              <p className="text-slate-600 text-lg mb-6 leading-relaxed">
+              <p className="text-slate-600 text-lg md:text-xl mb-6 leading-relaxed max-w-3xl mx-auto">
                 Indu Aggarwal is enriching everyone’s lives by being the LEADING LIGHT and touching the lives of people through her Training and Health awareness programs. 
               </p>
-              <p className="text-slate-600 text-lg leading-relaxed">
+              <p className="text-slate-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
                 To pursue her passion of making a difference in the lives of people, she said goodbye to her lucrative corporate career and started her organization “DISHA FOR SUCCESS” and “DISHA FOR INDIA FOUNDATION AND EDUCATIONAL TRUST.”
               </p>
             </div>
