@@ -47,6 +47,7 @@ import AdminMessages from "./pages/admin/Messages";
 import AdminAnalytics from "./pages/admin/Analytics";
 import AdminReports from "./pages/admin/Reports";
 import AdminResources from "./pages/admin/Resources";
+import AdminBlogPhotos from "./pages/admin/BlogPhotos";
 
 // Shared Pages
 import Settings from "./pages/Settings";
@@ -138,6 +139,7 @@ function Bootstrapper() {
       {/* Admin Protected Routes */}
       <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
       <Route path="/admin/programs" element={<AdminRoute><AdminPrograms /></AdminRoute>} />
+      <Route path="/admin/blog-photos" element={<AdminRoute><AdminBlogPhotos /></AdminRoute>} />
       <Route path="/admin/applications" element={<AdminRoute><AdminApplications /></AdminRoute>} />
       <Route path="/admin/attendance" element={<AdminRoute><AdminAttendance /></AdminRoute>} />
       <Route path="/admin/users" element={<AdminRoute><AdminUsers /></AdminRoute>} />
