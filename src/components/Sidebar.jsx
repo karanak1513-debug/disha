@@ -118,14 +118,13 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
         }`}
       >
         {/* Brand/Logo Section */}
-        <div className="flex h-16 shrink-0 items-center px-6 border-b border-slate-100 bg-white">
-          <Link to="/dashboard" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-500 text-white font-black text-lg shadow-md shadow-blue-500/20">
+        <div className="flex h-16 shrink-0 items-center px-6 border-b border-slate-200 bg-white">
+          <Link to="/dashboard" className="flex items-center gap-3">
+            <span className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-primary text-white font-bold text-lg">
               D
             </span>
             <div>
-              <span className="font-extrabold text-slate-800 text-lg tracking-tight">DISHA</span>
-              <span className="text-[9px] block text-blue-600 font-bold tracking-widest -mt-1">FOR INDIA</span>
+              <span className="font-semibold text-slate-900 text-lg tracking-tight">DISHA</span>
             </div>
           </Link>
         </div>
@@ -145,10 +144,10 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                     <Link
                       key={link.path}
                       to={link.path}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-bold transition-all duration-200 group relative ${
+                      className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 group relative ${
                         isActive
-                          ? "bg-blue-50 text-blue-600"
-                          : "text-slate-500 hover:bg-slate-50 hover:text-slate-800"
+                          ? "bg-slate-100 text-slate-900"
+                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                       }`}
                       onClick={() => {
                         if (window.innerWidth < 1024) toggleSidebar();
@@ -157,11 +156,11 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                       {isActive && (
                         <motion.div
                           layoutId="activeIndicator"
-                          className="absolute -left-3 top-1.5 bottom-1.5 w-1 rounded-r-md bg-blue-600"
+                          className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-md bg-primary"
                           transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         />
                       )}
-                      <Icon className={`h-4.5 w-4.5 transition-transform duration-200 group-hover:scale-105 ${isActive ? "text-blue-600" : "text-slate-400 group-hover:text-slate-600"}`} />
+                      <Icon className={`h-4.5 w-4.5 transition-transform duration-200 ${isActive ? "text-primary" : "text-slate-400 group-hover:text-slate-600"}`} />
                       {link.name}
                     </Link>
                   );
@@ -172,27 +171,24 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
         </div>
 
         {/* Bottom Section (User Profile Card) */}
-        <div className="shrink-0 p-4 border-t border-slate-100 bg-slate-50/50">
+        <div className="shrink-0 p-4 border-t border-slate-200 bg-white">
           {userProfile && (
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-3 min-w-0">
                 {userProfile.photoURL ? (
                   <img
                     src={userProfile.photoURL}
                     alt={userProfile.displayName}
-                    className="h-9 w-9 rounded-xl object-cover border border-slate-200 shrink-0"
+                    className="h-9 w-9 rounded-full object-cover border border-slate-200 shrink-0"
                   />
                 ) : (
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-500 to-cyan-500 text-white font-bold text-sm shadow-sm">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-700 font-semibold text-sm">
                     {userProfile.displayName?.charAt(0).toUpperCase() || "V"}
                   </div>
                 )}
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-bold text-slate-800 truncate">{userProfile.displayName}</p>
-                  <div className="flex items-center gap-1.5 mt-0.5">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                    <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">{userProfile.role || "Volunteer"}</span>
-                  </div>
+                  <p className="text-sm font-semibold text-slate-900 truncate">{userProfile.displayName}</p>
+                  <p className="text-xs text-slate-500 truncate">{userProfile.role || "Volunteer"}</p>
                 </div>
               </div>
 
@@ -231,7 +227,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
 
                 <button
                   onClick={handleLogout}
-                  className="p-1.5 rounded-lg text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-colors"
+                  className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-900 transition-colors"
                   title="Logout"
                 >
                   <LogOut className="h-4 w-4" />

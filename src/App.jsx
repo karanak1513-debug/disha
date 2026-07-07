@@ -7,6 +7,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 
+// Public Pages
+import Landing from "./pages/Landing";
+
 
 // Layout
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -100,7 +103,7 @@ function Bootstrapper() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/" element={<Landing />} />
 
       {/* Public Auth Routes */}
       <Route path="/login" element={<Login />} />

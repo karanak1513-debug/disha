@@ -52,32 +52,31 @@ function PulsingDot({ color = "bg-emerald-500" }) {
 
 function StatCard({ label, value, suffix = "", icon: Icon, color, trend }) {
   const colorMap = {
-    blue: { bg: "bg-blue-50", icon: "text-blue-600", border: "border-blue-100", badge: "text-blue-700 bg-blue-50 border-blue-100", bar: "bg-blue-500" },
-    orange: { bg: "bg-orange-50", icon: "text-orange-600", border: "border-orange-100", badge: "text-orange-700 bg-orange-50 border-orange-100", bar: "bg-orange-500" },
-    cyan: { bg: "bg-cyan-50", icon: "text-cyan-600", border: "border-cyan-100", badge: "text-cyan-700 bg-cyan-50 border-cyan-100", bar: "bg-cyan-500" },
-    violet: { bg: "bg-violet-50", icon: "text-violet-600", border: "border-violet-100", badge: "text-violet-700 bg-violet-50 border-violet-100", bar: "bg-violet-500" },
-    amber: { bg: "bg-amber-50", icon: "text-amber-600", border: "border-amber-100", badge: "text-amber-700 bg-amber-50 border-amber-100", bar: "bg-amber-500" },
-    rose: { bg: "bg-rose-50", icon: "text-rose-600", border: "border-rose-100", badge: "text-rose-700 bg-rose-50 border-rose-100", bar: "bg-rose-500" },
+    blue: { icon: "text-[#2563EB]", border: "border-[#E2E8F0]", badge: "text-[#2563EB] bg-slate-50 border-slate-200" },
+    orange: { icon: "text-orange-600", border: "border-[#E2E8F0]", badge: "text-orange-700 bg-slate-50 border-slate-200" },
+    cyan: { icon: "text-cyan-600", border: "border-[#E2E8F0]", badge: "text-cyan-700 bg-slate-50 border-slate-200" },
+    violet: { icon: "text-violet-600", border: "border-[#E2E8F0]", badge: "text-violet-700 bg-slate-50 border-slate-200" },
+    amber: { icon: "text-amber-600", border: "border-[#E2E8F0]", badge: "text-amber-700 bg-slate-50 border-slate-200" },
+    rose: { icon: "text-rose-600", border: "border-[#E2E8F0]", badge: "text-rose-700 bg-slate-50 border-slate-200" },
   };
   const c = colorMap[color] || colorMap.blue;
   return (
     <motion.div
       variants={fadeUp}
-      whileHover={{ y: -3, boxShadow: "0 8px 30px rgba(0,0,0,0.08)" }}
+      whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
-      className="relative overflow-hidden rounded-2xl bg-white border border-slate-200 p-5 cursor-default shadow-sm"
+      className="relative overflow-hidden rounded-[16px] bg-white border border-[#E2E8F0] p-5 cursor-default shadow-sm"
     >
-      <div className={`absolute top-0 right-0 w-16 h-16 rounded-full blur-xl opacity-40 ${c.bg}`} />
       <div className="relative z-10">
-        <div className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${c.bg} border ${c.border} mb-4`}>
-          <Icon className={`h-4 w-4 ${c.icon}`} />
+        <div className={`inline-flex h-10 w-10 items-center justify-center rounded-lg bg-slate-50 border ${c.border} mb-4`}>
+          <Icon className={`h-4.5 w-4.5 ${c.icon}`} />
         </div>
-        <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1">{label}</p>
-        <h3 className="text-2xl font-black text-slate-800 mb-2">
+        <p className="text-xs font-semibold text-slate-500 mb-1">{label}</p>
+        <h3 className="text-2xl font-bold text-slate-900 mb-3">
           <AnimatedCounter value={value} suffix={suffix} />
         </h3>
         {trend && (
-          <span className={`text-[9px] font-bold px-2 py-0.5 rounded-md border ${c.badge}`}>{trend}</span>
+          <span className={`text-[10px] font-medium px-2 py-1 rounded-md border ${c.badge}`}>{trend}</span>
         )}
       </div>
     </motion.div>
@@ -155,21 +154,7 @@ export default function AdminDashboard() {
   return (
     <motion.div variants={stagger} initial="hidden" animate="show" className="space-y-6 pb-4">
       {/* ── PROFESSIONAL PAGE HEADER (Combines old global title & hero) ── */}
-      <div className="-mt-6 -mx-6 mb-8 bg-white border-b border-[#E5E7EB] px-6 md:px-8 py-8 h-auto flex items-center relative overflow-hidden">
-        {/* Subtle animated background shapes */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <motion.div
-            className="absolute -top-24 -right-24 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute top-10 left-1/2 w-64 h-64 bg-violet-100/40 rounded-full blur-3xl"
-            animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          />
-        </div>
-
+      <div className="-mt-6 -mx-6 mb-8 bg-white border-b border-[#E2E8F0] px-6 md:px-8 py-8 h-auto flex items-center relative overflow-hidden">
         <div className="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-6 relative z-10">
           {/* Left Column */}
           <div className="space-y-3">
@@ -183,10 +168,10 @@ export default function AdminDashboard() {
             </motion.div>
             
             <motion.div initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{delay:0.1}}>
-              <h1 className="text-[32px] font-bold text-[#0F172A] leading-tight tracking-tight mb-2" style={{fontFamily:"'Plus Jakarta Sans', Inter, sans-serif"}}>
+              <h1 className="text-3xl font-semibold text-[#0F172A] leading-tight tracking-tight mb-2">
                 Welcome,{" "}
-                <span className="bg-gradient-to-r from-blue-600 via-violet-500 to-blue-400 bg-clip-text text-transparent">
-                  {userProfile?.displayName || "Admin"} ⚡
+                <span className="text-[#2563EB]">
+                  {userProfile?.displayName || "Admin"}
                 </span>
               </h1>
               <p className="text-[15px] text-[#64748B] max-w-lg leading-relaxed">

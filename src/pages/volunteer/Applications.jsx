@@ -60,21 +60,7 @@ export default function Applications() {
   return (
     <motion.div variants={stagger} initial="hidden" animate="show" className="space-y-6 pb-4">
       {/* ── PROFESSIONAL PAGE HEADER ── */}
-      <div className="-mt-6 -mx-6 mb-8 bg-white border-b border-[#E5E7EB] px-6 md:px-8 py-8 h-auto md:min-h-[100px] flex items-center relative overflow-hidden">
-        {/* Subtle animated background shapes */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <motion.div
-            className="absolute -top-24 -right-24 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute top-10 right-1/4 w-64 h-64 bg-cyan-100/30 rounded-full blur-3xl"
-            animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.5, 0.2] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          />
-        </div>
-
+      <div className="-mt-6 -mx-6 mb-8 bg-white border-b border-[#E2E8F0] px-6 md:px-8 py-8 h-auto md:min-h-[100px] flex items-center relative overflow-hidden">
         <div className="w-full flex flex-col xl:flex-row xl:items-end justify-between gap-6 relative z-10">
           {/* Left Column */}
           <div className="space-y-3">
@@ -110,7 +96,7 @@ export default function Applications() {
       </div>
 
       {/* ── BENTO BOX CONTAINER ── */}
-      <motion.div variants={fadeUp} className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+      <motion.div variants={fadeUp} className="rounded-[16px] bg-white border border-[#E2E8F0] shadow-sm overflow-hidden flex flex-col">
         {/* Header toolbar */}
         <div className="px-5 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
           <div className="flex items-center gap-2">
@@ -129,7 +115,7 @@ export default function Applications() {
               placeholder="Search programs..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 block pl-9 p-2.5 transition-all outline-none"
+              className="w-full bg-white border border-[#E2E8F0] text-slate-800 text-sm rounded-lg focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB] block pl-9 p-2.5 transition-all outline-none"
             />
           </div>
         </div>
@@ -165,7 +151,7 @@ export default function Applications() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md transition-shadow flex flex-col gap-4 relative group"
+                  className="bg-white border border-[#E2E8F0] rounded-[12px] p-5 hover:border-slate-300 transition-colors flex flex-col gap-4 relative group shadow-sm"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
@@ -197,8 +183,8 @@ export default function Applications() {
                     </span>
                   </div>
                   
-                  <div className="pt-4 mt-auto border-t border-slate-100">
-                    <Link to="/programs" className="w-full flex items-center justify-center gap-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold py-2 rounded-xl transition-colors">
+                  <div className="pt-4 mt-auto border-t border-[#E2E8F0]">
+                    <Link to="/programs" className="w-full flex items-center justify-center gap-2 bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#0F172A] text-xs font-semibold py-2 rounded-lg transition-colors border border-[#E2E8F0]">
                       View Details
                     </Link>
                   </div>

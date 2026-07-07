@@ -112,7 +112,7 @@ export default function Header({ toggleSidebar }) {
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-slate-100 bg-white/80 px-6 backdrop-blur-md">
+    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-[#E2E8F0] bg-white/80 px-6 backdrop-blur-md">
       {/* Left side: Hamburger + Title */}
       <div className="flex items-center gap-3">
         <button
@@ -131,7 +131,7 @@ export default function Header({ toggleSidebar }) {
         
         {/* Volunteer Stats (Hidden for admin) */}
         {!location.pathname.startsWith("/admin") && userProfile && (
-          <div className="hidden items-center gap-3.5 rounded-2xl bg-white px-4 py-1.5 border border-slate-100 md:flex shadow-xs">
+          <div className="hidden items-center gap-3.5 rounded-[12px] bg-white px-4 py-1.5 border border-[#E2E8F0] md:flex">
             <div className="flex items-center gap-1.5" title="XP Points">
               <Trophy className="h-4 w-4 text-primary" />
               <span className="text-xs font-bold text-slate-700">{userProfile.xp || 0} XP</span>
