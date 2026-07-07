@@ -6,24 +6,36 @@ import Footer from '../../components/public/Footer';
 
 const faqs = [
   {
-    question: "What is DISHA for India?",
-    answer: "DISHA for India is a platform designed to connect passionate volunteers with non-governmental organizations (NGOs) across the country. We provide a structured environment for skill development and measurable, verifiable social impact."
+    question: "What is Disha For India?",
+    answer: "Disha For India is a non-profit organization dedicated to empowering youth through skill development, education, financial literacy, wellness, environmental initiatives, and community service programs."
   },
   {
-    question: "How do I become a volunteer?",
-    answer: "Getting started is easy! Just click the 'Register' button at the top of the page, fill out your details, and create your volunteer profile. Once registered, you can browse and apply to various volunteer programs."
+    question: "How can I become a volunteer?",
+    answer: "You can join Disha For India by completing the volunteer registration form and selecting how you would like to contribute your time, skills, or expertise."
   },
   {
-    question: "Is there any age restriction to volunteer?",
-    answer: "Most of our general programs are open to individuals aged 16 and above. However, some specific specialized roles or field assignments may require volunteers to be 18 or older."
+    question: "Who can participate in Disha For India programs?",
+    answer: "Students, professionals, educators, entrepreneurs, and individuals passionate about creating social impact are welcome to participate in our initiatives."
   },
   {
-    question: "How are my volunteering hours tracked?",
-    answer: "Our platform features a robust built-in attendance system. When you attend a session, the organization will log your hours digitally. You can view your total impact hours anytime on your personalized dashboard."
+    question: "What programs does Disha For India offer?",
+    answer: "Our initiatives include skill development, entrepreneurship, financial literacy, emotional wellness, environmental awareness, education, and community development programs."
   },
   {
-    question: "Can NGOs register on DISHA?",
-    answer: "Absolutely. We are always looking to partner with impactful NGOs. Organizations can apply through our NGO portal to get verified. Once approved, they can post opportunities and manage volunteers through our system."
+    question: "Do volunteers receive certificates?",
+    answer: "Yes. Eligible volunteers receive participation or contribution certificates based on their involvement in approved activities and programs."
+  },
+  {
+    question: "How can I support Disha For India?",
+    answer: "You can support our mission by volunteering, partnering with us, participating in campaigns, or contributing to our community initiatives."
+  },
+  {
+    question: "Where does Disha For India work?",
+    answer: "Disha For India organizes programs and campaigns focused on empowering communities through education, wellness, financial literacy, environmental sustainability, and youth development across India."
+  },
+  {
+    question: "How can I contact Disha For India?",
+    answer: "You can reach us through the Contact Us page by submitting your inquiry, or by using the email address and phone number provided on the official website."
   }
 ];
 
