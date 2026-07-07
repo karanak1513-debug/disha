@@ -129,9 +129,9 @@ export default function Landing() {
                   Be a Volunteer with Disha
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-8 py-4 text-sm font-bold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-slate-300 transition-all active:scale-[0.98] shadow-sm">
+                <Link to="/our-programs" className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-8 py-4 text-sm font-bold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-slate-300 transition-all active:scale-[0.98] shadow-sm">
                   Explore Programs
-                </a>
+                </Link>
               </motion.div>
             </motion.div>
 
@@ -307,132 +307,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* 6. WHY CHOOSE DISHA (Asymmetric Layout) */}
-      <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            
-            {/* Left: Text & Features */}
-            <div className="lg:w-1/2">
-              <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#F97316] bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-6">
-                Why Choose Us
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display text-[#0F172A] mb-6">
-                Why Choose Disha For India?
-              </h2>
-              <p className="text-slate-500 text-lg leading-relaxed mb-12">
-                Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.
-              </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                {[
-                  {
-                    icon: Search,
-                    iconColor: "text-[#2563EB]",
-                    iconBg: "bg-blue-50",
-                    title: "Meaningful Volunteering",
-                    desc: "Engage in purpose-driven campaigns across education, healthcare, and sustainability to create measurable, real-world impact.",
-                  },
-                  {
-                    icon: BookOpenCheck,
-                    iconColor: "text-[#F97316]",
-                    iconBg: "bg-orange-50",
-                    title: "Practical Skill Building",
-                    desc: "Cultivate essential competencies in leadership, communication, and project management through hands-on experience and expert mentorship.",
-                  },
-                  {
-                    icon: Target,
-                    iconColor: "text-emerald-600",
-                    iconBg: "bg-emerald-50",
-                    title: "Empowered Leadership",
-                    desc: "Spearhead grassroots initiatives, coordinate volunteer cohorts, and execute high-impact projects that drive lasting social change.",
-                  },
-                  {
-                    icon: LineChart,
-                    iconColor: "text-purple-600",
-                    iconBg: "bg-purple-50",
-                    title: "Accelerated Career Growth",
-                    desc: "Fortify your professional portfolio with demonstrable social impact, distinguishing yourself for top-tier internships and higher education.",
-                  },
-                  {
-                    icon: Award,
-                    iconColor: "text-rose-500",
-                    iconBg: "bg-rose-50",
-                    title: "Verified Certification",
-                    desc: "Earn officially recognized credentials that validate your dedication, leadership, and tangible contributions to the community.",
-                  },
-                  {
-                    icon: Globe,
-                    iconColor: "text-indigo-600",
-                    iconBg: "bg-indigo-50",
-                    title: "Sustainable Impact",
-                    desc: "Play a pivotal role in scalable initiatives designed to uplift marginalized groups, democratize education, and build resilient societies.",
-                  }
-                ].map((f, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="flex flex-col"
-                  >
-                    <div className={`h-12 w-12 rounded-xl ${f.iconBg} flex items-center justify-center mb-4`}>
-                      <f.icon className={`h-6 w-6 ${f.iconColor}`} />
-                    </div>
-                    <h4 className="text-lg font-bold text-[#0F172A] mb-2">{f.title}</h4>
-                    <p className="text-sm text-slate-500 leading-relaxed font-medium">{f.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right: Modern 4-Image Grid */}
-            <div className="lg:w-1/2 w-full relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
-                    <img src="/disha-event1.jpg" alt="DISHA Seminar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
-                  </div>
-                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
-                    <img src="/disha-event2.jpg" alt="DISHA Event" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
-                  </div>
-                </div>
-                <div className="space-y-4 pt-12">
-                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
-                    <img src="/disha-event3.jpg" alt="DISHA Workshop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
-                  </div>
-                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
-                    <img src="/disha-event4.jpg" alt="DISHA Training" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
-                  </div>
-                </div>
-              </div>
-              
-              {/* Decorative Floating Element */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-xl z-10 flex items-center gap-4 border border-white/40"
-              >
-                <div className="bg-[#2563EB]/10 p-3 rounded-full">
-                  <Heart className="h-6 w-6 text-[#2563EB] fill-[#2563EB]" />
-                </div>
-                <div>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Lives Touched</p>
-                  <p className="text-2xl font-black text-[#0F172A]">100,000+</p>
-                </div>
-              </motion.div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
 
       {/* 9. SUCCESS STORIES */}
@@ -484,9 +359,9 @@ export default function Landing() {
             <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-white px-10 py-5 text-base font-bold text-[#2563EB] transition-all hover:bg-slate-50 active:scale-[0.98] shadow-2xl">
               Register Now
             </Link>
-            <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-transparent border-2 border-white/20 px-10 py-5 text-base font-bold text-white transition-all hover:bg-white/10 active:scale-[0.98]">
+            <Link to="/our-programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-transparent border-2 border-white/20 px-10 py-5 text-base font-bold text-white transition-all hover:bg-white/10 active:scale-[0.98]">
               Explore Programs
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -515,7 +390,7 @@ export default function Landing() {
               <ul className="space-y-3">
                 <li><a href="#home" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Home</a></li>
                 <li><a href="#about" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">About Us</a></li>
-                <li><a href="#programs" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Programs</a></li>
+                <li><Link to="/our-programs" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Programs</Link></li>
                 <li><a href="#events" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Events</a></li>
               </ul>
             </div>
