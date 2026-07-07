@@ -2,8 +2,21 @@ import React, { useState, useEffect } from "react";
 import { collection, onSnapshot, updateDoc, doc, increment, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { toast } from "react-hot-toast";
-import { Check, X, FileSpreadsheet, Search, Inbox } from "lucide-react";
-import { motion } from "framer-motion";
+import { Check, X, FileSpreadsheet, Search, Inbox, FileText, CheckCircle2, Clock } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const stagger = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.07 } }
+};
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
+};
+const slideIn = {
+  hidden: { opacity: 0, x: -16 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } }
+};
 
 export default function AdminApplications() {
   const [applications, setApplications] = useState([]);
@@ -97,142 +110,208 @@ export default function AdminApplications() {
     return matchesSearch && matchesFilter;
   });
 
+  const pendingCount = applications.filter(a => a.status === "Pending").length;
+  const approvedCount = applications.filter(a => a.status === "Approved").length;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="glass-card p-6 bg-white space-y-6"
-    >
+    <motion.div variants={stagger} initial="hidden" animate="show" className="space-y-6 pb-4">
       
-      {/* Header section */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h3 className="font-bold text-slate-800 text-lg">Volunteer Registrations</h3>
-          <p className="text-slate-400 text-xs mt-1">Review candidates, track acceptance, and export databases.</p>
-        </div>
-
-        <button
-          onClick={handleExportCSV}
-          className="flex items-center gap-1.5 rounded-2xl border border-slate-200 py-2.5 px-4 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer shadow-xs"
-        >
-          <FileSpreadsheet className="h-4.5 w-4.5 text-slate-500" />
-          Export CSV
-        </button>
-      </div>
-
-      {/* Filter and Search Bar */}
-      <div className="flex flex-col gap-3 md:flex-row md:items-center justify-between">
-        
-        {/* Search */}
-        <div className="relative flex-1 max-w-sm">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
-            <Search className="h-4 w-4" />
-          </span>
-          <input
-            type="text"
-            placeholder="Search by volunteer, email or program..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="block w-full rounded-2xl border border-slate-200 py-2 pl-9 pr-4 text-slate-850 placeholder-slate-400 focus:border-primary focus:outline-hidden focus:ring-1 focus:ring-primary text-xs"
+      {/* ── PROFESSIONAL PAGE HEADER ── */}
+      <div className="-mt-6 -mx-6 mb-8 bg-white border-b border-[#E5E7EB] px-6 md:px-8 py-8 h-auto flex items-center relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <motion.div
+            className="absolute -top-24 -right-24 w-96 h-96 bg-violet-100/50 rounded-full blur-3xl"
+            animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute top-10 left-1/2 w-64 h-64 bg-fuchsia-100/40 rounded-full blur-3xl"
+            animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
           />
         </div>
 
-        {/* Filters */}
-        <div className="flex gap-2">
-          {["Pending", "Approved", "Rejected", "All"].map((status) => (
-            <button
-              key={status}
-              onClick={() => setFilterStatus(status)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                filterStatus === status
-                  ? "bg-primary text-white"
-                  : "bg-slate-50 text-slate-600 border border-slate-100 hover:bg-slate-100"
-              }`}
-            >
-              {status}
-            </button>
-          ))}
-        </div>
+        <div className="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-6 relative z-10">
+          <div className="space-y-3">
+            <motion.div initial={{opacity:0,x:-10}} animate={{opacity:1,x:0}} className="flex items-center gap-2 text-[14px] font-medium text-slate-500">
+              <span className="text-slate-800 transition-colors">Administration</span>
+              <span className="text-slate-400">/</span>
+              <span className="text-slate-800 font-semibold">Applications</span>
+            </motion.div>
+            
 
+          </div>
+          
+          <motion.div initial={{opacity:0,scale:0.95}} animate={{opacity:1,scale:1}} transition={{delay:0.2}} className="flex-shrink-0 flex items-center gap-4 bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl p-4 shadow-sm">
+            <div className="flex flex-col items-end border-r border-slate-200 pr-4">
+              <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Pending</span>
+              <span className="text-2xl font-black text-amber-500">{pendingCount}</span>
+            </div>
+            <div className="flex flex-col items-start pl-2">
+              <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Approved</span>
+              <span className="text-2xl font-black text-emerald-600">{approvedCount}</span>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Table */}
-      {loading ? (
-        <div className="space-y-3 py-6">
-          <div className="h-10 bg-slate-100 rounded-xl animate-pulse" />
-          <div className="h-10 bg-slate-100 rounded-xl animate-pulse" />
-        </div>
-      ) : filteredApps.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16 px-4 text-center bg-slate-50/50 border border-dashed border-slate-200 rounded-[20px] p-8">
-          <div className="h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mb-4">
-            <Inbox className="h-6 w-6" />
+      {/* ── BENTO BOX CONTAINER ── */}
+      <motion.div variants={fadeUp} className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+        {/* Box Header */}
+        <div className="px-5 py-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center">
+              <FileText className="h-5 w-5 text-violet-600" />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-800 text-sm">Applications List</h3>
+              <p className="text-[11px] text-slate-500 font-medium">Manage and review volunteer entries</p>
+            </div>
           </div>
-          <h4 className="text-sm font-bold text-slate-700">No applications match your selection</h4>
-          <p className="text-xs text-slate-400 mt-1 max-w-sm">Try modifying your search keywords or switching filters to locate volunteer entries.</p>
+          
+          <button
+            onClick={handleExportCSV}
+            className="flex items-center gap-2 rounded-xl bg-white border border-slate-200 py-2.5 px-4 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-all shadow-sm active:scale-95 cursor-pointer"
+          >
+            <FileSpreadsheet className="h-4 w-4 text-blue-500" />
+            Export CSV
+          </button>
         </div>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-slate-100 text-slate-400 text-[11px] font-bold uppercase tracking-wider">
-                <th className="py-3 px-4">Volunteer</th>
-                <th className="py-3 px-4">Program Applied</th>
-                <th className="py-3 px-4">Applied Date</th>
-                <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-50 text-slate-700 text-xs font-semibold">
-              {filteredApps.map((app) => (
-                <tr key={app.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="py-3 px-4">
-                    <div>
-                      <p className="font-bold text-slate-800">{app.userName}</p>
-                      <p className="text-[10px] text-slate-400 mt-0.5">{app.userEmail}</p>
-                    </div>
-                  </td>
-                  <td className="py-3 px-4 text-slate-600">{app.programTitle}</td>
-                  <td className="py-3 px-4 text-slate-500 font-medium">
-                    {app.appliedAt?.seconds
-                      ? new Date(app.appliedAt.seconds * 1000).toLocaleDateString()
-                      : "Recently"}
-                  </td>
-                  <td className="py-3 px-4">
-                    <span className={`inline-block px-2 py-0.5 rounded-full text-[9px] font-bold uppercase ${
-                      app.status === "Approved" ? "bg-emerald-50 text-emerald-600" :
-                      app.status === "Rejected" ? "bg-rose-50 text-rose-600" : "bg-amber-50 text-amber-600"
-                    }`}>
-                      {app.status}
-                    </span>
-                  </td>
-                  <td className="py-3 px-4 text-right">
-                    {app.status === "Pending" && (
-                      <div className="flex justify-end gap-1.5">
-                        <button
-                          onClick={() => handleUpdateStatus(app, "Approved")}
-                          className="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-600 cursor-pointer"
-                          title="Approve Application"
-                        >
-                          <Check className="h-4 w-4" />
-                        </button>
-                        <button
-                          onClick={() => handleUpdateStatus(app, "Rejected")}
-                          className="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 cursor-pointer"
-                          title="Reject Application"
-                        >
-                          <X className="h-4 w-4" />
-                        </button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
 
+        {/* Filters & Search Toolbar */}
+        <div className="p-4 border-b border-slate-100 bg-white flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="relative w-full md:max-w-sm">
+            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+              <Search className="h-4 w-4" />
+            </span>
+            <input
+              type="text"
+              placeholder="Search by volunteer, email or program..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="block w-full rounded-xl border border-slate-200 py-2.5 pl-9 pr-4 text-slate-800 placeholder-slate-400 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500 text-xs font-medium shadow-sm transition-all bg-slate-50/50"
+            />
+          </div>
+
+          <div className="flex gap-1.5 p-1 bg-slate-100/70 border border-slate-200/60 rounded-xl overflow-x-auto no-scrollbar">
+            {["Pending", "Approved", "Rejected", "All"].map((status) => (
+              <button
+                key={status}
+                onClick={() => setFilterStatus(status)}
+                className={`whitespace-nowrap px-4 py-1.5 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                  filterStatus === status
+                    ? "bg-white text-violet-700 shadow-sm border border-slate-200/80"
+                    : "text-slate-600 hover:text-slate-800 hover:bg-slate-200/50 border border-transparent"
+                }`}
+              >
+                {status}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Table / List */}
+        <div className="bg-white">
+          {loading ? (
+            <div className="space-y-4 p-6">
+              {[1, 2, 3].map(i => <div key={i} className="h-14 bg-slate-100 rounded-xl animate-pulse" />)}
+            </div>
+          ) : filteredApps.length === 0 ? (
+            <div className="py-16 flex flex-col items-center justify-center text-slate-400 text-xs font-semibold gap-3">
+              <div className="h-16 w-16 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center mb-2">
+                <Inbox className="h-6 w-6 text-slate-300" />
+              </div>
+              <h4 className="text-sm font-bold text-slate-700">No applications match your selection</h4>
+              <p className="text-[11px] text-slate-400 mt-1 max-w-sm text-center">Try modifying your search keywords or switching filters to locate volunteer entries.</p>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse min-w-[700px]">
+                <thead>
+                  <tr className="border-b border-slate-100 bg-slate-50/30 text-slate-400 text-[10px] font-extrabold uppercase tracking-widest">
+                    <th className="py-4 px-6">Volunteer</th>
+                    <th className="py-4 px-6">Program Applied</th>
+                    <th className="py-4 px-6">Applied Date</th>
+                    <th className="py-4 px-6">Status</th>
+                    <th className="py-4 px-6 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-slate-700 text-xs font-semibold">
+                  <AnimatePresence>
+                    {filteredApps.map((app) => (
+                      <motion.tr 
+                        key={app.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="hover:bg-slate-50/70 transition-colors group"
+                      >
+                        <td className="py-4 px-6">
+                          <div className="flex items-center gap-3">
+                            <div className="flex-shrink-0 h-9 w-9 rounded-xl flex items-center justify-center text-xs font-black bg-slate-50 border border-slate-200 text-slate-600 shadow-sm">
+                              {app.userName?.charAt(0) || "?"}
+                            </div>
+                            <div>
+                              <p className="font-bold text-slate-800 text-[13px]">{app.userName}</p>
+                              <p className="text-[11px] text-slate-500 mt-0.5">{app.userEmail}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="py-4 px-6">
+                          <span className="font-bold text-slate-700">{app.programTitle}</span>
+                        </td>
+                        <td className="py-4 px-6 text-slate-500 font-medium">
+                          <div className="flex items-center gap-1.5">
+                            <Clock className="h-3 w-3 text-slate-400" />
+                            {app.appliedAt?.seconds
+                              ? new Date(app.appliedAt.seconds * 1000).toLocaleDateString()
+                              : "Recently"}
+                          </div>
+                        </td>
+                        <td className="py-4 px-6">
+                          <span className={`inline-flex items-center justify-center px-2.5 py-1 rounded-md text-[10px] font-bold border shadow-xs ${
+                            app.status === "Approved" ? "bg-emerald-50 border-emerald-100 text-emerald-700" :
+                            app.status === "Rejected" ? "bg-rose-50 border-rose-100 text-rose-700" : 
+                            "bg-amber-50 border-amber-100 text-amber-700"
+                          }`}>
+                            {app.status === "Approved" ? "✓ " : app.status === "Pending" ? "⏳ " : "✕ "}{app.status}
+                          </span>
+                        </td>
+                        <td className="py-4 px-6 text-right">
+                          {app.status === "Pending" ? (
+                            <div className="flex justify-end gap-2">
+                              <button
+                                onClick={() => handleUpdateStatus(app, "Approved")}
+                                className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-emerald-50 hover:border-emerald-200 text-slate-400 hover:text-emerald-600 shadow-sm transition-all cursor-pointer active:scale-95"
+                                title="Approve Application"
+                              >
+                                <Check className="h-4 w-4" />
+                              </button>
+                              <button
+                                onClick={() => handleUpdateStatus(app, "Rejected")}
+                                className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-rose-50 hover:border-rose-200 text-slate-400 hover:text-rose-600 shadow-sm transition-all cursor-pointer active:scale-95"
+                                title="Reject Application"
+                              >
+                                <X className="h-4 w-4" />
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="flex justify-end">
+                              <div className="p-2 rounded-xl bg-slate-50 text-slate-300 border border-transparent">
+                                <CheckCircle2 className="h-4 w-4" />
+                              </div>
+                            </div>
+                          )}
+                        </td>
+                      </motion.tr>
+                    ))}
+                  </AnimatePresence>
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </motion.div>
     </motion.div>
   );
 }

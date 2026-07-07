@@ -93,11 +93,8 @@ export default function AdminLeaderboard() {
       className="glass-card p-6 bg-white space-y-6"
     >
       
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="font-bold text-slate-800 text-lg">Configure Hall of Fame</h3>
-          <p className="text-slate-400 text-xs mt-1">Audit or add custom rankings for national volunteer stats.</p>
-        </div>
+      <div className="flex items-center justify-between mb-6">
+        <div></div>
 
         <button
           onClick={openCreateModal}

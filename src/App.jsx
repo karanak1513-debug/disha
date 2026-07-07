@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 
+
 // Layout
 import DashboardLayout from "./layouts/DashboardLayout";
 
@@ -19,6 +20,8 @@ import VolunteerLeaderboard from "./pages/volunteer/Leaderboard";
 import VolunteerMessages from "./pages/volunteer/Messages";
 import VolunteerAnnouncements from "./pages/volunteer/Announcements";
 import VolunteerCertificates from "./pages/volunteer/Certificates";
+import VolunteerResources from "./pages/volunteer/Resources";
+import VolunteerNotifications from "./pages/volunteer/Notifications";
 import VolunteerSupport from "./pages/volunteer/Support";
 import VolunteerProfile from "./pages/volunteer/Profile";
 
@@ -35,6 +38,10 @@ import AdminAnnouncements from "./pages/admin/Announcements";
 import AdminMessages from "./pages/admin/Messages";
 import AdminAnalytics from "./pages/admin/Analytics";
 import AdminReports from "./pages/admin/Reports";
+import AdminResources from "./pages/admin/Resources";
+
+// Shared Pages
+import Settings from "./pages/Settings";
 
 // Protected Route Wrapper for Volunteers
 function ProtectedRoute({ children }) {
@@ -93,6 +100,8 @@ function Bootstrapper() {
 
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
+
       {/* Public Auth Routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
@@ -107,8 +116,11 @@ function Bootstrapper() {
       <Route path="/messages" element={<ProtectedRoute><VolunteerMessages /></ProtectedRoute>} />
       <Route path="/announcements" element={<ProtectedRoute><VolunteerAnnouncements /></ProtectedRoute>} />
       <Route path="/certificates" element={<ProtectedRoute><VolunteerCertificates /></ProtectedRoute>} />
+      <Route path="/resources" element={<ProtectedRoute><VolunteerResources /></ProtectedRoute>} />
+      <Route path="/notifications" element={<ProtectedRoute><VolunteerNotifications /></ProtectedRoute>} />
       <Route path="/support" element={<ProtectedRoute><VolunteerSupport /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><VolunteerProfile /></ProtectedRoute>} />
+      <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
 
       {/* Admin Protected Routes */}
       <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
@@ -123,6 +135,8 @@ function Bootstrapper() {
       <Route path="/admin/messages" element={<AdminRoute><AdminMessages /></AdminRoute>} />
       <Route path="/admin/analytics" element={<AdminRoute><AdminAnalytics /></AdminRoute>} />
       <Route path="/admin/reports" element={<AdminRoute><AdminReports /></AdminRoute>} />
+      <Route path="/admin/resources" element={<AdminRoute><AdminResources /></AdminRoute>} />
+      <Route path="/admin/settings" element={<AdminRoute><Settings /></AdminRoute>} />
 
       {/* Default Catch-all */}
       <Route path="*" element={<Navigate to="/login" replace />} />

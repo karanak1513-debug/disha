@@ -181,8 +181,8 @@ export function AuthProvider({ children }) {
     resetPassword,
     verifyEmail,
     updateUserRole,
-    isAdmin: userProfile?.role === "Admin" || userProfile?.role === "Super Admin",
-    isSuperAdmin: userProfile?.role === "Super Admin"
+    isAdmin: ["admin", "superadmin", "super admin"].includes(userProfile?.role?.toLowerCase()),
+    isSuperAdmin: ["superadmin", "super admin"].includes(userProfile?.role?.toLowerCase())
   };
 
   return (
