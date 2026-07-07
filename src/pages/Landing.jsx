@@ -106,97 +106,149 @@ const ABOUT_CARDS = [
 function AboutCarousel() {
   const [[current, dir], setCurrent] = useState([0, 0]);
   const total = ABOUT_CARDS.length;
+  const card = ABOUT_CARDS[current];
 
   const paginate = (newDir) => {
     setCurrent(([c]) => [(c + newDir + total) % total, newDir]);
   };
 
-  // Auto-advance every 5s
+  const goTo = (i) => setCurrent([i, i > current ? 1 : -1]);
+
   useEffect(() => {
     const id = setInterval(() => paginate(1), 5000);
     return () => clearInterval(id);
   });
 
-  const variants = {
-    enter: (d) => ({ x: d > 0 ? "100%" : "-100%", opacity: 0 }),
-    center: { x: 0, opacity: 1, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
-    exit:  (d) => ({ x: d > 0 ? "-100%" : "100%", opacity: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }),
+  const slideVariants = {
+    enter: (d) => ({ x: d > 0 ? 60 : -60, opacity: 0 }),
+    center: { x: 0, opacity: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+    exit:  (d) => ({ x: d > 0 ? -60 : 60, opacity: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }),
   };
 
-  const card = ABOUT_CARDS[current];
-
   return (
-    <div className="flex-1 flex flex-col gap-5">
-      {/* Card viewport */}
-      <div className="relative overflow-hidden rounded-2xl">
+    <div className="flex-1 flex flex-col">
+
+      {/* ── TAB NAV ─────────────────────────────────── */}
+      <div className="flex items-center gap-1 mb-6 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-1.5">
+        {ABOUT_CARDS.map((c, i) => {
+          const isActive = i === current;
+          return (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`relative flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                isActive
+                  ? "bg-white text-[#0F172A] shadow-sm border border-[#E2E8F0]"
+                  : "text-[#64748B] hover:text-[#0F172A] hover:bg-white/60"
+              }`}
+            >
+              <c.icon className={`h-4 w-4 flex-shrink-0 ${isActive ? c.iconColor : "text-slate-400"}`} />
+              <span className="hidden sm:block">{c.title}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* ── CARD PANEL ──────────────────────────────── */}
+      <div
+        className="relative flex-1 overflow-hidden rounded-xl border border-[#E2E8F0] bg-white shadow-sm cursor-grab active:cursor-grabbing"
+      >
+        {/* Animated progress bar at the very top */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-slate-100 z-20 rounded-t-xl overflow-hidden">
+          <motion.div
+            key={current}
+            className={`h-full ${card.iconBg.replace('bg-', 'bg-')} ${card.accentColor.replace('text-', 'bg-')}`}
+            style={{ backgroundColor: undefined }}
+            initial={{ width: "0%" }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 5, ease: "linear" }}
+          />
+        </div>
+
+        {/* Left accent stripe */}
+        <div className={`absolute left-0 top-0 bottom-0 w-1 ${card.activeBg ?? 'bg-[#0EA5E9]'} rounded-l-xl z-10`} />
+
         <AnimatePresence initial={false} custom={dir} mode="wait">
           <motion.div
             key={current}
             custom={dir}
-            variants={variants}
+            variants={slideVariants}
             initial="enter"
             animate="center"
             exit="exit"
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.15}
+            dragElastic={0.12}
             onDragEnd={(_, info) => {
-              if (info.offset.x < -50) paginate(1);
-              else if (info.offset.x > 50) paginate(-1);
+              if (info.offset.x < -40) paginate(1);
+              else if (info.offset.x > 40) paginate(-1);
             }}
-            className={`bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-2xl cursor-grab active:cursor-grabbing select-none ${card.borderHover} transition-colors`}
+            className="select-none h-full pl-8 pr-6 py-8"
           >
-            {/* Icon */}
-            <div className={`h-12 w-12 rounded-xl ${card.iconBg} flex items-center justify-center mb-5`}>
-              <card.icon className={`h-6 w-6 ${card.iconColor}`} />
+            {/* Icon + Title row */}
+            <div className="flex items-start gap-4 mb-5">
+              <div className={`h-13 w-13 rounded-xl ${card.iconBg} flex items-center justify-center flex-shrink-0 p-3`}>
+                <card.icon className={`h-7 w-7 ${card.iconColor}`} />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-[#0F172A] leading-tight">{card.title}</h3>
+                <p className={`text-xs font-bold ${card.accentColor} mt-1 uppercase tracking-widest`}>{card.subtitle}</p>
+              </div>
             </div>
-            {/* Title */}
-            <h3 className="text-xl font-black text-[#0F172A] mb-1">{card.title}</h3>
-            {/* Subtitle */}
-            <p className={`text-xs font-bold ${card.accentColor} mb-4 uppercase tracking-widest`}>{card.subtitle}</p>
-            {/* Desc */}
-            <p className="text-[#64748B] text-sm leading-relaxed">{card.desc}</p>
+
+            {/* Divider */}
+            <div className="border-t border-slate-100 mb-5" />
+
+            {/* Description */}
+            <p className="text-[#64748B] text-base leading-relaxed">{card.desc}</p>
+
+            {/* Slide counter */}
+            <div className="mt-6 flex items-center justify-between">
+              <span className="text-xs text-slate-400 font-medium tabular-nums">{current + 1} of {total}</span>
+              <span className="text-xs text-slate-400 font-medium">Swipe to explore ↔</span>
+            </div>
           </motion.div>
         </AnimatePresence>
-
-        {/* Prev / Next Buttons */}
-        <button
-          onClick={() => paginate(-1)}
-          className="absolute left-3 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-white border border-[#E2E8F0] shadow flex items-center justify-center text-[#64748B] hover:text-[#0EA5E9] hover:border-sky-200 transition-all z-10"
-          aria-label="Previous card"
-        >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={() => paginate(1)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-white border border-[#E2E8F0] shadow flex items-center justify-center text-[#64748B] hover:text-[#0EA5E9] hover:border-sky-200 transition-all z-10"
-          aria-label="Next card"
-        >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
       </div>
 
-      {/* Dot indicators + counter */}
-      <div className="flex items-center justify-between px-1">
+      {/* ── PREV / NEXT BUTTONS ─────────────────────── */}
+      <div className="flex items-center justify-between mt-4 px-1">
+        {/* Dots */}
         <div className="flex gap-2">
           {ABOUT_CARDS.map((_, i) => (
             <button
               key={i}
-              onClick={() => setCurrent([i, i > current ? 1 : -1])}
-              className={`rounded-full transition-all duration-300 ${i === current ? 'bg-[#0EA5E9] w-6 h-2' : 'bg-slate-300 w-2 h-2 hover:bg-sky-300'}`}
-              aria-label={`Slide ${i + 1}`}
+              onClick={() => goTo(i)}
+              className={`rounded-full transition-all duration-300 ${
+                i === current ? "bg-[#0EA5E9] w-7 h-2.5" : "bg-slate-200 w-2.5 h-2.5 hover:bg-sky-300"
+              }`}
+              aria-label={`Go to ${ABOUT_CARDS[i].title}`}
             />
           ))}
         </div>
-        <span className="text-xs text-slate-400 font-medium tabular-nums">{current + 1} / {total}</span>
-      </div>
 
-      {/* Hint */}
-      <p className="text-xs text-slate-400 text-center font-medium -mt-2">Swipe or drag to explore</p>
+        {/* Arrow buttons */}
+        <div className="flex gap-2">
+          <button
+            onClick={() => paginate(-1)}
+            className="h-9 w-9 rounded-lg bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center text-[#64748B] hover:text-[#0EA5E9] hover:border-sky-200 hover:bg-sky-50 transition-all"
+            aria-label="Previous"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={() => paginate(1)}
+            className="h-9 w-9 rounded-lg bg-[#0EA5E9] border border-[#0EA5E9] shadow-sm flex items-center justify-center text-white hover:bg-[#0284C7] transition-all"
+            aria-label="Next"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
