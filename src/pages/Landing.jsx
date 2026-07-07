@@ -323,68 +323,78 @@ export default function Landing() {
             <p className="text-slate-500 text-lg leading-relaxed">Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.</p>
           </div>
 
-          {/* 6 Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Bento Box Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 icon: Search,
                 number: "01",
-                color: "blue",
                 iconColor: "text-[#2563EB]",
                 iconBg: "bg-blue-50",
                 borderHover: "hover:border-blue-200",
                 title: "Volunteer Opportunities",
-                desc: "Join impactful campaigns in education, environmental sustainability, healthcare, and community development. Choose opportunities that match your interests and availability."
+                desc: "Join impactful campaigns in education, environmental sustainability, healthcare, and community development.",
+                colSpan: "md:col-span-1",
+                rowSpan: "md:row-span-2",
+                img: "/disha-event1.jpg",
+                imgPos: "top",
               },
               {
                 icon: BookOpenCheck,
                 number: "02",
-                color: "orange",
                 iconColor: "text-[#F97316]",
                 iconBg: "bg-orange-50",
                 borderHover: "hover:border-orange-200",
                 title: "Skill Development",
-                desc: "Enhance your communication, leadership, teamwork, and project management skills through practical volunteering experiences and mentorship."
+                desc: "Enhance your communication, leadership, teamwork, and project management skills through practical volunteering experiences and mentorship.",
+                colSpan: "md:col-span-2",
+                img: "/disha-event2.jpg",
+                imgPos: "right",
               },
               {
                 icon: Target,
                 number: "03",
-                color: "emerald",
                 iconColor: "text-emerald-600",
                 iconBg: "bg-emerald-50",
                 borderHover: "hover:border-emerald-200",
                 title: "Leadership",
-                desc: "Lead initiatives, coordinate volunteers, and drive projects that create lasting change while developing confidence and responsibility."
+                desc: "Lead initiatives, coordinate volunteers, and drive projects that create lasting change while developing confidence.",
+                colSpan: "md:col-span-1",
               },
               {
                 icon: LineChart,
                 number: "04",
-                color: "purple",
                 iconColor: "text-purple-600",
                 iconBg: "bg-purple-50",
                 borderHover: "hover:border-purple-200",
                 title: "Career Growth",
-                desc: "Build a strong profile with real-world social impact experience, making you stand out for higher education, internships, and future career opportunities."
+                desc: "Build a strong profile with real-world social impact experience, making you stand out for higher education and internships.",
+                colSpan: "md:col-span-1",
               },
               {
                 icon: Award,
                 number: "05",
-                color: "rose",
                 iconColor: "text-rose-500",
                 iconBg: "bg-rose-50",
                 borderHover: "hover:border-rose-200",
                 title: "Verified Certificates",
-                desc: "Receive recognized certificates for your participation and contribution, showcasing your commitment to community service and personal growth."
+                desc: "Receive recognized certificates for your participation and contribution, showcasing your commitment to community service.",
+                colSpan: "md:col-span-2",
+                img: "/disha-event3.jpg",
+                imgPos: "left",
               },
               {
                 icon: Globe,
                 number: "06",
-                color: "teal",
-                iconColor: "text-teal-600",
-                iconBg: "bg-teal-50",
-                borderHover: "hover:border-teal-200",
+                iconColor: "text-white",
+                iconBg: "bg-white/20 backdrop-blur-md border border-white/20",
+                borderHover: "border-transparent",
                 title: "Community Impact",
-                desc: "Contribute to initiatives that improve education, empower communities, protect the environment, and support sustainable development across India."
+                desc: "Contribute to initiatives that improve education, empower communities, and support sustainable development across India.",
+                colSpan: "md:col-span-1",
+                img: "/disha-event4.jpg",
+                imgPos: "bg",
+                isDark: true
               }
             ].map((f, i) => (
               <motion.div
@@ -393,19 +403,47 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className={`group bg-white border border-[#E2E8F0] ${f.borderHover} hover:shadow-lg transition-all duration-300 p-8 rounded-[20px] relative overflow-hidden`}
+                className={`group bg-white border border-[#E2E8F0] ${f.borderHover} hover:shadow-xl transition-all duration-300 rounded-[32px] relative overflow-hidden flex ${
+                  f.imgPos === "right" ? "flex-col md:flex-row-reverse" : 
+                  f.imgPos === "left" ? "flex-col md:flex-row" : 
+                  "flex-col"
+                } ${f.colSpan || ""} ${f.rowSpan || ""}`}
               >
-                {/* Number badge */}
-                <span className="absolute top-6 right-6 text-xs font-black text-slate-200 tracking-widest font-display">{f.number}</span>
+                {f.imgPos === "bg" ? (
+                  <>
+                    <div className="absolute inset-0 z-0">
+                      <img src={f.img} alt={f.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-slate-900/70 group-hover:bg-slate-900/60 transition-colors duration-500" />
+                    </div>
+                    <div className={`p-8 md:p-10 flex-1 flex flex-col justify-end relative z-10 h-full min-h-[320px]`}>
+                      <span className="absolute top-6 right-6 text-xs font-black text-white/20 tracking-widest font-display">{f.number}</span>
+                      <div className={`h-14 w-14 rounded-2xl ${f.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                        <f.icon className={`h-7 w-7 ${f.iconColor}`} />
+                      </div>
+                      <h4 className="text-xl font-black text-white mb-3">{f.title}</h4>
+                      <p className="text-sm text-slate-200 leading-relaxed font-medium">{f.desc}</p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {f.img && (
+                      <div className={`relative overflow-hidden shrink-0 ${
+                        f.imgPos === "right" || f.imgPos === "left" ? "w-full md:w-[45%]" : "w-full h-56 md:h-1/2 min-h-[220px]"
+                      }`}>
+                        <img src={f.img} alt={f.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      </div>
+                    )}
 
-                {/* Icon */}
-                <div className={`h-13 w-13 h-12 w-12 rounded-[14px] ${f.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <f.icon className={`h-6 w-6 ${f.iconColor}`} />
-                </div>
-
-                {/* Text */}
-                <h4 className="text-lg font-black text-[#0F172A] mb-3">{f.title}</h4>
-                <p className="text-sm text-slate-500 leading-relaxed">{f.desc}</p>
+                    <div className={`p-8 md:p-10 flex-1 flex flex-col justify-center relative`}>
+                      <span className="absolute top-6 right-6 text-xs font-black text-slate-200 tracking-widest font-display">{f.number}</span>
+                      <div className={`h-14 w-14 rounded-2xl ${f.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                        <f.icon className={`h-7 w-7 ${f.iconColor}`} />
+                      </div>
+                      <h4 className="text-xl font-black text-[#0F172A] mb-3">{f.title}</h4>
+                      <p className="text-sm text-slate-500 leading-relaxed font-medium">{f.desc}</p>
+                    </div>
+                  </>
+                )}
               </motion.div>
             ))}
           </div>
