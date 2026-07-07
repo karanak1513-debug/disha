@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PublicNavbar from '../../components/public/PublicNavbar';
 import Footer from '../../components/public/Footer';
-import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, ArrowRight, UserCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Contact() {
@@ -37,7 +38,7 @@ export default function Contact() {
       {/* Main Content */}
       <section className="py-24 relative -mt-16 z-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Contact Info */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -67,6 +68,24 @@ export default function Contact() {
               <h3 className="text-xl font-bold mb-2">Call Us</h3>
               <p className="text-slate-500 mb-6">Mon-Fri from 9am to 6pm.</p>
               <a href="tel:+919888877722" className="text-[#0F172A] font-medium hover:text-[#2563EB] mt-auto">+91-9888877722</a>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all text-center flex flex-col items-center"
+            >
+              <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 text-purple-600">
+                <UserCircle className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Dashboard</h3>
+              <p className="text-slate-500 mb-6">Access your volunteer portal.</p>
+              <div className="flex gap-4 mt-auto w-full justify-center">
+                <Link to="/login" className="text-[#2563EB] font-semibold hover:underline">Login</Link>
+                <span className="text-slate-300">|</span>
+                <Link to="/register" className="text-[#2563EB] font-semibold hover:underline">Register</Link>
+              </div>
             </motion.div>
           </div>
         </div>
