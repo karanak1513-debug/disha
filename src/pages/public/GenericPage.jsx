@@ -6,8 +6,80 @@ import Footer from '../../components/public/Footer';
 const pageData = {
   'help-center': { 
     title: 'Help Center', 
-    content: <p>Welcome to the DISHA Help Center. Find guides, tutorials, and support articles to help you navigate our platform.</p>,
-    isComplete: false
+    isComplete: true,
+    content: (
+      <div className="space-y-8">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4">Welcome to the Disha For India Help Center</h2>
+          <p>We're here to help you with volunteering, programs, registrations, partnerships, donations, and general inquiries. Browse the topics below to find quick answers.</p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Volunteer Support</h2>
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How do I become a volunteer?</h3>
+          <p>Visit the <strong>Volunteer Registration</strong> page, complete the application form, and our team will contact you with the next steps.</p>
+          
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Is there any registration fee?</h3>
+          <p>Most volunteer opportunities are free to join. Any program-specific requirements will be mentioned during registration.</p>
+          
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Can students volunteer?</h3>
+          <p>Yes. Students, working professionals, and individuals passionate about community service are welcome to participate.</p>
+          
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Will I receive a certificate?</h3>
+          <p>Eligible volunteers receive a certificate of participation after successfully completing the required activities.</p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Programs & Events</h2>
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How can I join a program?</h3>
+          <p>Browse our available programs, choose the one that interests you, and complete the registration process.</p>
+          
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Are programs available online?</h3>
+          <p>Some workshops and awareness sessions are conducted online, while community activities are held on-site.</p>
+          
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Can I participate in multiple programs?</h3>
+          <p>Yes. You may join multiple initiatives based on your interests and availability.</p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Donations & Partnerships</h2>
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How can I support Disha For India?</h3>
+          <p>You can support us by volunteering, donating, partnering with us, or spreading awareness about our initiatives.</p>
+          
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How do I become a partner?</h3>
+          <p>Organizations, institutions, and businesses can contact us through the Partnership or Contact page to discuss collaboration opportunities.</p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Account & Registration</h2>
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How do I update my information?</h3>
+          <p>Please contact our support team with your updated details, and we will assist you.</p>
+          
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">I didn't receive a confirmation email.</h3>
+          <p>Check your Spam or Promotions folder. If you still can't find it, contact our support team for assistance.</p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Technical Support</h2>
+          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">I'm having trouble accessing the website.</h3>
+          <ul className="list-disc pl-6 space-y-2 mt-2">
+            <li>Refresh your browser.</li>
+            <li>Clear your browser cache.</li>
+            <li>Try another browser or device.</li>
+            <li>Ensure you have a stable internet connection.</li>
+          </ul>
+          <p className="mt-4">If the issue continues, please contact our support team.</p>
+        </div>
+
+        <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 mt-8">
+          <h2 className="text-xl font-bold text-blue-900 mb-2">Still Need Help?</h2>
+          <p className="text-blue-800 mb-4">If you couldn't find the answer you're looking for, we're happy to help. Submit your query through our Contact Us page, and our team will get back to you as soon as possible.</p>
+          <Link to="/contact" className="inline-block bg-blue-600 text-white font-bold px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
+            Contact Support
+          </Link>
+        </div>
+      </div>
+    )
   },
   'volunteer-guidelines': { 
     title: 'Volunteer Guidelines', 
