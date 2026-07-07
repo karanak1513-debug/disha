@@ -58,6 +58,203 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
   );
 };
 
+// ─── WHY CHOOSE SECTION ────────────────────────────────────────────────
+const WHY_FEATURES = [
+  {
+    icon: Search,
+    iconColor: "text-[#0EA5E9]",
+    iconBg: "bg-sky-50",
+    accent: "from-sky-50 to-white",
+    borderAccent: "border-sky-200",
+    badge: "Volunteering",
+    badgeColor: "text-[#0EA5E9] bg-sky-50 border-sky-100",
+    title: "Meaningful Volunteering",
+    desc: "Engage in purpose-driven campaigns across education, healthcare, and sustainability to create measurable, real-world impact.",
+    points: ["Education & literacy drives", "Healthcare awareness camps", "Environmental sustainability", "Community welfare programs"],
+  },
+  {
+    icon: BookOpenCheck,
+    iconColor: "text-[#F97316]",
+    iconBg: "bg-orange-50",
+    accent: "from-orange-50 to-white",
+    borderAccent: "border-orange-200",
+    badge: "Skills",
+    badgeColor: "text-orange-600 bg-orange-50 border-orange-100",
+    title: "Practical Skill Building",
+    desc: "Cultivate essential competencies in leadership, communication, and project management through hands-on experience and expert mentorship.",
+    points: ["Expert-led workshops", "Leadership training", "Communication skills", "Project management"],
+  },
+  {
+    icon: Target,
+    iconColor: "text-emerald-600",
+    iconBg: "bg-emerald-50",
+    accent: "from-emerald-50 to-white",
+    borderAccent: "border-emerald-200",
+    badge: "Leadership",
+    badgeColor: "text-emerald-600 bg-emerald-50 border-emerald-100",
+    title: "Empowered Leadership",
+    desc: "Spearhead grassroots initiatives, coordinate volunteer cohorts, and execute high-impact projects that drive lasting social change.",
+    points: ["Lead real initiatives", "Coordinate volunteer teams", "Grassroots campaigns", "Mentorship opportunities"],
+  },
+  {
+    icon: LineChart,
+    iconColor: "text-purple-600",
+    iconBg: "bg-purple-50",
+    accent: "from-purple-50 to-white",
+    borderAccent: "border-purple-200",
+    badge: "Career",
+    badgeColor: "text-purple-600 bg-purple-50 border-purple-100",
+    title: "Accelerated Career Growth",
+    desc: "Fortify your professional portfolio with demonstrable social impact, distinguishing yourself for top-tier internships and higher education.",
+    points: ["Portfolio-worthy experience", "LinkedIn-verified impact", "University applications boost", "Industry connections"],
+  },
+  {
+    icon: Award,
+    iconColor: "text-rose-500",
+    iconBg: "bg-rose-50",
+    accent: "from-rose-50 to-white",
+    borderAccent: "border-rose-200",
+    badge: "Certification",
+    badgeColor: "text-rose-500 bg-rose-50 border-rose-100",
+    title: "Verified Certification",
+    desc: "Earn officially recognized credentials that validate your dedication, leadership, and tangible contributions to the community.",
+    points: ["Digitally verifiable certificates", "Recognized by institutions", "Shareable on LinkedIn", "Proof of real impact"],
+  },
+  {
+    icon: Globe,
+    iconColor: "text-indigo-600",
+    iconBg: "bg-indigo-50",
+    accent: "from-indigo-50 to-white",
+    borderAccent: "border-indigo-200",
+    badge: "Impact",
+    badgeColor: "text-indigo-600 bg-indigo-50 border-indigo-100",
+    title: "Sustainable Impact",
+    desc: "Play a pivotal role in scalable initiatives designed to uplift marginalized groups, democratize education, and build resilient societies.",
+    points: ["Long-term community change", "Scalable NGO programs", "Partnerships nationwide", "Measurable social impact"],
+  },
+];
+
+function WhyChooseSection() {
+  const [active, setActive] = useState(0);
+  const f = WHY_FEATURES[active];
+
+  return (
+    <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0]">
+      <div className="max-w-7xl mx-auto px-6">
+
+        {/* Header */}
+        <div className="text-center mb-14">
+          <span className="inline-flex items-center gap-1.5 bg-orange-50 border border-orange-100 rounded-full px-4 py-1.5 text-xs font-bold text-[#F97316] uppercase tracking-widest mb-5">
+            Why Choose Us
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[#0F172A]">
+            Why Choose Disha For India?
+          </h2>
+          <p className="text-[#64748B] text-lg max-w-2xl mx-auto">
+            Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.
+          </p>
+        </div>
+
+        {/* Two-panel layout */}
+        <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+
+          {/* LEFT: Clickable list */}
+          <div className="lg:w-2/5 flex flex-col gap-2">
+            {WHY_FEATURES.map((item, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className={`group w-full flex items-center gap-4 px-5 py-4 rounded-xl border text-left transition-all duration-200 ${
+                  active === i
+                    ? `bg-white border-[${item.iconColor.replace('text-','').replace('[','').replace(']','')}] border-2 shadow-md`
+                    : 'bg-white border-[#E2E8F0] hover:border-slate-300 hover:shadow-sm'
+                }`}
+                style={active === i ? { borderColor: 'var(--tw-border-opacity)' } : {}}
+              >
+                {/* Icon bubble */}
+                <div className={`flex-shrink-0 h-10 w-10 rounded-lg ${item.iconBg} flex items-center justify-center transition-transform duration-200 ${active === i ? 'scale-110' : 'group-hover:scale-105'}`}>
+                  <item.icon className={`h-5 w-5 ${item.iconColor}`} />
+                </div>
+
+                {/* Title + badge */}
+                <div className="flex-1 min-w-0">
+                  <p className={`text-sm font-semibold truncate transition-colors ${active === i ? 'text-[#0F172A]' : 'text-slate-600 group-hover:text-[#0F172A]'}`}>
+                    {item.title}
+                  </p>
+                  <span className={`inline-block text-[10px] font-bold uppercase tracking-wider mt-0.5 px-2 py-0.5 rounded-full border ${item.badgeColor}`}>
+                    {item.badge}
+                  </span>
+                </div>
+
+                {/* Active indicator */}
+                <div className={`flex-shrink-0 h-2 w-2 rounded-full transition-all ${active === i ? 'bg-[#0EA5E9] scale-125' : 'bg-slate-200'}`} />
+              </button>
+            ))}
+          </div>
+
+          {/* RIGHT: Animated detail card */}
+          <div className="lg:w-3/5">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className={`h-full bg-gradient-to-br ${f.accent} border-2 ${f.borderAccent} rounded-2xl p-8 md:p-10 shadow-sm flex flex-col gap-7`}
+              >
+                {/* Top: icon + badge */}
+                <div className="flex items-start justify-between">
+                  <div className={`h-16 w-16 rounded-2xl ${f.iconBg} flex items-center justify-center shadow-sm`}>
+                    <f.icon className={`h-8 w-8 ${f.iconColor}`} />
+                  </div>
+                  <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full border ${f.badgeColor}`}>
+                    {f.badge}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[#0F172A] mb-3">{f.title}</h3>
+                  <p className="text-[#64748B] leading-relaxed text-base">{f.desc}</p>
+                </div>
+
+                {/* Bullet points */}
+                <ul className="space-y-3">
+                  {f.points.map((pt, j) => (
+                    <motion.li
+                      key={j}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: j * 0.08, duration: 0.3 }}
+                      className="flex items-center gap-3 text-sm font-medium text-[#0F172A]"
+                    >
+                      <span className={`flex-shrink-0 h-5 w-5 rounded-full ${f.iconBg} flex items-center justify-center`}>
+                        <svg className={`h-3 w-3 ${f.iconColor}`} fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                        </svg>
+                      </span>
+                      {pt}
+                    </motion.li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <p className="text-xs text-slate-400 font-medium">Click any feature to explore</p>
+                  <a href="/register" className="btn-premium text-sm px-5 py-2">
+                    Join Now
+                  </a>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── TESTIMONIALS DATA ───────────────────────────────────────────────
 const TESTIMONIALS = [
   {
@@ -422,131 +619,9 @@ export default function Landing() {
       </section>
 
       {/* 6. WHY CHOOSE DISHA (Asymmetric Layout) */}
-      <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            
-            {/* Left: Text & Features */}
-            <div className="lg:w-1/2">
-              <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#F97316] bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-6">
-                Why Choose Us
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display text-[#0F172A] mb-6">
-                Why Choose Disha For India?
-              </h2>
-              <p className="text-slate-500 text-lg leading-relaxed mb-12">
-                Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.
-              </p>
+      <WhyChooseSection />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                {[
-                  {
-                    icon: Search,
-                    iconColor: "text-[#0EA5E9]",
-                    iconBg: "bg-sky-50",
-                    title: "Meaningful Volunteering",
-                    desc: "Engage in purpose-driven campaigns across education, healthcare, and sustainability to create measurable, real-world impact.",
-                  },
-                  {
-                    icon: BookOpenCheck,
-                    iconColor: "text-[#F97316]",
-                    iconBg: "bg-orange-50",
-                    title: "Practical Skill Building",
-                    desc: "Cultivate essential competencies in leadership, communication, and project management through hands-on experience and expert mentorship.",
-                  },
-                  {
-                    icon: Target,
-                    iconColor: "text-emerald-600",
-                    iconBg: "bg-emerald-50",
-                    title: "Empowered Leadership",
-                    desc: "Spearhead grassroots initiatives, coordinate volunteer cohorts, and execute high-impact projects that drive lasting social change.",
-                  },
-                  {
-                    icon: LineChart,
-                    iconColor: "text-purple-600",
-                    iconBg: "bg-purple-50",
-                    title: "Accelerated Career Growth",
-                    desc: "Fortify your professional portfolio with demonstrable social impact, distinguishing yourself for top-tier internships and higher education.",
-                  },
-                  {
-                    icon: Award,
-                    iconColor: "text-rose-500",
-                    iconBg: "bg-rose-50",
-                    title: "Verified Certification",
-                    desc: "Earn officially recognized credentials that validate your dedication, leadership, and tangible contributions to the community.",
-                  },
-                  {
-                    icon: Globe,
-                    iconColor: "text-indigo-600",
-                    iconBg: "bg-indigo-50",
-                    title: "Sustainable Impact",
-                    desc: "Play a pivotal role in scalable initiatives designed to uplift marginalized groups, democratize education, and build resilient societies.",
-                  }
-                ].map((f, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="flex flex-col"
-                  >
-                    <div className={`h-12 w-12 rounded-xl ${f.iconBg} flex items-center justify-center mb-4`}>
-                      <f.icon className={`h-6 w-6 ${f.iconColor}`} />
-                    </div>
-                    <h4 className="text-lg font-bold text-[#0F172A] mb-2">{f.title}</h4>
-                    <p className="text-sm text-slate-500 leading-relaxed font-medium">{f.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
 
-            {/* Right: Modern 4-Image Grid */}
-            <div className="lg:w-1/2 w-full relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
-                    <img src="/disha-event1.jpg" alt="DISHA Seminar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
-                  </div>
-                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
-                    <img src="/disha-event2.jpg" alt="DISHA Event" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
-                  </div>
-                </div>
-                <div className="space-y-4 pt-12">
-                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
-                    <img src="/disha-event3.jpg" alt="DISHA Workshop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
-                  </div>
-                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
-                    <img src="/disha-event4.jpg" alt="DISHA Training" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
-                  </div>
-                </div>
-              </div>
-              
-              {/* Decorative Floating Element */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-xl z-10 flex items-center gap-4 border border-white/40"
-              >
-                <div className="bg-[#0EA5E9]/10 p-3 rounded-full">
-                  <Heart className="h-6 w-6 text-[#0EA5E9] fill-[#0EA5E9]" />
-                </div>
-                <div>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Lives Touched</p>
-                  <p className="text-2xl font-black text-[#0F172A]">100,000+</p>
-                </div>
-              </motion.div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
 
       {/* 9. TESTIMONIALS CAROUSEL */}
