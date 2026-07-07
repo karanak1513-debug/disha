@@ -403,29 +403,62 @@ export default function Landing() {
       </section>
 
 
-      {/* 9. SUCCESS STORIES */}
+      {/* 9. TESTIMONIALS */}
       <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-6">
+
+          {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight font-display mb-4">Success Stories</h2>
-            <p className="text-slate-500 text-lg">Real impact from India's most dedicated student volunteers.</p>
+            <span className="inline-flex items-center gap-1.5 bg-sky-50 border border-sky-100 rounded-full px-4 py-1.5 text-xs font-bold text-[#0EA5E9] uppercase tracking-widest mb-5">
+              Our Testimonials
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[#0F172A]">
+              What they are talking about
+            </h2>
+            <p className="text-[#64748B] text-lg font-medium">Disha For India</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name: "Priya Sharma", role: "Taught 50+ students coding", txt: "The verified certificates helped me secure my first tech internship! The platform is incredible.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" },
-              { name: "Rahul Verma", role: "Planted 200 trees", txt: "The XP and leaderboard system made volunteering so much fun. I logged over 200 hours this year.", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=200" },
-              { name: "Ananya Patel", role: "Organized blood drive", txt: "Managing volunteers used to be a nightmare. DISHA's dashboard streamlined our entire process.", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200" }
-            ].map((story, i) => (
-              <div key={i} className="bg-white border border-[#E2E8F0] p-8 rounded-[16px] shadow-sm flex flex-col relative">
-                <div className="flex gap-1 mb-4">
+              {
+                name: "Jaswinder Singh",
+                quote: "I am associated with NGO for last 5 years, they are doing a great work by uplifting lives of youth.",
+                initials: "JS",
+                color: "bg-sky-500"
+              },
+              {
+                name: "Neeru Garg",
+                quote: "I know Indu for last 10 years and she is a very powerful personality.",
+                initials: "NG",
+                color: "bg-indigo-500"
+              },
+              {
+                name: "Mandeep Singh",
+                quote: "I attended the \"Break the limits\" event — it really changed my perception about life and success.",
+                initials: "MS",
+                color: "bg-emerald-500"
+              }
+            ].map((t, i) => (
+              <div key={i} className="bg-white border border-[#E2E8F0] rounded-xl p-8 shadow-sm flex flex-col gap-6 hover:border-sky-200 hover:shadow-md transition-all">
+                {/* Stars */}
+                <div className="flex gap-1">
                   {[1,2,3,4,5].map(s => <Star key={s} className="h-4 w-4 fill-[#F97316] text-[#F97316]" />)}
                 </div>
-                <p className="text-slate-600 leading-relaxed mb-8 flex-1 italic">"{story.txt}"</p>
-                <div className="flex items-center gap-4 pt-6 border-t border-slate-50">
-                  <img src={story.img} alt={story.name} className="h-12 w-12 rounded-full object-cover border border-[#E2E8F0]" />
+
+                {/* Quote */}
+                <p className="text-[#0F172A] text-base leading-relaxed flex-1">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+
+                {/* Author */}
+                <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                  <div className={`h-11 w-11 rounded-full ${t.color} flex items-center justify-center text-white text-sm font-bold flex-shrink-0 shadow-sm`}>
+                    {t.initials}
+                  </div>
                   <div>
-                    <h4 className="text-sm font-bold text-[#0F172A]">{story.name}</h4>
-                    <p className="text-xs font-semibold text-[#0EA5E9]">{story.role}</p>
+                    <h4 className="text-sm font-bold text-[#0F172A]">{t.name}</h4>
+                    <p className="text-xs text-[#0EA5E9] font-semibold mt-0.5">Disha For India</p>
                   </div>
                 </div>
               </div>
@@ -433,6 +466,7 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
 
 
 
