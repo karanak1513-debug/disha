@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer id="contact" className="bg-white border-t border-[#E2E8F0] pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
           <div className="col-span-2 lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <span className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#2563EB] text-white font-bold text-lg shadow-sm">D</span>
@@ -22,14 +22,7 @@ export default function Footer() {
             </div>
           </div>
           
-          <div>
-            <h4 className="font-bold text-[#0F172A] mb-4">Quick Links</h4>
-            <ul className="space-y-3">
-              <li><Link to="/#home" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Home</Link></li>
-              <li><Link to="/#about" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">About Us</Link></li>
-              <li><Link to="/blogs" className="text-sm text-slate-500 hover:text-[#2563EB] font-medium transition-colors">Blogs</Link></li>
-            </ul>
-          </div>
+
 
           <div>
             <h4 className="font-bold text-[#0F172A] mb-4">Resources</h4>
