@@ -37,98 +37,36 @@ export default function Contact() {
       {/* Main Content */}
       <section className="py-24 relative -mt-16 z-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-3 gap-12">
-            
+          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             {/* Contact Info */}
-            <div className="lg:col-span-1 space-y-6">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-xl transition-shadow"
-              >
-                <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-[#2563EB]">
-                  <Mail className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Email Us</h3>
-                <p className="text-slate-500 mb-4">Our friendly team is here to help.</p>
-                <a href="mailto:inaggarwal76@gmail.com" className="text-[#2563EB] font-semibold hover:underline">inaggarwal76@gmail.com</a>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-xl transition-shadow"
-              >
-                <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 text-indigo-600">
-                  <MapPin className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Visit Us</h3>
-                <p className="text-slate-500 mb-4">Come say hello at our headquarters.</p>
-                <address className="text-[#0F172A] not-italic font-medium">
-                  123 Innovation Block<br />
-                  Tech Park, Bangalore<br />
-                  India 560100
-                </address>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-xl transition-shadow"
-              >
-                <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 text-emerald-600">
-                  <Phone className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Call Us</h3>
-                <p className="text-slate-500 mb-4">Mon-Fri from 9am to 6pm.</p>
-                <a href="tel:+919888877722" className="text-[#0F172A] font-medium hover:text-[#2563EB]">+91-9888877722</a>
-              </motion.div>
-            </div>
-
-            {/* Login Form */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="lg:col-span-2 bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgb(0,0,0,0.05)] border border-[#E2E8F0]"
+              transition={{ delay: 0.2 }}
+              className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all text-center flex flex-col items-center"
             >
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-2 font-display">Login to your account</h2>
-                <p className="text-slate-500">Welcome back! Please enter your details.</p>
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-[#2563EB]">
+                <Mail className="h-8 w-8" />
               </div>
+              <h3 className="text-xl font-bold mb-2">Email Us</h3>
+              <p className="text-slate-500 mb-6">Our friendly team is here to help.</p>
+              <a href="mailto:inaggarwal76@gmail.com" className="text-[#2563EB] font-semibold hover:underline mt-auto">inaggarwal76@gmail.com</a>
+            </motion.div>
 
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-700">Email Address</label>
-                  <input 
-                    type="email" 
-                    placeholder="john@example.com" 
-                    className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
-                  />
-                </div>
 
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <label className="text-sm font-semibold text-slate-700">Password</label>
-                    <a href="#" className="text-xs font-semibold text-[#2563EB] hover:underline">Forgot password?</a>
-                  </div>
-                  <input 
-                    type="password" 
-                    placeholder="••••••••" 
-                    className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
-                  />
-                </div>
 
-                <button 
-                  type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#2563EB] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#1D4ED8] active:scale-[0.98] shadow-lg shadow-blue-500/30 mt-4"
-                >
-                  Log In <ArrowRight className="h-4 w-4" />
-                </button>
-              </form>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all text-center flex flex-col items-center"
+            >
+              <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 text-emerald-600">
+                <Phone className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Call Us</h3>
+              <p className="text-slate-500 mb-6">Mon-Fri from 9am to 6pm.</p>
+              <a href="tel:+919888877722" className="text-[#0F172A] font-medium hover:text-[#2563EB] mt-auto">+91-9888877722</a>
             </motion.div>
           </div>
         </div>
