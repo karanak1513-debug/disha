@@ -585,55 +585,11 @@ export default function Landing() {
               </div>
             </motion.div>
 
-            {/* RIGHT: 2x2 Cards Grid */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6"
-            >
-              {/* Vision */}
-              <div className="bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-[20px] hover:border-sky-200 hover:shadow-lg transition-all group">
-                <div className="h-12 w-12 rounded-[12px] bg-sky-50 flex items-center justify-center mb-5 group-hover:bg-sky-100 transition-colors">
-                  <Eye className="h-6 w-6 text-[#0EA5E9]" />
-                </div>
-                <h3 className="text-lg font-black text-[#0F172A] mb-1">Vision</h3>
-                <p className="text-xs font-bold text-[#0EA5E9] mb-3 uppercase tracking-widest">Empowering a Skilled & Progressive India</p>
-                <p className="text-slate-500 text-sm leading-relaxed">We envision a society where every individual has access to quality education, practical skills, and opportunities to lead a healthy, happy, and prosperous life.</p>
-              </div>
 
-              {/* Mission */}
-              <div className="bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-[20px] hover:border-orange-200 hover:shadow-lg transition-all group">
-                <div className="h-12 w-12 rounded-[12px] bg-orange-50 flex items-center justify-center mb-5 group-hover:bg-orange-100 transition-colors">
-                  <Target className="h-6 w-6 text-[#F97316]" />
-                </div>
-                <h3 className="text-lg font-black text-[#0F172A] mb-1">Mission</h3>
-                <p className="text-xs font-bold text-[#F97316] mb-3 uppercase tracking-widest">Building Future-Ready Youth</p>
-                <p className="text-slate-500 text-sm leading-relaxed">We empower students and young professionals through volunteering, mentorship, skill development, and entrepreneurship, creating leaders who drive positive social change.</p>
-              </div>
-
-              {/* Passion */}
-              <div className="bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-[20px] hover:border-emerald-200 hover:shadow-lg transition-all group">
-                <div className="h-12 w-12 rounded-[12px] bg-emerald-50 flex items-center justify-center mb-5 group-hover:bg-emerald-100 transition-colors">
-                  <Flame className="h-6 w-6 text-emerald-500" />
-                </div>
-                <h3 className="text-lg font-black text-[#0F172A] mb-1">Passion</h3>
-                <p className="text-xs font-bold text-emerald-600 mb-3 uppercase tracking-widest">Inspiring Purpose-Driven Change</p>
-                <p className="text-slate-500 text-sm leading-relaxed">We believe in leading by example, encouraging individuals to discover their potential, contribute to society, and make a meaningful impact every day.</p>
-              </div>
-
-              {/* Goal */}
-              <div className="bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-[20px] hover:border-purple-200 hover:shadow-lg transition-all group">
-                <div className="h-12 w-12 rounded-[12px] bg-purple-50 flex items-center justify-center mb-5 group-hover:bg-purple-100 transition-colors">
-                  <Sparkles className="h-6 w-6 text-purple-500" />
-                </div>
-                <h3 className="text-lg font-black text-[#0F172A] mb-1">Goal</h3>
-                <p className="text-xs font-bold text-purple-600 mb-3 uppercase tracking-widest">Transforming Communities Nationwide</p>
-                <p className="text-slate-500 text-sm leading-relaxed">Our goal is to expand across India by connecting youth, educators, NGOs, and communities to create sustainable impact and lifelong opportunities.</p>
-              </div>
-            </motion.div>
+            {/* RIGHT: Swipe Carousel */}
+            <AboutCarousel />
           </div>
+
 
           {/* Quote Banner */}
           <motion.div
