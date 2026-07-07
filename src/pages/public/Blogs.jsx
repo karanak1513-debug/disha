@@ -12,7 +12,7 @@ const blogPosts = [
     author: "Priya Sharma",
     date: "Oct 12, 2026",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2940&auto=format&fit=crop"
+    image: "/volunteers_teaching_1783425889312.png"
   },
   {
     title: "Sustainability 101: Starting a Community Garden",
@@ -21,7 +21,7 @@ const blogPosts = [
     author: "Rahul Verma",
     date: "Oct 08, 2026",
     readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1530836369250-ef71a3f5e902?q=80&w=2940&auto=format&fit=crop"
+    image: "/volunteers_planting_1783425900568.png"
   },
   {
     title: "The Silent Pandemic: Addressing Mental Health in Youth",
@@ -30,7 +30,7 @@ const blogPosts = [
     author: "Dr. Aisha Khan",
     date: "Oct 01, 2026",
     readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?q=80&w=2940&auto=format&fit=crop"
+    image: "/volunteers_tech_1783425911491.png"
   }
 ];
 
@@ -86,7 +86,7 @@ export default function Blogs() {
           >
             <div className="relative overflow-hidden h-64 lg:h-auto">
               <img 
-                src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2940&auto=format&fit=crop" 
+                src="/impact_header_1783425922341.png" 
                 alt="Featured Post" 
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -187,10 +187,10 @@ export default function Blogs() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="https://images.unsplash.com/photo-1544027993-37db244c0bc1?q=80&w=2940&auto=format&fit=crop" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 1" />
-            <img src="https://images.unsplash.com/photo-1594708767771-a7502209ff51?q=80&w=2940&auto=format&fit=crop" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 2" />
-            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2940&auto=format&fit=crop" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 3" />
-            <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?q=80&w=2940&auto=format&fit=crop" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 4" />
+            <img src="/blog_gallery_1_1783425941447.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 1" />
+            <img src="/blog_gallery_2_1783425951701.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 2" />
+            <img src="/blog_gallery_3_1783425963593.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 3" />
+            <img src="/blog_gallery_4_1783425974837.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 4" />
           </div>
         </div>
       </section>

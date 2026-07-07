@@ -25,7 +25,9 @@ import {
   AlertCircle,
   FileText,
   BarChart3,
-  Inbox
+  Inbox,
+  Image as ImageIcon,
+  UploadCloud
 } from "lucide-react";
 
 const stagger = {
@@ -430,6 +432,58 @@ export default function AdminDashboard() {
         </motion.div>
 
       </div>
+
+      {/* ── IMAGE UPLOAD SECTION ── */}
+      <motion.div variants={fadeUp} className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden flex flex-col mt-6">
+        <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-2 bg-slate-50/50">
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
+              <ImageIcon className="h-4 w-4 text-blue-600" />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-800 text-sm">Media & Galleries</h3>
+              <p className="text-[10px] text-slate-500 font-medium">Upload images for Blogs and Impact pages</p>
+            </div>
+          </div>
+          <button className="inline-flex items-center gap-1.5 bg-[#2563EB] text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-blue-700 transition-all shadow-sm shadow-blue-500/20 active:scale-95">
+            <UploadCloud className="h-4 w-4" /> Upload New Image
+          </button>
+        </div>
+
+        <div className="p-6 bg-white">
+          <div className="border-2 border-dashed border-slate-200 rounded-xl p-8 flex flex-col items-center justify-center text-center bg-slate-50/50 hover:bg-slate-50 transition-colors cursor-pointer group">
+            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <UploadCloud className="h-8 w-8 text-blue-500" />
+            </div>
+            <h4 className="text-sm font-bold text-slate-700 mb-1">Click to upload or drag and drop</h4>
+            <p className="text-xs text-slate-500 max-w-xs">SVG, PNG, JPG or GIF (max. 800x400px). Images will be available to use in Blogs and Impact galleries.</p>
+          </div>
+          
+          {/* Quick Preview of Recent Uploads */}
+          <div className="mt-6">
+            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Recently Uploaded</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              {[
+                "/blog_gallery_1_1783425941447.png",
+                "/blog_gallery_2_1783425951701.png",
+                "/volunteers_teaching_1783425889312.png",
+                "/volunteers_planting_1783425900568.png",
+              ].map((src, i) => (
+                <div key={i} className="relative group rounded-lg overflow-hidden border border-slate-200 aspect-video">
+                  <img src={src} alt="Recent upload" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span className="text-[10px] font-bold text-white bg-black/50 px-2 py-1 rounded backdrop-blur-sm">Copy URL</span>
+                  </div>
+                </div>
+              ))}
+              <div className="flex items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-xs font-bold text-slate-500 hover:bg-slate-100 cursor-pointer transition-colors">
+                + View All
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
     </motion.div>
   );
 }
