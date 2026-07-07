@@ -47,51 +47,38 @@ export default function Blogs() {
         </div>
       </section>
 
-      {/* Featured Post */}
+      {/* Indu Aggarwal Intro */}
       <section className="py-24 relative">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgb(0,0,0,0.05)] border border-[#E2E8F0] grid lg:grid-cols-2 group cursor-pointer"
+            className="bg-white rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgb(0,0,0,0.05)] border border-[#E2E8F0] grid lg:grid-cols-2"
           >
             <div className="relative overflow-hidden h-64 lg:h-auto">
               <img 
-                src="/blog_gallery_new_1.png" 
-                alt="Featured Post" 
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src="/indu_aggarwal_about.jpg" 
+                alt="Indu Aggarwal" 
+                className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute top-6 left-6 px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold text-[#2563EB] tracking-wide uppercase">
-                Featured
+                We Make The Difference
               </div>
             </div>
             <div className="p-10 lg:p-16 flex flex-col justify-center">
-              <div className="flex items-center gap-4 text-sm text-slate-400 font-medium mb-4">
-                <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> Oct 15, 2026</span>
-                <span>•</span>
-                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> 10 min read</span>
-              </div>
-              <h2 className="text-3xl font-bold font-display mb-6 group-hover:text-[#2563EB] transition-colors leading-tight">
-                The Mega Clean-Up Drive: Restoring our Coastlines
+              <h2 className="text-3xl font-bold font-display mb-2 text-slate-900 leading-tight">
+                Indu Aggarwal
               </h2>
-              <p className="text-slate-500 text-lg mb-8 line-clamp-3">
-                Last weekend, over 5,000 volunteers across 12 coastal cities came together to remove 20 tonnes of plastic waste from our beaches. This is the story of how collective action is saving marine life.
-              </p>
-              <div className="flex items-center justify-between mt-auto">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop" alt="Author" className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-slate-900">Karan Singh</div>
-                    <div className="text-xs text-slate-500">Environmental Lead</div>
-                  </div>
-                </div>
-                <div className="w-12 h-12 rounded-full border border-[#E2E8F0] flex items-center justify-center text-slate-400 group-hover:bg-[#2563EB] group-hover:text-white group-hover:border-[#2563EB] transition-all">
-                  <ArrowRight className="w-5 h-5" />
-                </div>
+              <div className="text-sm font-bold text-[#2563EB] uppercase tracking-wide mb-6">
+                Entrepreneur & Emotional Wellness Coach
               </div>
+              <p className="text-slate-600 text-lg mb-6 leading-relaxed">
+                Indu Aggarwal is enriching everyone’s lives by being the LEADING LIGHT and touching the lives of people through her Training and Health awareness programs. 
+              </p>
+              <p className="text-slate-600 text-lg leading-relaxed">
+                To pursue her passion of making a difference in the lives of people, she said goodbye to her lucrative corporate career and started her organization “DISHA FOR SUCCESS” and “DISHA FOR INDIA FOUNDATION AND EDUCATIONAL TRUST.”
+              </p>
             </div>
           </motion.div>
         </div>
