@@ -86,7 +86,7 @@ export default function Blogs() {
           >
             <div className="relative overflow-hidden h-64 lg:h-auto">
               <img 
-                src="/impact_header_1783425922341.png" 
+                src="/blog_gallery_new_1.png" 
                 alt="Featured Post" 
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -187,10 +187,10 @@ export default function Blogs() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="/blog_gallery_1_1783425941447.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 1" />
-            <img src="/blog_gallery_2_1783425951701.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 2" />
-            <img src="/blog_gallery_3_1783425963593.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 3" />
-            <img src="/blog_gallery_4_1783425974837.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 4" />
+            <img src="/blog_gallery_new_2.jpg" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 1" />
+            <img src="/blog_gallery_new_3.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 2" />
+            <img src="/blog_gallery_new_4.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 3" />
+            <img src="/blog_gallery_new_5.jpg" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 4" />
           </div>
         </div>
       </section>
