@@ -14,37 +14,54 @@ export default function Blogs() {
 
 
       {/* Indu Aggarwal Intro */}
-      <section className="py-24 relative">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="py-24 relative overflow-hidden bg-[#F8FAFC]">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgb(0,0,0,0.05)] border border-[#E2E8F0] flex flex-col"
+            className="relative bg-white rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden grid lg:grid-cols-2 group"
           >
-            <div className="relative w-full bg-slate-50 border-b border-[#E2E8F0]">
+            {/* Background Decorations */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50 pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-50 pointer-events-none -translate-x-1/2 translate-y-1/2"></div>
+
+            <div className="relative h-[400px] lg:h-auto bg-slate-50 flex items-center justify-center p-8 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-100/50 to-transparent opacity-50" />
               <img 
                 src="/indu_aggarwal_about.jpg" 
                 alt="Indu Aggarwal" 
-                className="w-full h-auto object-cover"
+                className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02] drop-shadow-xl rounded-2xl"
               />
-              <div className="absolute top-6 left-6 px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold text-[#2563EB] tracking-wide uppercase shadow-sm">
+              <div className="absolute top-8 left-8 z-20 px-5 py-2 bg-white/90 backdrop-blur-md rounded-full shadow-sm text-xs font-bold text-blue-600 tracking-wider uppercase border border-white">
                 We Make The Difference
               </div>
             </div>
-            <div className="p-8 md:p-16 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold font-display mb-3 text-slate-900 leading-tight">
+            
+            <div className="p-10 lg:p-20 flex flex-col justify-center relative z-10">
+              <div className="inline-flex items-center gap-3 mb-4">
+                <span className="w-10 h-[2px] bg-blue-600"></span>
+                <span className="text-sm font-bold text-blue-600 uppercase tracking-widest">
+                  Leadership
+                </span>
+              </div>
+              
+              <h2 className="text-4xl lg:text-5xl font-bold font-display mb-4 text-slate-900 leading-tight">
                 Indu Aggarwal
               </h2>
-              <div className="text-sm font-bold text-[#2563EB] uppercase tracking-wide mb-8">
+              <div className="text-lg font-medium text-slate-500 mb-8 pb-8 border-b border-slate-100">
                 Entrepreneur & Emotional Wellness Coach
               </div>
-              <p className="text-slate-600 text-lg md:text-xl mb-6 leading-relaxed max-w-3xl mx-auto">
-                Indu Aggarwal is enriching everyone’s lives by being the LEADING LIGHT and touching the lives of people through her Training and Health awareness programs. 
-              </p>
-              <p className="text-slate-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-                To pursue her passion of making a difference in the lives of people, she said goodbye to her lucrative corporate career and started her organization “DISHA FOR SUCCESS” and “DISHA FOR INDIA FOUNDATION AND EDUCATIONAL TRUST.”
-              </p>
+              
+              <div className="space-y-6 relative">
+                <p className="text-slate-600 text-lg leading-relaxed relative z-10">
+                  <span className="text-6xl text-blue-100 font-serif absolute -top-6 -left-6 -z-10 opacity-50">"</span>
+                  Indu Aggarwal is enriching everyone’s lives by being the LEADING LIGHT and touching the lives of people through her Training and Health awareness programs.
+                </p>
+                <p className="text-slate-600 text-lg leading-relaxed">
+                  To pursue her passion of making a difference in the lives of people, she said goodbye to her lucrative corporate career and started her organization <span className="font-semibold text-slate-900">“DISHA FOR SUCCESS”</span> and <span className="font-semibold text-slate-900">“DISHA FOR INDIA FOUNDATION AND EDUCATIONAL TRUST.”</span>
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
