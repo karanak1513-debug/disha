@@ -59,21 +59,7 @@ export default function Contact() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all text-center flex flex-col items-center"
-            >
-              <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 text-emerald-600">
-                <Phone className="h-8 w-8" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Call Us</h3>
-              <p className="text-slate-500 mb-6">Mon-Fri from 9am to 6pm.</p>
-              <a href="tel:+919888877722" className="text-[#0F172A] font-medium hover:text-[#2563EB] mt-auto">+91-9888877722</a>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.3 }}
               className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all text-center flex flex-col items-center"
             >
               <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 text-purple-600">
@@ -86,6 +72,20 @@ export default function Contact() {
                 <span className="text-slate-300">|</span>
                 <Link to="/register" className="text-[#2563EB] font-semibold hover:underline">Register</Link>
               </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all text-center flex flex-col items-center"
+            >
+              <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 text-emerald-600">
+                <Phone className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Call Us</h3>
+              <p className="text-slate-500 mb-6">Mon-Fri from 9am to 6pm.</p>
+              <a href="tel:+919888877722" className="text-[#0F172A] font-medium hover:text-[#2563EB] mt-auto">+91-9888877722</a>
             </motion.div>
           </div>
         </div>
