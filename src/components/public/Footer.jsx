@@ -44,10 +44,10 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Resources</h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />Help Center</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />Volunteer Guidelines</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />Blog</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />NGO Portal</a></li>
+              <li><Link to="/p/help-center" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />Help Center</Link></li>
+              <li><Link to="/p/volunteer-guidelines" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />Volunteer Guidelines</Link></li>
+              <li><Link to="/blogs" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />Blog</Link></li>
+              <li><Link to="/p/ngo-portal" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />NGO Portal</Link></li>
             </ul>
           </div>
 
@@ -56,8 +56,7 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Support</h4>
             <ul className="space-y-4">
               <li><Link to="/contact" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />Contact Us</Link></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />FAQ</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />Feedback</a></li>
+              <li><Link to="/faq" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />FAQ</Link></li>
             </ul>
           </div>
 
@@ -65,9 +64,9 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Legal</h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />Privacy Policy</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />Terms of Service</a></li>
-              <li><a href="#" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />Cookie Policy</a></li>
+              <li><Link to="/p/privacy-policy" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />Privacy Policy</Link></li>
+              <li><Link to="/p/terms-of-service" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />Terms of Service</Link></li>
+              <li><Link to="/p/cookie-policy" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />Cookie Policy</Link></li>
             </ul>
           </div>
         </div>

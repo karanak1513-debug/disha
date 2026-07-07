@@ -12,6 +12,8 @@ import Landing from "./pages/Landing";
 import Impact from "./pages/public/Impact";
 import Blogs from "./pages/public/Blogs";
 import Contact from "./pages/public/Contact";
+import GenericPage from "./pages/public/GenericPage";
+import FAQ from "./pages/public/FAQ";
 
 
 // Layout
@@ -110,6 +112,8 @@ function Bootstrapper() {
       <Route path="/impact" element={<Impact />} />
       <Route path="/blogs" element={<Blogs />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/p/:pageId" element={<GenericPage />} />
 
       {/* Public Auth Routes */}
       <Route path="/login" element={<Login />} />
