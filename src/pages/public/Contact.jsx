@@ -6,6 +6,17 @@ import LoginModal from '../../components/public/LoginModal';
 import { Mail, Phone, MapPin, Send, ArrowRight, UserCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+// --- ANIMATION VARIANTS ---
+const textReveal = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+};
+
 export default function Contact() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   return (
@@ -19,18 +30,16 @@ export default function Contact() {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/20 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold text-white tracking-tight font-display mb-6"
-          >
-            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Touch</span>
-          </motion.h1>
+          <motion.div initial="hidden" animate="show" variants={textReveal} className="overflow-hidden">
+            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tighter font-display mb-6">
+              Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Touch</span>
+            </h1>
+          </motion.div>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-medium"
+            initial="hidden"
+            animate="show"
+            variants={fadeUp}
+            className="text-slate-400 text-xl max-w-2xl mx-auto font-medium tracking-wide"
           >
             Have a question about volunteering? Want to partner with us? We'd love to hear from you.
           </motion.p>
@@ -43,9 +52,8 @@ export default function Contact() {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Contact Info */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
+              
               className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all text-center flex flex-col items-center"
             >
               <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-[#2563EB]">
@@ -59,9 +67,8 @@ export default function Contact() {
 
 
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
+              
               className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-2 border-[#2563EB]/20 hover:border-[#2563EB]/40 hover:shadow-[0_20px_50px_rgb(37,99,235,0.1)] transition-all text-center flex flex-col items-center relative overflow-hidden"
             >
               {/* Highlight line at the top */}
@@ -80,9 +87,8 @@ export default function Contact() {
             </motion.div>
 
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
+              
               className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all text-center flex flex-col items-center"
             >
               <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 text-emerald-600">

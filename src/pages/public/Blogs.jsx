@@ -4,6 +4,17 @@ import Footer from '../../components/public/Footer';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, User, Clock } from 'lucide-react';
 
+// --- ANIMATION VARIANTS ---
+const textReveal = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+};
+
 
 
 export default function Blogs() {
@@ -17,9 +28,7 @@ export default function Blogs() {
       <section className="py-24 relative overflow-hidden bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}
             className="relative bg-white rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden grid lg:grid-cols-2 group"
           >
             {/* Background Decorations */}
@@ -46,15 +55,15 @@ export default function Blogs() {
                 </span>
               </div>
               
-              <h2 className="text-4xl lg:text-5xl font-bold font-display mb-4 text-slate-900 leading-tight">
+              <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={textReveal} className="text-4xl lg:text-5xl font-bold font-display mb-4 text-slate-900 tracking-tighter leading-tight">
                 Indu Aggarwal
-              </h2>
+              </motion.h2>
               <div className="text-lg font-medium text-slate-500 mb-8 pb-8 border-b border-slate-100">
                 Entrepreneur & Emotional Wellness Coach
               </div>
               
               <div className="space-y-6 relative">
-                <p className="text-slate-600 text-lg leading-relaxed relative z-10">
+                <p className="text-slate-500 text-xl leading-relaxed tracking-wide relative z-10">
                   <span className="text-6xl text-blue-100 font-serif absolute -top-6 -left-6 -z-10 opacity-50">"</span>
                   Indu Aggarwal is enriching everyone’s lives by being the LEADING LIGHT and touching the lives of people through her Training and Health awareness programs.
                 </p>
