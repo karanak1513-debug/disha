@@ -58,6 +58,149 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
   );
 };
 
+// ─── ABOUT CARDS DATA ─────────────────────────────────────────────────
+const ABOUT_CARDS = [
+  {
+    icon: Eye,
+    iconColor: "text-[#0EA5E9]",
+    iconBg: "bg-sky-50",
+    accentColor: "text-[#0EA5E9]",
+    borderHover: "hover:border-sky-200",
+    title: "Vision",
+    subtitle: "Empowering a Skilled & Progressive India",
+    desc: "We envision a society where every individual has access to quality education, practical skills, and opportunities to lead a healthy, happy, and prosperous life.",
+  },
+  {
+    icon: Target,
+    iconColor: "text-[#F97316]",
+    iconBg: "bg-orange-50",
+    accentColor: "text-[#F97316]",
+    borderHover: "hover:border-orange-200",
+    title: "Mission",
+    subtitle: "Building Future-Ready Youth",
+    desc: "We empower students and young professionals through volunteering, mentorship, skill development, and entrepreneurship, creating leaders who drive positive social change.",
+  },
+  {
+    icon: Flame,
+    iconColor: "text-emerald-500",
+    iconBg: "bg-emerald-50",
+    accentColor: "text-emerald-600",
+    borderHover: "hover:border-emerald-200",
+    title: "Passion",
+    subtitle: "Inspiring Purpose-Driven Change",
+    desc: "We believe in leading by example, encouraging individuals to discover their potential, contribute to society, and make a meaningful impact every day.",
+  },
+  {
+    icon: Sparkles,
+    iconColor: "text-purple-500",
+    iconBg: "bg-purple-50",
+    accentColor: "text-purple-600",
+    borderHover: "hover:border-purple-200",
+    title: "Goal",
+    subtitle: "Transforming Communities Nationwide",
+    desc: "Our goal is to expand across India by connecting youth, educators, NGOs, and communities to create sustainable impact and lifelong opportunities.",
+  },
+];
+
+// ─── ABOUT CAROUSEL ───────────────────────────────────────────────────
+function AboutCarousel() {
+  const [[current, dir], setCurrent] = useState([0, 0]);
+  const total = ABOUT_CARDS.length;
+
+  const paginate = (newDir) => {
+    setCurrent(([c]) => [(c + newDir + total) % total, newDir]);
+  };
+
+  // Auto-advance every 5s
+  useEffect(() => {
+    const id = setInterval(() => paginate(1), 5000);
+    return () => clearInterval(id);
+  });
+
+  const variants = {
+    enter: (d) => ({ x: d > 0 ? "100%" : "-100%", opacity: 0 }),
+    center: { x: 0, opacity: 1, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+    exit:  (d) => ({ x: d > 0 ? "-100%" : "100%", opacity: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }),
+  };
+
+  const card = ABOUT_CARDS[current];
+
+  return (
+    <div className="flex-1 flex flex-col gap-5">
+      {/* Card viewport */}
+      <div className="relative overflow-hidden rounded-2xl">
+        <AnimatePresence initial={false} custom={dir} mode="wait">
+          <motion.div
+            key={current}
+            custom={dir}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.15}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -50) paginate(1);
+              else if (info.offset.x > 50) paginate(-1);
+            }}
+            className={`bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-2xl cursor-grab active:cursor-grabbing select-none ${card.borderHover} transition-colors`}
+          >
+            {/* Icon */}
+            <div className={`h-12 w-12 rounded-xl ${card.iconBg} flex items-center justify-center mb-5`}>
+              <card.icon className={`h-6 w-6 ${card.iconColor}`} />
+            </div>
+            {/* Title */}
+            <h3 className="text-xl font-black text-[#0F172A] mb-1">{card.title}</h3>
+            {/* Subtitle */}
+            <p className={`text-xs font-bold ${card.accentColor} mb-4 uppercase tracking-widest`}>{card.subtitle}</p>
+            {/* Desc */}
+            <p className="text-[#64748B] text-sm leading-relaxed">{card.desc}</p>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Prev / Next Buttons */}
+        <button
+          onClick={() => paginate(-1)}
+          className="absolute left-3 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-white border border-[#E2E8F0] shadow flex items-center justify-center text-[#64748B] hover:text-[#0EA5E9] hover:border-sky-200 transition-all z-10"
+          aria-label="Previous card"
+        >
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={() => paginate(1)}
+          className="absolute right-3 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-white border border-[#E2E8F0] shadow flex items-center justify-center text-[#64748B] hover:text-[#0EA5E9] hover:border-sky-200 transition-all z-10"
+          aria-label="Next card"
+        >
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Dot indicators + counter */}
+      <div className="flex items-center justify-between px-1">
+        <div className="flex gap-2">
+          {ABOUT_CARDS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent([i, i > current ? 1 : -1])}
+              className={`rounded-full transition-all duration-300 ${i === current ? 'bg-[#0EA5E9] w-6 h-2' : 'bg-slate-300 w-2 h-2 hover:bg-sky-300'}`}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
+        </div>
+        <span className="text-xs text-slate-400 font-medium tabular-nums">{current + 1} / {total}</span>
+      </div>
+
+      {/* Hint */}
+      <p className="text-xs text-slate-400 text-center font-medium -mt-2">Swipe or drag to explore</p>
+    </div>
+  );
+}
+
 // ─── FEATURES DATA ────────────────────────────────────────────────────
 const FEATURES = [
   {
