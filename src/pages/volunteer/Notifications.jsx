@@ -67,7 +67,7 @@ export default function Notifications() {
     switch (type) {
       case "achievement": return "text-amber-500 bg-amber-50 border-amber-100";
       case "success": return "text-emerald-500 bg-emerald-50 border-emerald-100";
-      case "alert": return "text-blue-500 bg-blue-50 border-blue-100";
+      case "alert": return "text-emerald-500 bg-emerald-50 border-blue-100";
       case "warning": return "text-rose-500 bg-rose-50 border-rose-100";
       default: return "text-slate-500 bg-slate-50 border-slate-100";
     }
@@ -126,7 +126,7 @@ export default function Notifications() {
             >
               {f}
               {f === "Unread" && notifications.filter(n => !n.read).length > 0 && (
-                <span className={`ml-2 px-1.5 py-0.5 rounded-md text-[10px] ${filter === f ? "bg-white/20" : "bg-blue-100 text-blue-600"}`}>
+                <span className={`ml-2 px-1.5 py-0.5 rounded-md text-[10px] ${filter === f ? "bg-white/20" : "bg-blue-100 text-emerald-600"}`}>
                   {notifications.filter(n => !n.read).length}
                 </span>
               )}
@@ -160,7 +160,7 @@ export default function Notifications() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ delay: i * 0.05 }}
-                    className={`group relative p-5 border-b border-slate-100 last:border-0 hover:bg-slate-50/50 transition-colors flex gap-4 ${!notification.read ? 'bg-blue-50/30' : ''}`}
+                    className={`group relative p-5 border-b border-slate-100 last:border-0 hover:bg-slate-50/50 transition-colors flex gap-4 ${!notification.read ? 'bg-emerald-50/30' : ''}`}
                   >
                     {/* Unread Indicator */}
                     {!notification.read && (

@@ -15,14 +15,14 @@ const galleryImages = [
 
 export default function Impact() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#2563EB] selection:text-white font-sans overflow-x-hidden text-[#0F172A]">
+    <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#10B981] selection:text-white font-sans overflow-x-hidden text-[#0A2540]">
       <PublicNavbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-[#0F172A] overflow-hidden">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-[#0A2540] overflow-hidden">
         <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/3" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-[100px] translate-y-1/3 translate-x-1/4" />
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/3" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-teal-500/20 rounded-full blur-[100px] translate-y-1/3 translate-x-1/4" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.h1 
@@ -30,7 +30,7 @@ export default function Impact() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-bold text-white tracking-tight font-display mb-6"
           >
-            Our Real-World <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Impact</span>
+            Our Real-World <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">Impact</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -86,7 +86,7 @@ export default function Impact() {
                   'md:col-span-1 md:row-span-1'
                 }`}
               >
-                <div className="absolute inset-0 bg-[#0F172A]/20 group-hover:bg-transparent transition-colors z-10" />
+                <div className="absolute inset-0 bg-[#0A2540]/20 group-hover:bg-transparent transition-colors z-10" />
                 <img 
                   src={image.src} 
                   alt={image.alt} 

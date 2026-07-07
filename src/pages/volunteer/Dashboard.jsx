@@ -36,7 +36,7 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
 };
 
-function RadialProgress({ value, max = 100, color = "#2563EB", size = 56, stroke = 5 }) {
+function RadialProgress({ value, max = 100, color = "#10B981", size = 56, stroke = 5 }) {
   const r = (size - stroke * 2) / 2;
   const circ = 2 * Math.PI * r;
   const pct = Math.min(value / max, 1);
@@ -98,7 +98,7 @@ export default function VolunteerDashboard() {
   const xpPct = ((xp % 100) / 100) * 100;
 
   const stats = [
-    { label: "Total XP", value: xp, suffix: "", icon: Trophy, color: "#2563EB", bg: "from-blue-500/10 to-blue-600/5", ring: "#2563EB", detail: `Level ${level}`, detailColor: "text-blue-600 bg-blue-50 border-blue-100", progress: xpPct },
+    { label: "Total XP", value: xp, suffix: "", icon: Trophy, color: "#10B981", bg: "from-blue-500/10 to-blue-600/5", ring: "#10B981", detail: `Level ${level}`, detailColor: "text-emerald-600 bg-emerald-50 border-blue-100", progress: xpPct },
     { label: "Hours Served", value: hours, suffix: " hrs", icon: Clock, color: "#F97316", bg: "from-orange-500/10 to-orange-600/5", ring: "#F97316", detail: "Active", detailColor: "text-orange-600 bg-orange-50 border-orange-100", progress: Math.min(hours / 50 * 100, 100) },
     { label: "Programs", value: activePrograms.length, suffix: "", icon: Calendar, color: "#06B6D4", bg: "from-cyan-500/10 to-cyan-600/5", ring: "#06B6D4", detail: "Enrolled", detailColor: "text-cyan-600 bg-cyan-50 border-cyan-100", progress: Math.min(activePrograms.length * 20, 100) },
     { label: "Certificates", value: userProfile?.certificatesCount || 0, suffix: "", icon: Award, color: "#8B5CF6", bg: "from-violet-500/10 to-violet-600/5", ring: "#8B5CF6", detail: "Verified", detailColor: "text-violet-600 bg-violet-50 border-violet-100", progress: Math.min((userProfile?.certificatesCount || 0) * 25, 100) },
@@ -133,8 +133,8 @@ export default function VolunteerDashboard() {
             </motion.div>
             
             <motion.div initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{delay:0.1}}>
-              <h1 className="text-[32px] font-bold text-[#0F172A] leading-tight tracking-tight mb-1" style={{fontFamily:"'Plus Jakarta Sans', Inter, sans-serif"}}>
-                Welcome back, <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">{userProfile?.displayName?.split(" ")[0] || "Volunteer"}</span> 👋
+              <h1 className="text-[32px] font-bold text-[#0A2540] leading-tight tracking-tight mb-1" style={{fontFamily:"'Plus Jakarta Sans', Inter, sans-serif"}}>
+                Welcome back, <span className="bg-gradient-to-r from-emerald-600 to-cyan-500 bg-clip-text text-transparent">{userProfile?.displayName?.split(" ")[0] || "Volunteer"}</span> 👋
               </h1>
               <p className="text-[16px] text-[#64748B]">
                 Your efforts are building a better India — every hour counts.
@@ -146,7 +146,7 @@ export default function VolunteerDashboard() {
           <motion.div initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{delay:0.2}} className="flex flex-wrap items-center gap-3">
             {/* Level Badge */}
             <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3 bg-white border border-slate-200 px-4 py-2 rounded-lg shadow-sm lg:mr-2">
-              <RadialProgress value={xpPct} max={100} color="#2563EB" size={32} stroke={3} />
+              <RadialProgress value={xpPct} max={100} color="#10B981" size={32} stroke={3} />
               <div>
                 <p className="text-[11px] font-extrabold text-slate-400 uppercase tracking-widest leading-none mb-1">Level {level}</p>
                 <p className="text-xs font-bold text-slate-700 leading-none">{xp % 100} <span className="text-slate-400 font-medium">/ 100 XP</span></p>
@@ -156,14 +156,14 @@ export default function VolunteerDashboard() {
             {/* Secondary CTA */}
             <Link to="/leaderboard">
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all shadow-sm">
-                <TrendingUp className="h-4 w-4 text-blue-500" />
+                <TrendingUp className="h-4 w-4 text-emerald-500" />
                 Leaderboard
               </motion.div>
             </Link>
 
             {/* Primary CTA */}
             <Link to="/programs">
-              <motion.div whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.2)" }} whileTap={{ scale: 0.98 }} className="flex items-center gap-2 bg-[#0F172A] hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm">
+              <motion.div whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.2)" }} whileTap={{ scale: 0.98 }} className="flex items-center gap-2 bg-[#0A2540] hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm">
                 Explore Programs
                 <ArrowRight className="h-4 w-4" />
               </motion.div>
@@ -214,9 +214,9 @@ export default function VolunteerDashboard() {
               <motion.div 
                 animate={{ rotate: [0, 15, -15, 0] }} 
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="h-8 w-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center"
+                className="h-8 w-8 rounded-lg bg-emerald-50 border border-blue-100 flex items-center justify-center"
               >
-                <Target className="h-4 w-4 text-blue-600" />
+                <Target className="h-4 w-4 text-emerald-600" />
               </motion.div>
               <div>
                 <h3 className="font-bold text-slate-800 text-sm">My Active Programs</h3>
@@ -224,7 +224,7 @@ export default function VolunteerDashboard() {
               </div>
             </div>
             <Link to="/programs">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 hover:text-emerald-700 transition-colors bg-emerald-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg">
                 Browse All <ArrowRight className="h-3 w-3" />
               </motion.div>
             </Link>
@@ -244,7 +244,7 @@ export default function VolunteerDashboard() {
                 <p className="font-bold text-slate-600 text-sm mb-1">No programs yet</p>
                 <p className="text-slate-400 text-xs mb-4">Join a campaign and make an impact</p>
                 <Link to="/programs"
-                  className="inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-slate-800 transition-all shadow-sm">
+                  className="inline-flex items-center gap-2 bg-[#0A2540] text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-slate-800 transition-all shadow-sm">
                   Explore Programs <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </motion.div>
@@ -260,12 +260,12 @@ export default function VolunteerDashboard() {
                     className="group flex items-center gap-4 p-3.5 rounded-xl bg-white border border-slate-100 hover:border-blue-200 hover:shadow-sm transition-all duration-200 cursor-default"
                   >
                     {/* Colored initial avatar */}
-                    <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 text-sm font-black">
+                    <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-emerald-50 border border-blue-100 flex items-center justify-center text-emerald-600 text-sm font-black">
                       {prog.title?.charAt(0)?.toUpperCase() || "P"}
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-xs font-bold text-slate-800 truncate group-hover:text-blue-600 transition-colors">{prog.title}</h4>
+                      <h4 className="text-xs font-bold text-slate-800 truncate group-hover:text-emerald-600 transition-colors">{prog.title}</h4>
                       <p className="text-[10px] text-slate-500 font-medium mt-0.5 flex items-center gap-1.5">
                         <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400" />
                         {prog.category} · {prog.location}

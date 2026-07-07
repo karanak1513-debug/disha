@@ -96,7 +96,7 @@ function ProgramCard({ prog, app, onApply, applying }) {
       <div className="flex-1 p-4 flex flex-col">
         {/* Title & Description */}
         <div className="mb-4 flex-1">
-          <h3 className="font-bold text-slate-800 text-[15px] leading-snug line-clamp-1 mb-1 group-hover:text-blue-600 transition-colors">{prog.title}</h3>
+          <h3 className="font-bold text-slate-800 text-[15px] leading-snug line-clamp-1 mb-1 group-hover:text-emerald-600 transition-colors">{prog.title}</h3>
           <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">{prog.description}</p>
         </div>
 
@@ -260,7 +260,7 @@ export default function Programs() {
             
             {/* Filters */}
             <button className="group flex items-center gap-2 bg-white border border-slate-200 px-3.5 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all shadow-sm active:scale-95">
-              <SlidersHorizontal className="h-4 w-4 text-slate-500 group-hover:text-blue-600 transition-colors" />
+              <SlidersHorizontal className="h-4 w-4 text-slate-500 group-hover:text-emerald-600 transition-colors" />
               Filters
             </button>
 
@@ -281,7 +281,7 @@ export default function Programs() {
             </div>
 
             {/* Primary CTA */}
-            <button className="flex items-center gap-2 bg-[#0F172A] hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm active:scale-95">
+            <button className="flex items-center gap-2 bg-[#0A2540] hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm active:scale-95">
               <Globe className="h-4 w-4" />
               Browse Categories
             </button>

@@ -105,7 +105,7 @@ export default function Leaderboard() {
               placeholder="Search volunteers..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white border border-[#E2E8F0] text-slate-900 text-sm rounded-lg focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB] block pl-9 p-2.5 transition-all outline-none shadow-sm"
+              className="w-full bg-white border border-[#E2E8F0] text-slate-900 text-sm rounded-lg focus:ring-2 focus:ring-[#10B981]/20 focus:border-[#10B981] block pl-9 p-2.5 transition-all outline-none shadow-sm"
             />
           </div>
         </div>

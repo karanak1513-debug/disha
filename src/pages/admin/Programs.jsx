@@ -177,11 +177,11 @@ export default function AdminPrograms() {
             </div>
             <div className="flex flex-col items-start pr-4 border-r border-slate-200">
               <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Active</span>
-              <span className="text-2xl font-black text-blue-600">{activeCount}</span>
+              <span className="text-2xl font-black text-emerald-600">{activeCount}</span>
             </div>
             <button
               onClick={openCreateModal}
-              className="flex flex-col items-center justify-center h-12 w-12 rounded-xl bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md transition-all active:scale-95"
+              className="flex flex-col items-center justify-center h-12 w-12 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm hover:shadow-md transition-all active:scale-95"
             >
               <Plus className="h-6 w-6" />
             </button>
@@ -214,14 +214,14 @@ export default function AdminPrograms() {
                   className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
-                <span className="absolute top-4 left-4 text-[10px] font-bold text-white bg-blue-600/90 backdrop-blur-md px-3 py-1 rounded-lg uppercase tracking-wider shadow-sm border border-white/10">
+                <span className="absolute top-4 left-4 text-[10px] font-bold text-white bg-emerald-600/90 backdrop-blur-md px-3 py-1 rounded-lg uppercase tracking-wider shadow-sm border border-white/10">
                   {prog.category}
                 </span>
               </div>
 
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h4 className="font-bold text-slate-800 text-lg leading-tight line-clamp-1 mb-1.5 group-hover:text-blue-600 transition-colors">{prog.title}</h4>
+                  <h4 className="font-bold text-slate-800 text-lg leading-tight line-clamp-1 mb-1.5 group-hover:text-emerald-600 transition-colors">{prog.title}</h4>
                   <p className="text-[13px] text-slate-500 line-clamp-2 leading-relaxed">{prog.description}</p>
                 </div>
 
@@ -244,7 +244,7 @@ export default function AdminPrograms() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => openEditModal(prog)}
-                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 hover:text-blue-600 text-slate-500 transition-all cursor-pointer shadow-sm active:scale-95"
+                      className="p-2.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 hover:text-emerald-600 text-slate-500 transition-all cursor-pointer shadow-sm active:scale-95"
                     >
                       <Edit2 className="h-4 w-4" />
                     </button>
@@ -259,7 +259,7 @@ export default function AdminPrograms() {
                   <div className="text-right flex flex-col items-end">
                     <span className="text-[9px] text-slate-400 font-extrabold uppercase tracking-widest mb-0.5">Enrolled</span>
                     <div className="flex items-baseline gap-1">
-                      <span className="text-sm font-black text-blue-600">{prog.registeredCount || 0}</span>
+                      <span className="text-sm font-black text-emerald-600">{prog.registeredCount || 0}</span>
                       <span className="text-[11px] font-bold text-slate-400">/ {prog.volunteerLimit}</span>
                     </div>
                   </div>
@@ -426,7 +426,7 @@ export default function AdminPrograms() {
                 </button>
                 <button
                   type="submit"
-                  className="rounded-xl bg-blue-600 hover:bg-blue-700 px-6 py-2.5 text-xs font-bold text-white shadow-sm hover:shadow-md cursor-pointer transition-all active:scale-[0.98]"
+                  className="rounded-xl bg-emerald-600 hover:bg-emerald-700 px-6 py-2.5 text-xs font-bold text-white shadow-sm hover:shadow-md cursor-pointer transition-all active:scale-[0.98]"
                 >
                   Save Program
                 </button>

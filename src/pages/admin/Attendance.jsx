@@ -182,8 +182,8 @@ export default function AdminAttendance() {
         {/* Manual Check-in Bento */}
         <motion.div variants={fadeUp} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 lg:col-span-1 h-fit">
           <div className="flex items-center gap-3 mb-6">
-            <div className="h-10 w-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
-              <UserCheck className="h-5 w-5 text-blue-600" />
+            <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-blue-100 flex items-center justify-center">
+              <UserCheck className="h-5 w-5 text-emerald-600" />
             </div>
             <div>
               <h3 className="font-bold text-slate-800 text-sm">Log Manual Attendance</h3>
@@ -259,7 +259,7 @@ export default function AdminAttendance() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="flex w-full justify-center items-center gap-2 rounded-xl bg-blue-600 py-3 px-4 text-[13px] font-bold text-white hover:bg-blue-700 transition-all shadow-sm hover:shadow-md cursor-pointer active:scale-[0.98] disabled:opacity-70"
+                className="flex w-full justify-center items-center gap-2 rounded-xl bg-emerald-600 py-3 px-4 text-[13px] font-bold text-white hover:bg-emerald-700 transition-all shadow-sm hover:shadow-md cursor-pointer active:scale-[0.98] disabled:opacity-70"
               >
                 {submitting ? "Logging check-in..." : "Mark Present"}
               </button>

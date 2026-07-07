@@ -173,7 +173,7 @@ export default function AdminApplications() {
             onClick={handleExportCSV}
             className="flex items-center gap-2 rounded-xl bg-white border border-slate-200 py-2.5 px-4 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-all shadow-sm active:scale-95 cursor-pointer"
           >
-            <FileSpreadsheet className="h-4 w-4 text-blue-500" />
+            <FileSpreadsheet className="h-4 w-4 text-emerald-500" />
             Export CSV
           </button>
         </div>

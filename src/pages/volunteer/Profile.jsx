@@ -142,8 +142,8 @@ export default function Profile() {
         <motion.div variants={fadeUp} className="lg:col-span-1">
           <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden flex flex-col">
             <div className="px-5 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
-              <div className="h-8 w-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
-                <User className="h-4 w-4 text-blue-600" />
+              <div className="h-8 w-8 rounded-lg bg-emerald-50 border border-blue-100 flex items-center justify-center">
+                <User className="h-4 w-4 text-emerald-600" />
               </div>
               <div>
                 <h3 className="font-bold text-slate-800 text-sm">Account Overview</h3>
@@ -151,7 +151,7 @@ export default function Profile() {
             </div>
             
             <div className="p-6 flex flex-col items-center text-center space-y-5 bg-white">
-              <div className="flex h-24 w-24 items-center justify-center rounded-[24px] bg-gradient-to-br from-blue-50 to-cyan-50 text-blue-600 font-black text-4xl shadow-sm border border-blue-100/50 relative">
+              <div className="flex h-24 w-24 items-center justify-center rounded-[24px] bg-gradient-to-br from-blue-50 to-cyan-50 text-emerald-600 font-black text-4xl shadow-sm border border-blue-100/50 relative">
                 {userProfile?.displayName?.charAt(0).toUpperCase() || profileData.fullName.charAt(0).toUpperCase() || "V"}
                 <div className="absolute -bottom-1.5 -right-1.5 h-6 w-6 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center" title="Online">
                   <div className="h-2 w-2 rounded-full bg-white" />
@@ -166,7 +166,7 @@ export default function Profile() {
 
               <div className="w-full border-t border-slate-100 pt-5 grid grid-cols-2 gap-3">
                 <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                  <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest block mb-1">XP Earned</span>
+                  <span className="text-[9px] font-black text-emerald-500 uppercase tracking-widest block mb-1">XP Earned</span>
                   <span className="text-xl font-black text-slate-800 block leading-none">{userProfile?.xp || 0}</span>
                 </div>
                 <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
@@ -322,7 +322,7 @@ export default function Profile() {
                     whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={saving}
-                    className="flex items-center justify-center gap-2 rounded-xl bg-[#0F172A] py-2.5 px-8 text-sm font-bold text-white hover:bg-slate-800 transition-all cursor-pointer shadow-sm disabled:opacity-50 mt-4"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-[#0A2540] py-2.5 px-8 text-sm font-bold text-white hover:bg-slate-800 transition-all cursor-pointer shadow-sm disabled:opacity-50 mt-4"
                   >
                     <Save className="h-4 w-4" />
                     {saving ? "Saving Changes..." : "Save Profile"}

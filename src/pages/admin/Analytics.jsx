@@ -112,9 +112,9 @@ export default function AdminAnalytics() {
         
         {/* Volunteers */}
         <motion.div variants={fadeUp} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group">
-          <div className="absolute -right-6 -top-6 h-24 w-24 bg-blue-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500" />
+          <div className="absolute -right-6 -top-6 h-24 w-24 bg-emerald-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500" />
           <div className="flex items-center justify-between mb-4 relative z-10">
-            <div className="h-10 w-10 bg-blue-50 border border-blue-100 text-blue-600 rounded-xl flex items-center justify-center shadow-xs">
+            <div className="h-10 w-10 bg-emerald-50 border border-blue-100 text-emerald-600 rounded-xl flex items-center justify-center shadow-xs">
               <Users className="h-5 w-5" />
             </div>
             <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest bg-slate-50 px-2 py-1 rounded-md border border-slate-100">Live</span>
@@ -176,8 +176,8 @@ export default function AdminAnalytics() {
         {/* Volunteer & Hours Trend */}
         <motion.div variants={fadeUp} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
           <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
-            <div className="h-10 w-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
-              <TrendingUp className="h-5 w-5 text-blue-600" />
+            <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-blue-100 flex items-center justify-center">
+              <TrendingUp className="h-5 w-5 text-emerald-600" />
             </div>
             <div>
               <h4 className="font-bold text-slate-800 text-sm">Volunteer Growth & Hours Trend</h4>
@@ -189,8 +189,8 @@ export default function AdminAnalytics() {
               <AreaChart data={engagementData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorVol" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#2563EB" stopOpacity={0.4}/>
-                    <stop offset="95%" stopColor="#2563EB" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#10B981" stopOpacity={0.4}/>
+                    <stop offset="95%" stopColor="#10B981" stopOpacity={0}/>
                   </linearGradient>
                   <linearGradient id="colorHrs" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#059669" stopOpacity={0.2}/>
@@ -206,7 +206,7 @@ export default function AdminAnalytics() {
                   labelStyle={{ fontSize: '12px', color: '#64748b', marginBottom: '4px' }}
                 />
                 <Legend wrapperStyle={{ fontSize: 11, fontWeight: "bold", paddingTop: '20px' }} iconType="circle" />
-                <Area type="monotone" dataKey="volunteers" name="Volunteers Count" stroke="#2563EB" fillOpacity={1} fill="url(#colorVol)" strokeWidth={3} />
+                <Area type="monotone" dataKey="volunteers" name="Volunteers Count" stroke="#10B981" fillOpacity={1} fill="url(#colorVol)" strokeWidth={3} />
                 <Area type="monotone" dataKey="hours" name="Total Hours Logged" stroke="#059669" fillOpacity={1} fill="url(#colorHrs)" strokeWidth={3} />
               </AreaChart>
             </ResponsiveContainer>

@@ -19,7 +19,7 @@ const fadeUp = {
 
 export default function Blogs() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#2563EB] selection:text-white font-sans overflow-x-hidden text-[#0F172A]">
+    <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#10B981] selection:text-white font-sans overflow-x-hidden text-[#0A2540]">
       <PublicNavbar />
       
 
@@ -32,7 +32,7 @@ export default function Blogs() {
             className="relative bg-white rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden grid lg:grid-cols-2 group"
           >
             {/* Background Decorations */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50 pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-50 rounded-full blur-3xl opacity-50 pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-50 pointer-events-none -translate-x-1/2 translate-y-1/2"></div>
 
             <div className="relative h-[400px] lg:h-auto bg-slate-50 flex items-center justify-center p-8 overflow-hidden">
@@ -42,15 +42,15 @@ export default function Blogs() {
                 alt="Indu Aggarwal" 
                 className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02] drop-shadow-xl rounded-2xl"
               />
-              <div className="absolute top-8 left-8 z-20 px-5 py-2 bg-white/90 backdrop-blur-md rounded-full shadow-sm text-xs font-bold text-blue-600 tracking-wider uppercase border border-white">
+              <div className="absolute top-8 left-8 z-20 px-5 py-2 bg-white/90 backdrop-blur-md rounded-full shadow-sm text-xs font-bold text-emerald-600 tracking-wider uppercase border border-white">
                 We Make The Difference
               </div>
             </div>
             
             <div className="p-10 lg:p-20 flex flex-col justify-center relative z-10">
               <div className="inline-flex items-center gap-3 mb-4">
-                <span className="w-10 h-[2px] bg-blue-600"></span>
-                <span className="text-sm font-bold text-blue-600 uppercase tracking-widest">
+                <span className="w-10 h-[2px] bg-emerald-600"></span>
+                <span className="text-sm font-bold text-emerald-600 uppercase tracking-widest">
                   Leadership
                 </span>
               </div>
@@ -64,7 +64,7 @@ export default function Blogs() {
               
               <div className="space-y-6 relative">
                 <p className="text-slate-500 text-xl leading-relaxed tracking-wide relative z-10">
-                  <span className="text-6xl text-blue-100 font-serif absolute -top-6 -left-6 -z-10 opacity-50">"</span>
+                  <span className="text-6xl text-emerald-100 font-serif absolute -top-6 -left-6 -z-10 opacity-50">"</span>
                   Indu Aggarwal is enriching everyone’s lives by being the LEADING LIGHT and touching the lives of people through her Training and Health awareness programs.
                 </p>
                 <p className="text-slate-600 text-lg leading-relaxed">
@@ -78,7 +78,7 @@ export default function Blogs() {
 
 
       {/* Visual Impact Gallery */}
-      <section className="py-24 bg-[#0F172A] relative overflow-hidden">
+      <section className="py-24 bg-[#0A2540] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-display text-white mb-4">A Picture Speaks a Thousand Words</h2>

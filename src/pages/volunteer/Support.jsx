@@ -144,8 +144,8 @@ export default function Support() {
         <motion.div variants={fadeUp} className="lg:col-span-1">
           <div className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden flex flex-col h-full">
             <div className="px-5 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
-              <div className="h-8 w-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
-                <LifeBuoy className="h-4 w-4 text-blue-600" />
+              <div className="h-8 w-8 rounded-lg bg-emerald-50 border border-blue-100 flex items-center justify-center">
+                <LifeBuoy className="h-4 w-4 text-emerald-600" />
               </div>
               <div>
                 <h3 className="font-bold text-slate-800 text-sm">Raise a Ticket</h3>
@@ -232,7 +232,7 @@ export default function Support() {
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={submitting}
-                  className="flex w-full justify-center items-center gap-2 rounded-xl bg-[#0F172A] py-3 px-4 text-sm font-bold text-white hover:bg-slate-800 transition-all cursor-pointer shadow-sm disabled:opacity-50"
+                  className="flex w-full justify-center items-center gap-2 rounded-xl bg-[#0A2540] py-3 px-4 text-sm font-bold text-white hover:bg-slate-800 transition-all cursor-pointer shadow-sm disabled:opacity-50"
                 >
                   <Send className="h-4 w-4" />
                   {submitting ? "Filing Query..." : "Submit Ticket"}

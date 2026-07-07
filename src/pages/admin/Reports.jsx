@@ -123,7 +123,7 @@ export default function AdminReports() {
         {/* Users report */}
         <motion.div variants={fadeUp} className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between space-y-6 group">
           <div>
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 border border-blue-100 text-blue-600 mb-5 group-hover:scale-110 transition-transform">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 border border-blue-100 text-emerald-600 mb-5 group-hover:scale-110 transition-transform">
               <Users className="h-6 w-6" />
             </div>
             <h4 className="font-bold text-slate-800 text-lg">Volunteer Registry</h4>
@@ -131,7 +131,7 @@ export default function AdminReports() {
           </div>
           <button
             onClick={exportUsersReport}
-            className="flex items-center justify-center gap-2 w-full rounded-2xl bg-white border border-slate-200 py-3 text-[13px] font-bold text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-all shadow-sm active:scale-95 cursor-pointer"
+            className="flex items-center justify-center gap-2 w-full rounded-2xl bg-white border border-slate-200 py-3 text-[13px] font-bold text-slate-700 hover:bg-slate-50 hover:text-emerald-600 transition-all shadow-sm active:scale-95 cursor-pointer"
           >
             <Download className="h-4 w-4" />
             Download CSV

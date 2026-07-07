@@ -46,7 +46,7 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
     return () => clearInterval(timer);
   }, [end]);
 
-  const textColor = colorClass || (theme === 'dark' ? 'text-white' : 'text-[#0F172A]');
+  const textColor = colorClass || (theme === 'dark' ? 'text-white' : 'text-[#0A2540]');
   const labelColor = theme === 'dark' ? 'text-slate-400 group-hover:text-white transition-colors' : 'text-slate-500';
   
   const containerClasses = theme === 'minimal' || theme === 'dark'
@@ -67,7 +67,7 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#2563EB] selection:text-white font-sans overflow-x-hidden text-[#0F172A]">
+    <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#10B981] selection:text-white font-sans overflow-x-hidden text-[#0A2540]">
       
       {/* 1. STICKY HEADER */}
       <PublicNavbar />
@@ -77,7 +77,7 @@ export default function Landing() {
         {/* Soft Background Accents */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden flex justify-center">
           <div className="w-full max-w-7xl relative">
-            <div className="absolute -top-24 right-0 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl" />
+            <div className="absolute -top-24 right-0 w-[600px] h-[600px] bg-emerald-50/50 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-50/50 rounded-full blur-3xl" />
           </div>
         </div>
@@ -85,13 +85,13 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <motion.div initial="hidden" animate="show" variants={stagger} className="flex-1 space-y-8 text-center lg:text-left">
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-2 text-xs font-bold text-[#2563EB] uppercase tracking-widest">
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 bg-emerald-50 border border-blue-100 rounded-full px-4 py-2 text-xs font-bold text-[#10B981] uppercase tracking-widest">
                 <Sparkles className="h-3 w-3" /> WE EMPOWER | WE MAKE THE DIFFERENCE
               </motion.div>
 
               <motion.div variants={textReveal} className="overflow-hidden">
-                <h1 className="text-5xl lg:text-7xl font-bold text-[#0F172A] tracking-tighter leading-[1.1] font-display">
-                  Everyone has <span className="text-[#2563EB]">Power</span> to create an Impact
+                <h1 className="text-5xl lg:text-7xl font-bold text-[#0A2540] tracking-tighter leading-[1.1] font-display">
+                  Everyone has <span className="text-[#10B981]">Power</span> to create an Impact
                 </h1>
               </motion.div>
               
@@ -100,11 +100,11 @@ export default function Landing() {
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#2563EB] px-8 py-4 text-sm font-bold text-white transition-all hover:bg-[#1D4ED8] active:scale-[0.98] shadow-sm">
+                <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#10B981] px-8 py-4 text-sm font-bold text-white transition-all hover:bg-[#1D4ED8] active:scale-[0.98] shadow-sm">
                   Be a Volunteer with Disha
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-8 py-4 text-sm font-bold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-slate-300 transition-all active:scale-[0.98] shadow-sm">
+                <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-8 py-4 text-sm font-bold text-[#0A2540] hover:bg-[#F8FAFC] hover:border-slate-300 transition-all active:scale-[0.98] shadow-sm">
                   Explore Programs
                 </a>
               </motion.div>
@@ -124,7 +124,7 @@ export default function Landing() {
                   className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-[12px] p-4 border border-white shadow-lg"
                 >
                   <p className="text-xs font-bold text-slate-700 italic leading-relaxed">"Education is the most powerful weapon which can be used to change the world."</p>
-                  <p className="text-[10px] font-bold text-[#2563EB] mt-1 uppercase tracking-widest">— Nelson Mandela</p>
+                  <p className="text-[10px] font-bold text-[#10B981] mt-1 uppercase tracking-widest">— Nelson Mandela</p>
                 </motion.div>
               </div>
             </motion.div>
@@ -139,7 +139,7 @@ export default function Landing() {
 
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#2563EB] bg-blue-50 border border-blue-100 rounded-full px-4 py-2 mb-4">Our Story</span>
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#10B981] bg-emerald-50 border border-blue-100 rounded-full px-4 py-2 mb-4">Our Story</span>
             <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={textReveal} className="text-3xl md:text-5xl font-bold tracking-tighter font-display mb-4">About DISHA</motion.h2>
             <p className="text-slate-500 text-lg font-medium">Empowering India's youth through volunteering, leadership, skill development, and community impact.</p>
           </div>
@@ -164,7 +164,7 @@ export default function Landing() {
                   />
                 </div>
                 {/* Floating Badge */}
-                <div className="absolute -bottom-5 -right-5 bg-[#2563EB] text-white rounded-[16px] p-5 shadow-2xl">
+                <div className="absolute -bottom-5 -right-5 bg-[#10B981] text-white rounded-[16px] p-5 shadow-2xl">
                   <p className="text-xs font-bold uppercase tracking-widest opacity-80">Founded with</p>
                   <p className="text-2xl font-black font-display mt-1">Purpose</p>
                 </div>
@@ -181,11 +181,11 @@ export default function Landing() {
             >
               {/* Vision */}
               <div className="bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-[20px] hover:border-blue-200 hover:shadow-lg transition-all group">
-                <div className="h-12 w-12 rounded-[12px] bg-blue-50 flex items-center justify-center mb-5 group-hover:bg-blue-100 transition-colors">
-                  <Eye className="h-6 w-6 text-[#2563EB]" />
+                <div className="h-12 w-12 rounded-[12px] bg-emerald-50 flex items-center justify-center mb-5 group-hover:bg-blue-100 transition-colors">
+                  <Eye className="h-6 w-6 text-[#10B981]" />
                 </div>
-                <h3 className="text-lg font-black text-[#0F172A] mb-1">Vision</h3>
-                <p className="text-xs font-bold text-[#2563EB] mb-3 uppercase tracking-widest">Empowering a Skilled & Progressive India</p>
+                <h3 className="text-lg font-black text-[#0A2540] mb-1">Vision</h3>
+                <p className="text-xs font-bold text-[#10B981] mb-3 uppercase tracking-widest">Empowering a Skilled & Progressive India</p>
                 <p className="text-slate-500 text-sm leading-relaxed">We envision a society where every individual has access to quality education, practical skills, and opportunities to lead a healthy, happy, and prosperous life.</p>
               </div>
 
@@ -194,7 +194,7 @@ export default function Landing() {
                 <div className="h-12 w-12 rounded-[12px] bg-orange-50 flex items-center justify-center mb-5 group-hover:bg-orange-100 transition-colors">
                   <Target className="h-6 w-6 text-[#F97316]" />
                 </div>
-                <h3 className="text-lg font-black text-[#0F172A] mb-1">Mission</h3>
+                <h3 className="text-lg font-black text-[#0A2540] mb-1">Mission</h3>
                 <p className="text-xs font-bold text-[#F97316] mb-3 uppercase tracking-widest">Building Future-Ready Youth</p>
                 <p className="text-slate-500 text-sm leading-relaxed">We empower students and young professionals through volunteering, mentorship, skill development, and entrepreneurship, creating leaders who drive positive social change.</p>
               </div>
@@ -204,7 +204,7 @@ export default function Landing() {
                 <div className="h-12 w-12 rounded-[12px] bg-emerald-50 flex items-center justify-center mb-5 group-hover:bg-emerald-100 transition-colors">
                   <Flame className="h-6 w-6 text-emerald-500" />
                 </div>
-                <h3 className="text-lg font-black text-[#0F172A] mb-1">Passion</h3>
+                <h3 className="text-lg font-black text-[#0A2540] mb-1">Passion</h3>
                 <p className="text-xs font-bold text-emerald-600 mb-3 uppercase tracking-widest">Inspiring Purpose-Driven Change</p>
                 <p className="text-slate-500 text-sm leading-relaxed">We believe in leading by example, encouraging individuals to discover their potential, contribute to society, and make a meaningful impact every day.</p>
               </div>
@@ -214,7 +214,7 @@ export default function Landing() {
                 <div className="h-12 w-12 rounded-[12px] bg-purple-50 flex items-center justify-center mb-5 group-hover:bg-purple-100 transition-colors">
                   <Sparkles className="h-6 w-6 text-purple-500" />
                 </div>
-                <h3 className="text-lg font-black text-[#0F172A] mb-1">Goal</h3>
+                <h3 className="text-lg font-black text-[#0A2540] mb-1">Goal</h3>
                 <p className="text-xs font-bold text-purple-600 mb-3 uppercase tracking-widest">Transforming Communities Nationwide</p>
                 <p className="text-slate-500 text-sm leading-relaxed">Our goal is to expand across India by connecting youth, educators, NGOs, and communities to create sustainable impact and lifelong opportunities.</p>
               </div>
@@ -227,7 +227,7 @@ export default function Landing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#0F172A] rounded-[24px] p-12 text-center text-white flex flex-col items-center"
+            className="bg-[#0A2540] rounded-[24px] p-12 text-center text-white flex flex-col items-center"
           >
             <div className="text-5xl mb-4 opacity-30 font-serif leading-none">"</div>
             <p className="text-2xl md:text-3xl font-bold font-display leading-snug italic max-w-3xl mx-auto text-white">
@@ -274,7 +274,7 @@ export default function Landing() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="text-center group"
               >
-                <StatCounter end={stat.end} suffix={stat.suffix} label={stat.label} theme="minimal" colorClass="text-[#0F172A]" />
+                <StatCounter end={stat.end} suffix={stat.suffix} label={stat.label} theme="minimal" colorClass="text-[#0A2540]" />
               </motion.div>
             ))}
           </div>
@@ -292,7 +292,7 @@ export default function Landing() {
               <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#F97316] bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-6">
                 Why Choose Us
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display text-[#0F172A] mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display text-[#0A2540] mb-6">
                 Why Choose Disha For India?
               </h2>
               <p className="text-slate-500 text-lg leading-relaxed mb-12">
@@ -303,7 +303,7 @@ export default function Landing() {
                 {[
                   {
                     icon: Search,
-                    iconColor: "text-[#2563EB]",
+                    iconColor: "text-[#10B981]",
                     iconBg: "bg-blue-50",
                     title: "Meaningful Volunteering",
                     desc: "Engage in purpose-driven campaigns across education, healthcare, and sustainability to create measurable, real-world impact.",
@@ -355,7 +355,7 @@ export default function Landing() {
                     <div className={`h-12 w-12 rounded-xl ${f.iconBg} flex items-center justify-center mb-4`}>
                       <f.icon className={`h-6 w-6 ${f.iconColor}`} />
                     </div>
-                    <h4 className="text-lg font-bold text-[#0F172A] mb-2">{f.title}</h4>
+                    <h4 className="text-lg font-bold text-[#0A2540] mb-2">{f.title}</h4>
                     <p className="text-sm text-slate-500 leading-relaxed font-medium">{f.desc}</p>
                   </motion.div>
                 ))}
@@ -395,12 +395,12 @@ export default function Landing() {
                 transition={{ delay: 0.6, duration: 0.5 }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-xl z-10 flex items-center gap-4 border border-white/40"
               >
-                <div className="bg-[#2563EB]/10 p-3 rounded-full">
-                  <Heart className="h-6 w-6 text-[#2563EB] fill-[#2563EB]" />
+                <div className="bg-[#10B981]/10 p-3 rounded-full">
+                  <Heart className="h-6 w-6 text-[#10B981] fill-[#10B981]" />
                 </div>
                 <div>
                   <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Lives Touched</p>
-                  <p className="text-2xl font-black text-[#0F172A]">100,000+</p>
+                  <p className="text-2xl font-black text-[#0A2540]">100,000+</p>
                 </div>
               </motion.div>
             </div>
@@ -431,8 +431,8 @@ export default function Landing() {
                 <div className="flex items-center gap-4 pt-6 border-t border-slate-50">
                   <img src={story.img} alt={story.name} className="h-12 w-12 rounded-full object-cover border border-[#E2E8F0]" />
                   <div>
-                    <h4 className="text-sm font-bold text-[#0F172A]">{story.name}</h4>
-                    <p className="text-xs font-semibold text-[#2563EB]">{story.role}</p>
+                    <h4 className="text-sm font-bold text-[#0A2540]">{story.name}</h4>
+                    <p className="text-xs font-semibold text-[#10B981]">{story.role}</p>
                   </div>
                 </div>
               </div>
@@ -448,11 +448,11 @@ export default function Landing() {
       {/* 14. FINAL CALL TO ACTION */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="bg-[#0F172A] rounded-[32px] overflow-hidden relative shadow-2xl">
+          <div className="bg-[#0A2540] rounded-[32px] overflow-hidden relative shadow-2xl">
             {/* Dark background elements */}
             <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-emerald-500/30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4" />
             
             <div className="relative z-10 py-24 px-6 text-center max-w-4xl mx-auto">
               <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={textReveal} className="text-4xl md:text-6xl font-bold text-white tracking-tighter font-display mb-6 leading-tight">
@@ -462,7 +462,7 @@ export default function Landing() {
                 Join the fastest growing network of young change-makers in India. Elevate your skills and transform communities today.
               </p>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-                <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white px-10 py-5 text-base font-bold text-[#0F172A] transition-all hover:bg-slate-100 active:scale-[0.98] shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)]">
+                <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white px-10 py-5 text-base font-bold text-[#0A2540] transition-all hover:bg-slate-100 active:scale-[0.98] shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)]">
                   Register Now <ArrowRight className="h-5 w-5" />
                 </Link>
                 <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 px-10 py-5 text-base font-bold text-white transition-all hover:bg-white/10 active:scale-[0.98] backdrop-blur-sm">

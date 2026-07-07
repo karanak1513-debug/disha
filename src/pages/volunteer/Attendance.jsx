@@ -195,8 +195,8 @@ export default function Attendance() {
               </div>
               <div className="w-px h-8 bg-slate-200 mx-1" />
               <div className="flex flex-col">
-                <span className="text-[10px] font-extrabold text-blue-500 uppercase tracking-widest">Hours</span>
-                <span className="text-lg font-black text-blue-600 leading-none">{totalHours}</span>
+                <span className="text-[10px] font-extrabold text-emerald-500 uppercase tracking-widest">Hours</span>
+                <span className="text-lg font-black text-emerald-600 leading-none">{totalHours}</span>
               </div>
               <div className="w-px h-8 bg-slate-200 mx-1" />
               <div className="flex flex-col">

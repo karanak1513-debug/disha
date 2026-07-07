@@ -54,7 +54,7 @@ function PulsingDot({ color = "bg-emerald-500" }) {
 
 function StatCard({ label, value, suffix = "", icon: Icon, color, trend }) {
   const colorMap = {
-    blue: { icon: "text-[#2563EB]", border: "border-[#E2E8F0]", badge: "text-[#2563EB] bg-slate-50 border-slate-200" },
+    blue: { icon: "text-[#10B981]", border: "border-[#E2E8F0]", badge: "text-[#10B981] bg-slate-50 border-slate-200" },
     orange: { icon: "text-orange-600", border: "border-[#E2E8F0]", badge: "text-orange-700 bg-slate-50 border-slate-200" },
     cyan: { icon: "text-cyan-600", border: "border-[#E2E8F0]", badge: "text-cyan-700 bg-slate-50 border-slate-200" },
     violet: { icon: "text-violet-600", border: "border-[#E2E8F0]", badge: "text-violet-700 bg-slate-50 border-slate-200" },
@@ -96,7 +96,7 @@ const quickActions = [
   { to: "/admin/support", icon: LifeBuoy, label: "Support", color: "rose" },
 ];
 const qaColorMap = {
-  blue: "bg-white border-slate-200 text-blue-600 hover:bg-blue-50 hover:border-blue-200",
+  blue: "bg-white border-slate-200 text-emerald-600 hover:bg-emerald-50 hover:border-blue-200",
   violet: "bg-white border-slate-200 text-violet-600 hover:bg-violet-50 hover:border-violet-200",
   cyan: "bg-white border-slate-200 text-cyan-600 hover:bg-cyan-50 hover:border-cyan-200",
   amber: "bg-white border-slate-200 text-amber-600 hover:bg-amber-50 hover:border-amber-200",
@@ -164,15 +164,15 @@ export default function AdminDashboard() {
               <span className="text-slate-800 transition-colors">Administration</span>
               <span className="text-slate-400">/</span>
               <span className="text-slate-800 font-semibold">Admin Dashboard</span>
-              <span className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-blue-50 border border-blue-100 px-2.5 py-0.5 text-[9px] font-extrabold uppercase tracking-widest text-blue-600 shadow-sm">
+              <span className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-blue-100 px-2.5 py-0.5 text-[9px] font-extrabold uppercase tracking-widest text-emerald-600 shadow-sm">
                 <PulsingDot color="bg-emerald-500" /> Control Hub
               </span>
             </motion.div>
             
             <motion.div initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{delay:0.1}}>
-              <h1 className="text-3xl font-semibold text-[#0F172A] leading-tight tracking-tight mb-2">
+              <h1 className="text-3xl font-semibold text-[#0A2540] leading-tight tracking-tight mb-2">
                 Welcome,{" "}
-                <span className="text-[#2563EB]">
+                <span className="text-[#10B981]">
                   {userProfile?.displayName || "Admin"}
                 </span>
               </h1>
@@ -184,7 +184,7 @@ export default function AdminDashboard() {
             <motion.div initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} transition={{delay:0.2}} className="flex items-center gap-3 pt-2">
               <Link
                 to="/admin/applications"
-                className="group inline-flex items-center gap-2 rounded-xl bg-[#0F172A] px-5 py-2.5 text-xs font-bold text-white hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-200 transition-all duration-300 active:scale-95"
+                className="group inline-flex items-center gap-2 rounded-xl bg-[#0A2540] px-5 py-2.5 text-xs font-bold text-white hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-200 transition-all duration-300 active:scale-95"
               >
                 Review Applications
                 <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
@@ -193,7 +193,7 @@ export default function AdminDashboard() {
                 to="/admin/reports"
                 className="inline-flex items-center gap-2 rounded-xl bg-white border border-slate-200 px-5 py-2.5 text-xs font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 shadow-sm"
               >
-                <BarChart3 className="h-3.5 w-3.5 text-blue-500" />
+                <BarChart3 className="h-3.5 w-3.5 text-emerald-500" />
                 View Reports
               </Link>
             </motion.div>
@@ -208,7 +208,7 @@ export default function AdminDashboard() {
             {[
               { label: "Pending Apps", val: stats.pendingApps, color: "text-amber-600" },
               { label: "Open Tickets", val: stats.openTickets, color: "text-rose-600" },
-              { label: "Total Hours", val: stats.hoursServed, color: "text-blue-600" },
+              { label: "Total Hours", val: stats.hoursServed, color: "text-emerald-600" },
             ].map((item, i) => (
               <div key={item.label} className={`flex items-center justify-between ${i !== 2 ? 'border-b border-slate-100 pb-2' : ''}`}>
                 <span className="text-xs font-semibold text-slate-500">{item.label}</span>
@@ -232,8 +232,8 @@ export default function AdminDashboard() {
       {/* Quick Actions */}
       <motion.div variants={fadeUp} className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden flex flex-col">
         <div className="px-5 py-4 border-b border-slate-100 flex items-center gap-2 bg-slate-50/50">
-          <div className="h-8 w-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
-            <Zap className="h-4 w-4 text-blue-600" />
+          <div className="h-8 w-8 rounded-lg bg-emerald-50 border border-blue-100 flex items-center justify-center">
+            <Zap className="h-4 w-4 text-emerald-600" />
           </div>
           <div>
             <h3 className="font-bold text-slate-800 text-sm">Quick Actions</h3>
@@ -407,7 +407,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Uptime banner */}
-            <div className="mt-4 p-5 rounded-xl bg-[#0F172A] text-white relative overflow-hidden shadow-md">
+            <div className="mt-4 p-5 rounded-xl bg-[#0A2540] text-white relative overflow-hidden shadow-md">
               <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-2">
@@ -437,23 +437,23 @@ export default function AdminDashboard() {
       <motion.div variants={fadeUp} className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden flex flex-col mt-6">
         <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-2 bg-slate-50/50">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
-              <ImageIcon className="h-4 w-4 text-blue-600" />
+            <div className="h-8 w-8 rounded-lg bg-emerald-50 border border-blue-100 flex items-center justify-center">
+              <ImageIcon className="h-4 w-4 text-emerald-600" />
             </div>
             <div>
               <h3 className="font-bold text-slate-800 text-sm">Media & Galleries</h3>
               <p className="text-[10px] text-slate-500 font-medium">Upload images for Blogs and Impact pages</p>
             </div>
           </div>
-          <button className="inline-flex items-center gap-1.5 bg-[#2563EB] text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-blue-700 transition-all shadow-sm shadow-blue-500/20 active:scale-95">
+          <button className="inline-flex items-center gap-1.5 bg-[#10B981] text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-emerald-700 transition-all shadow-sm shadow-blue-500/20 active:scale-95">
             <UploadCloud className="h-4 w-4" /> Upload New Image
           </button>
         </div>
 
         <div className="p-6 bg-white">
           <div className="border-2 border-dashed border-slate-200 rounded-xl p-8 flex flex-col items-center justify-center text-center bg-slate-50/50 hover:bg-slate-50 transition-colors cursor-pointer group">
-            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <UploadCloud className="h-8 w-8 text-blue-500" />
+            <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <UploadCloud className="h-8 w-8 text-emerald-500" />
             </div>
             <h4 className="text-sm font-bold text-slate-700 mb-1">Click to upload or drag and drop</h4>
             <p className="text-xs text-slate-500 max-w-xs">SVG, PNG, JPG or GIF (max. 800x400px). Images will be available to use in Blogs and Impact galleries.</p>

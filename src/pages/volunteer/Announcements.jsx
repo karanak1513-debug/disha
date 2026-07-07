@@ -85,10 +85,10 @@ export default function Announcements() {
               </div>
               <div className="w-px h-8 bg-slate-200 mx-2" />
               <div className="flex flex-col">
-                <span className="text-[10px] font-extrabold text-blue-500 uppercase tracking-widest flex items-center gap-1">
+                <span className="text-[10px] font-extrabold text-emerald-500 uppercase tracking-widest flex items-center gap-1">
                   <Star className="h-3 w-3" /> Pinned
                 </span>
-                <span className="text-lg font-black text-blue-600 leading-none mt-1">{pinnedCount}</span>
+                <span className="text-lg font-black text-emerald-600 leading-none mt-1">{pinnedCount}</span>
               </div>
             </div>
           </motion.div>
@@ -100,8 +100,8 @@ export default function Announcements() {
         {/* Header toolbar */}
         <div className="px-5 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center">
-              <Megaphone className="h-4 w-4 text-blue-600" />
+            <div className="h-8 w-8 rounded-lg bg-emerald-50 border border-blue-100 flex items-center justify-center">
+              <Megaphone className="h-4 w-4 text-emerald-600" />
             </div>
             <div>
               <h3 className="font-bold text-slate-800 text-sm">Platform Announcements</h3>
@@ -161,7 +161,7 @@ export default function Announcements() {
                   <div className="space-y-3 flex-1">
                     <div className="flex items-center gap-1.5 flex-wrap mb-1">
                       {ann.pinned && (
-                        <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 border border-blue-100 px-2 py-0.5 text-[9px] font-black text-blue-600 uppercase tracking-wider">
+                        <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 border border-blue-100 px-2 py-0.5 text-[9px] font-black text-emerald-600 uppercase tracking-wider">
                           <Star className="h-2.5 w-2.5 fill-blue-600" /> Pinned
                         </span>
                       )}

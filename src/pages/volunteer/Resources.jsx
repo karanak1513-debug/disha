@@ -89,7 +89,7 @@ export default function Resources() {
 
   const getColorClasses = (color) => {
     switch (color) {
-      case "blue": return "bg-blue-50 text-blue-600 border-blue-100";
+      case "blue": return "bg-emerald-50 text-emerald-600 border-blue-100";
       case "rose": return "bg-rose-50 text-rose-600 border-rose-100";
       case "purple": return "bg-purple-50 text-purple-600 border-purple-100";
       case "emerald": return "bg-emerald-50 text-emerald-600 border-emerald-100";
@@ -185,7 +185,7 @@ export default function Resources() {
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest">{resource.type}</span>
                     </div>
-                    <h3 className="text-[17px] font-bold text-slate-800 leading-tight group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-[17px] font-bold text-slate-800 leading-tight group-hover:text-emerald-600 transition-colors">
                       {resource.title}
                     </h3>
                     <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">
@@ -199,7 +199,7 @@ export default function Resources() {
                       <div className="h-1 w-1 rounded-full bg-slate-300" />
                       <span className="text-xs font-semibold text-slate-400">{resource.date}</span>
                     </div>
-                    <button className="h-8 w-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 transform group-hover:rotate-[-10deg]">
+                    <button className="h-8 w-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 transform group-hover:rotate-[-10deg]">
                       <Download className="h-4 w-4" />
                     </button>
                   </div>

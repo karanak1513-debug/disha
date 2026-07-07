@@ -135,7 +135,7 @@ export default function AdminUsers() {
           <motion.div initial={{opacity:0,scale:0.95}} animate={{opacity:1,scale:1}} transition={{delay:0.2}} className="flex-shrink-0 flex items-center gap-4 bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl p-4 shadow-sm">
             <div className="flex flex-col items-end border-r border-slate-200 pr-4">
               <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Total Users</span>
-              <span className="text-2xl font-black text-blue-600">{users.length}</span>
+              <span className="text-2xl font-black text-emerald-600">{users.length}</span>
             </div>
             <div className="flex flex-col items-start pl-2">
               <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Admins</span>
@@ -150,8 +150,8 @@ export default function AdminUsers() {
         {/* Box Header */}
         <div className="px-5 py-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
-              <UsersIcon className="h-5 w-5 text-blue-600" />
+            <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-blue-100 flex items-center justify-center">
+              <UsersIcon className="h-5 w-5 text-emerald-600" />
             </div>
             <div>
               <h3 className="font-bold text-slate-800 text-sm">User Directory</h3>
@@ -251,7 +251,7 @@ export default function AdminUsers() {
                         </select>
                       </td>
                       <td className="py-4 px-6 text-center">
-                        <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 font-black text-[11px] border border-blue-100/50">
+                        <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-md bg-emerald-50 text-blue-700 font-black text-[11px] border border-blue-100/50">
                           {user.xp || 0}
                         </span>
                       </td>

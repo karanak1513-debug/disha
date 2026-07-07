@@ -211,14 +211,14 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                       transition={{ duration: 0.15 }}
                       className="absolute bottom-full right-0 mb-2 w-48 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden flex flex-col z-50 py-1"
                     >
-                      <Link to="/profile" onClick={() => setShowAccountMenu(false)} className="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors">
+                      <Link to="/profile" onClick={() => setShowAccountMenu(false)} className="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition-colors">
                         <User className="h-4 w-4" /> My Profile
                       </Link>
-                      <Link to="/support" onClick={() => setShowAccountMenu(false)} className="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors">
+                      <Link to="/support" onClick={() => setShowAccountMenu(false)} className="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition-colors">
                         <LifeBuoy className="h-4 w-4" /> Support Tickets
                       </Link>
                       <div className="border-t border-slate-100 my-1"></div>
-                      <Link to={isAdmin && isAdminRoute ? "/admin/settings" : "/settings"} onClick={() => setShowAccountMenu(false)} className="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors">
+                      <Link to={isAdmin && isAdminRoute ? "/admin/settings" : "/settings"} onClick={() => setShowAccountMenu(false)} className="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition-colors">
                         <Settings className="h-4 w-4" /> Settings
                       </Link>
                     </motion.div>

@@ -4,12 +4,12 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-primary: #2563EB;
+  --color-primary: #10B981;
   --color-primary-hover: #1D4ED8;
   --color-secondary: #F97316;
   --color-secondary-hover: #EA580C;
   --color-accent: #22C55E;
-  --color-dark: #0F172A;
+  --color-dark: #0A2540;
   --color-dark-card: #1E293B;
   --color-bg-light: #F8FAFC;
   
@@ -23,11 +23,11 @@
 
 @layer base {
   body {
-    @apply bg-[#F8FAFC] text-[#0F172A] font-sans antialiased selection:bg-[#2563EB] selection:text-white;
+    @apply bg-[#F8FAFC] text-[#0A2540] font-sans antialiased selection:bg-[#10B981] selection:text-white;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight text-[#0F172A];
+    @apply font-display tracking-tight text-[#0A2540];
   }
 }
 
@@ -63,11 +63,11 @@
 
 /* Clean Buttons */
 .btn-premium {
-  @apply inline-flex items-center justify-center rounded-[12px] bg-[#2563EB] px-6 py-2.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#1D4ED8] active:scale-[0.98] cursor-pointer;
+  @apply inline-flex items-center justify-center rounded-[12px] bg-[#10B981] px-6 py-2.5 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#1D4ED8] active:scale-[0.98] cursor-pointer;
 }
 
 .btn-secondary-premium {
-  @apply inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-6 py-2.5 text-xs font-semibold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-[#CBD5E1] transition-all duration-200 active:scale-[0.98] cursor-pointer shadow-sm;
+  @apply inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-6 py-2.5 text-xs font-semibold text-[#0A2540] hover:bg-[#F8FAFC] hover:border-[#CBD5E1] transition-all duration-200 active:scale-[0.98] cursor-pointer shadow-sm;
 }
 
 /* Remove Glowing Blobs */
@@ -77,7 +77,7 @@
 
 /* Global Dark Mode Overrides */
 .dark body {
-  background-color: #0F172A !important;
+  background-color: #0A2540 !important;
   color: #F8FAFC !important;
 }
 
@@ -88,7 +88,7 @@
 
 .dark .text-slate-900,
 .dark .text-slate-800,
-.dark .text-\[\#0F172A\] {
+.dark .text-\[\#0A2540\] {
   color: #F8FAFC !important;
 }
 
@@ -108,7 +108,7 @@
 .dark .bg-slate-100,
 .dark .bg-slate-50\/50,
 .dark .bg-\[\#F8FAFC\] {
-  background-color: #0F172A !important;
+  background-color: #0A2540 !important;
   border-color: #334155 !important;
 }
 
@@ -124,7 +124,7 @@
 }
 
 .dark input, .dark select, .dark textarea {
-  background-color: #0F172A !important;
+  background-color: #0A2540 !important;
   color: #F8FAFC !important;
   border-color: #334155 !important;
 }

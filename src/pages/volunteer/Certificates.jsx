@@ -221,7 +221,7 @@ export default function Certificates() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handlePrint(cert)}
-                    className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F172A] py-2.5 text-xs font-bold text-white hover:bg-slate-800 cursor-pointer shadow-sm transition-colors"
+                    className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0A2540] py-2.5 text-xs font-bold text-white hover:bg-slate-800 cursor-pointer shadow-sm transition-colors"
                   >
                     <Printer className="h-3.5 w-3.5" />
                     Print PDF

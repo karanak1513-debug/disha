@@ -207,7 +207,7 @@ export default function Header({ toggleSidebar }) {
                 <Link
                   to="/notifications"
                   onClick={() => setShowNotifications(false)}
-                  className="block text-[11px] font-bold text-blue-600 hover:text-blue-700 hover:underline w-full py-1 cursor-pointer transition-colors"
+                  className="block text-[11px] font-bold text-emerald-600 hover:text-emerald-700 hover:underline w-full py-1 cursor-pointer transition-colors"
                 >
                   View All Notifications
                 </Link>
@@ -223,7 +223,7 @@ export default function Header({ toggleSidebar }) {
             className={`hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider border transition-all duration-200 ${
               isAdminRoute
                 ? "bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100/80"
-                : "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100/80"
+                : "bg-emerald-50 text-blue-700 border-blue-200 hover:bg-blue-100/80"
             }`}
           >
             <Shield className="h-3.5 w-3.5" />
@@ -259,14 +259,14 @@ export default function Header({ toggleSidebar }) {
                 transition={{ duration: 0.15 }}
                 className="absolute right-0 mt-2.5 w-48 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden flex flex-col z-50 py-1"
               >
-                <Link to="/profile" onClick={() => setShowProfileMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors">
+                <Link to="/profile" onClick={() => setShowProfileMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition-colors">
                   <User className="h-4 w-4" /> My Profile
                 </Link>
-                <Link to="/support" onClick={() => setShowProfileMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors">
+                <Link to="/support" onClick={() => setShowProfileMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition-colors">
                   <LifeBuoy className="h-4 w-4" /> Support Tickets
                 </Link>
                 <div className="border-t border-slate-100 my-1"></div>
-                <Link to={isAdmin && isAdminRoute ? "/admin/settings" : "/settings"} onClick={() => setShowProfileMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors">
+                <Link to={isAdmin && isAdminRoute ? "/admin/settings" : "/settings"} onClick={() => setShowProfileMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition-colors">
                   <SettingsIcon className="h-4 w-4" /> Settings
                 </Link>
                 <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-rose-50 hover:text-rose-600 transition-colors text-left w-full cursor-pointer">

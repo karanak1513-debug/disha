@@ -92,7 +92,7 @@ export default function AdminResources() {
 
   const getColorClasses = (color) => {
     switch (color) {
-      case "blue": return "bg-blue-50 text-blue-600 border-blue-100";
+      case "blue": return "bg-emerald-50 text-emerald-600 border-blue-100";
       case "rose": return "bg-rose-50 text-rose-600 border-rose-100";
       case "purple": return "bg-purple-50 text-purple-600 border-purple-100";
       case "emerald": return "bg-emerald-50 text-emerald-600 border-emerald-100";
@@ -129,7 +129,7 @@ export default function AdminResources() {
                 className="w-full pl-9 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
               />
             </div>
-            <button className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl shadow-sm shadow-blue-600/20 transition-all cursor-pointer">
+            <button className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl shadow-sm shadow-blue-600/20 transition-all cursor-pointer">
               <Upload className="h-4 w-4" />
               <span>Upload New</span>
             </button>
@@ -189,7 +189,7 @@ export default function AdminResources() {
                     <div className="flex items-center gap-2">
                       <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest">{resource.type}</span>
                     </div>
-                    <h3 className="text-[17px] font-bold text-slate-800 leading-tight group-hover:text-blue-600 transition-colors pr-8">
+                    <h3 className="text-[17px] font-bold text-slate-800 leading-tight group-hover:text-emerald-600 transition-colors pr-8">
                       {resource.title}
                     </h3>
                     <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">
@@ -205,7 +205,7 @@ export default function AdminResources() {
                     </div>
                     
                     <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button className="h-8 w-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300 cursor-pointer">
+                      <button className="h-8 w-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-emerald-600 hover:text-white transition-all duration-300 cursor-pointer">
                         <Edit className="h-3.5 w-3.5" />
                       </button>
                       <button onClick={() => handleDelete(resource.id)} className="h-8 w-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-rose-500 hover:text-white transition-all duration-300 cursor-pointer">

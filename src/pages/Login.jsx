@@ -50,10 +50,10 @@ export default function Login() {
         
         {/* Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex h-16 w-16 items-center justify-center rounded-[24px] bg-gradient-to-br from-[#00D09C] to-[#0066FF] text-white font-black text-2xl shadow-xl shadow-blue-500/20 mb-6">
+          <div className="inline-flex h-16 w-16 items-center justify-center rounded-[24px] bg-gradient-to-br from-[#14B8A6] to-[#10B981] text-white font-black text-2xl shadow-xl shadow-blue-500/20 mb-6">
             D
           </div>
-          <h2 className="text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
+          <h2 className="text-4xl font-extrabold text-[#0A2540] tracking-tight mb-3">
             Welcome back
           </h2>
           <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">
@@ -79,7 +79,7 @@ export default function Login() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full bg-white border border-[#E2E8F0] rounded-[16px] py-3.5 pl-12 pr-4 text-sm font-semibold text-[#0F172A] placeholder-slate-400 focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-all"
+                  className="block w-full bg-white border border-[#E2E8F0] rounded-[16px] py-3.5 pl-12 pr-4 text-sm font-semibold text-[#0A2540] placeholder-slate-400 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all"
                   placeholder="name@example.com"
                   required
                 />
@@ -92,7 +92,7 @@ export default function Login() {
                 <label htmlFor="password" className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest">
                   Password
                 </label>
-                <Link to="/forgot-password" className="text-[11px] font-bold text-[#2563EB] hover:underline">
+                <Link to="/forgot-password" className="text-[11px] font-bold text-[#10B981] hover:underline">
                   Forgot password?
                 </Link>
               </div>
@@ -105,7 +105,7 @@ export default function Login() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full bg-white border border-[#E2E8F0] rounded-[16px] py-3.5 pl-12 pr-4 text-sm font-black text-[#0F172A] placeholder-slate-400 focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-all tracking-[0.2em]"
+                  className="block w-full bg-white border border-[#E2E8F0] rounded-[16px] py-3.5 pl-12 pr-4 text-sm font-black text-[#0A2540] placeholder-slate-400 focus:outline-none focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] transition-all tracking-[0.2em]"
                   placeholder="••••••••"
                   required
                 />
@@ -116,7 +116,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#2563EB] text-white rounded-[16px] py-4 text-sm font-bold shadow-lg shadow-blue-500/25 hover:bg-[#1D4ED8] transition-all active:scale-[0.98]"
+            className="w-full bg-[#10B981] text-white rounded-[16px] py-4 text-sm font-bold shadow-lg shadow-blue-500/25 hover:bg-[#1D4ED8] transition-all active:scale-[0.98]"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>
@@ -154,7 +154,7 @@ export default function Login() {
         {/* Footer */}
         <p className="mt-8 text-center text-sm font-semibold text-slate-500">
           New to DISHA?{" "}
-          <Link to="/register" className="text-[#2563EB] font-bold hover:underline">
+          <Link to="/register" className="text-[#10B981] font-bold hover:underline">
             Register here
           </Link>
         </p>

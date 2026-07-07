@@ -115,7 +115,7 @@ export default function Applications() {
               placeholder="Search programs..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white border border-[#E2E8F0] text-slate-800 text-sm rounded-lg focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB] block pl-9 p-2.5 transition-all outline-none"
+              className="w-full bg-white border border-[#E2E8F0] text-slate-800 text-sm rounded-lg focus:ring-2 focus:ring-[#10B981]/20 focus:border-[#10B981] block pl-9 p-2.5 transition-all outline-none"
             />
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function Applications() {
                 {searchTerm ? "Try a different search term." : "Join a campaign and make an impact!"}
               </p>
               {!searchTerm && (
-                <Link to="/programs" className="inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs font-bold px-5 py-2.5 rounded-lg hover:bg-slate-800 transition-all shadow-sm">
+                <Link to="/programs" className="inline-flex items-center gap-2 bg-[#0A2540] text-white text-xs font-bold px-5 py-2.5 rounded-lg hover:bg-slate-800 transition-all shadow-sm">
                   Explore Programs
                 </Link>
               )}
@@ -184,7 +184,7 @@ export default function Applications() {
                   </div>
                   
                   <div className="pt-4 mt-auto border-t border-[#E2E8F0]">
-                    <Link to="/programs" className="w-full flex items-center justify-center gap-2 bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#0F172A] text-xs font-semibold py-2 rounded-lg transition-colors border border-[#E2E8F0]">
+                    <Link to="/programs" className="w-full flex items-center justify-center gap-2 bg-[#F8FAFC] hover:bg-[#E2E8F0] text-[#0A2540] text-xs font-semibold py-2 rounded-lg transition-colors border border-[#E2E8F0]">
                       View Details
                     </Link>
                   </div>

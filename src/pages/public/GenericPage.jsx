@@ -83,10 +83,10 @@ const pageData = {
           <p className="mt-4">If the issue continues, please contact our support team.</p>
         </div>
 
-        <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 mt-8">
+        <div className="bg-emerald-50 p-6 rounded-2xl border border-blue-100 mt-8">
           <h2 className="text-xl font-bold text-blue-900 mb-2">Still Need Help?</h2>
           <p className="text-blue-800 mb-4">If you couldn't find the answer you're looking for, we're happy to help. Submit your query through our Contact Us page, and our team will get back to you as soon as possible.</p>
-          <Link to="/contact" className="inline-block bg-blue-600 text-white font-bold px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
+          <Link to="/contact" className="inline-block bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-lg hover:bg-emerald-700 transition-colors shadow-sm">
             Contact Support
           </Link>
         </div>
@@ -218,11 +218,11 @@ export default function GenericPage() {
       
       <div className="flex-grow max-w-4xl mx-auto w-full px-6 py-32">
         <motion.div initial="hidden" animate="show" variants={fadeUp} className="mb-10">
-          <Link to="/" className="text-[#2563EB] font-bold text-sm hover:underline mb-4 inline-block">
+          <Link to="/" className="text-[#10B981] font-bold text-sm hover:underline mb-4 inline-block">
             &larr; Back to Home
           </Link>
           <motion.div variants={textReveal} className="overflow-hidden">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tighter">{data.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#0A2540] tracking-tighter">{data.title}</h1>
           </motion.div>
         </motion.div>
 
@@ -233,7 +233,7 @@ export default function GenericPage() {
           className="bg-white p-8 md:p-12 rounded-[32px] shadow-[0_20px_60px_-15px_rgb(0,0,0,0.05)] border border-[#E2E8F0] relative overflow-hidden"
         >
           {/* Decorative element */}
-          <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#00D09C] to-[#0066FF]"></div>
+          <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981]"></div>
           
           <div className="prose prose-slate max-w-none text-slate-600 space-y-6 text-lg">
             <div className="text-slate-700 leading-relaxed">
@@ -246,7 +246,7 @@ export default function GenericPage() {
                   This section is currently under active development. Our legal and support teams are finalizing the comprehensive documentation for this page.
                 </p>
                 <p>
-                  If you have any urgent inquiries regarding our {data.title.toLowerCase()}, please reach out to us directly via our <Link to="/contact" className="text-[#2563EB] font-bold hover:underline">Contact Page</Link>.
+                  If you have any urgent inquiries regarding our {data.title.toLowerCase()}, please reach out to us directly via our <Link to="/contact" className="text-[#10B981] font-bold hover:underline">Contact Page</Link>.
                 </p>
               </div>
             )}
