@@ -41,9 +41,13 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
 
   const textColor = colorClass || (theme === 'dark' ? 'text-white' : 'text-[#0F172A]');
   const labelColor = theme === 'dark' ? 'text-slate-400 group-hover:text-white transition-colors' : 'text-slate-500';
+  
+  const containerClasses = theme === 'minimal' || theme === 'dark'
+    ? 'flex flex-col items-center justify-center'
+    : 'flex flex-col items-center justify-center p-6 bg-white border border-[#E2E8F0] rounded-[16px] shadow-sm';
 
   return (
-    <div className={`flex flex-col items-center justify-center ${theme === 'dark' ? '' : 'p-6 bg-white border border-[#E2E8F0] rounded-[16px] shadow-sm'}`}>
+    <div className={containerClasses}>
       <div className={`text-4xl md:text-5xl font-black mb-2 font-display ${textColor}`}>
         {count.toLocaleString()}{suffix}
       </div>
@@ -289,38 +293,32 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* 3. IMPACT & PARTNERS (Redesigned) */}
-      <section className="py-24 bg-[#0F172A] relative overflow-hidden">
-        {/* Abstract Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-          <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[120px]"></div>
-          <div className="absolute bottom-[0%] -right-[10%] w-[40%] h-[60%] rounded-full bg-emerald-600/10 blur-[120px]"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+      {/* 3. IMPACT & PARTNERS (Ultra-Minimal Professional) */}
+      <section className="py-24 bg-white relative overflow-hidden border-t border-[#E2E8F0]">
+        <div className="max-w-7xl mx-auto px-6">
           
           {/* Partners Row */}
-          <div className="mb-20 text-center">
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-10">Trusted by Leading Organizations</p>
-            <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700 text-white">
-              <div className="flex items-center gap-2 text-xl font-black"><Building2 className="h-7 w-7 text-white" /> Gov Partners</div>
-              <div className="flex items-center gap-2 text-xl font-black"><BookOpen className="h-7 w-7 text-white" /> State Univ</div>
-              <div className="flex items-center gap-2 text-xl font-black"><Globe className="h-7 w-7 text-white" /> Global NGO</div>
-              <div className="flex items-center gap-2 text-xl font-black"><Users className="h-7 w-7 text-white" /> India Cares</div>
-              <div className="flex items-center gap-2 text-xl font-black"><Laptop className="h-7 w-7 text-white" /> Tech CSR</div>
+          <div className="mb-24 text-center">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-12">Trusted by Leading Organizations</p>
+            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-700 text-slate-500">
+              <div className="flex items-center gap-2 text-lg font-black"><Building2 className="h-6 w-6" /> Gov Partners</div>
+              <div className="flex items-center gap-2 text-lg font-black"><BookOpen className="h-6 w-6" /> State Univ</div>
+              <div className="flex items-center gap-2 text-lg font-black"><Globe className="h-6 w-6" /> Global NGO</div>
+              <div className="flex items-center gap-2 text-lg font-black"><Users className="h-6 w-6" /> India Cares</div>
+              <div className="flex items-center gap-2 text-lg font-black"><Laptop className="h-6 w-6" /> Tech CSR</div>
             </div>
           </div>
 
-          <div className="w-full h-px bg-white/10 mb-20"></div>
+          <div className="w-full max-w-4xl mx-auto h-px bg-slate-100 mb-24"></div>
 
-          {/* Glowing Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {/* Minimal Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-8">
             {[
-              { end: 10000, suffix: "+", label: "Healthcare Impact", color: "text-blue-400" },
-              { end: 500, suffix: "+", label: "Schools Covered", color: "text-orange-400" },
-              { end: 100000, suffix: "+", label: "People Trained", color: "text-emerald-400" },
-              { end: 5000, suffix: "+", label: "Financial Literacy", color: "text-purple-400" },
-              { end: 5000, suffix: "+", label: "Community Development", color: "text-rose-400" }
+              { end: 10000, suffix: "+", label: "Healthcare Impact" },
+              { end: 500, suffix: "+", label: "Schools Covered" },
+              { end: 100000, suffix: "+", label: "People Trained" },
+              { end: 5000, suffix: "+", label: "Financial Literacy" },
+              { end: 5000, suffix: "+", label: "Community Development" }
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -330,7 +328,7 @@ export default function Landing() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="text-center group"
               >
-                <StatCounter end={stat.end} suffix={stat.suffix} label={stat.label} theme="dark" colorClass={stat.color} />
+                <StatCounter end={stat.end} suffix={stat.suffix} label={stat.label} theme="minimal" colorClass="text-[#0F172A]" />
               </motion.div>
             ))}
           </div>
