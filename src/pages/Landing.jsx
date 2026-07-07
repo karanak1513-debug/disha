@@ -56,39 +56,10 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
   );
 };
 
-const AccordionItem = ({ question, answer, isOpen, onClick }) => {
-  return (
-    <div className="border border-[#E2E8F0] rounded-[16px] overflow-hidden bg-white mb-4 transition-all hover:border-slate-300">
-      <button 
-        onClick={onClick}
-        className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
-      >
-        <span className="font-bold text-[#0F172A] text-lg pr-4">{question}</span>
-        <div className={`shrink-0 h-8 w-8 rounded-full flex items-center justify-center transition-colors ${isOpen ? 'bg-[#2563EB] text-white' : 'bg-slate-100 text-slate-500'}`}>
-          {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
-        </div>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ height: 0, opacity: 0 }} 
-            animate={{ height: "auto", opacity: 1 }} 
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            <div className="px-6 pb-6 text-slate-500 leading-relaxed border-t border-slate-50 pt-4">
-              {answer}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
+
 
 export default function Landing() {
   const [scrolled, setScrolled] = useState(false);
-  const [openFaq, setOpenFaq] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,7 +81,7 @@ export default function Landing() {
           </div>
           
           <div className="hidden lg:flex items-center gap-8">
-            {['Home', 'About', 'Programs', 'Events', 'Impact', 'Partners', 'Contact'].map((item) => (
+            {['Home', 'About', 'Programs', 'Impact'].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">
                 {item}
               </a>
@@ -497,32 +468,7 @@ export default function Landing() {
 
 
 
-      {/* 13. FAQ */}
-      <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0]">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight font-display mb-4 text-[#0F172A]">Frequently Asked Questions</h2>
-            <p className="text-slate-500 text-lg">Everything you need to know about the DISHA platform.</p>
-          </div>
-          
-          <div className="space-y-1">
-            {[
-              { q: "Is DISHA completely free for students?", a: "Yes. Creating an account, applying to programs, and earning certificates is 100% free for all students." },
-              { q: "How are the volunteer hours verified?", a: "NGO and campaign coordinators digitally approve your logged hours through their admin dashboard before they are added to your profile." },
-              { q: "Can I use these certificates for college applications?", a: "Absolutely. Every certificate generated includes a unique cryptographic verification link that universities and employers can check." },
-              { q: "How do NGOs register?", a: "NGOs can sign up for an organizational account, undergo a quick verification process, and begin posting opportunities immediately." }
-            ].map((faq, i) => (
-              <AccordionItem 
-                key={i} 
-                question={faq.q} 
-                answer={faq.a} 
-                isOpen={openFaq === i} 
-                onClick={() => setOpenFaq(openFaq === i ? -1 : i)} 
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* 14. FINAL CALL TO ACTION */}
       <section className="py-32 bg-[#2563EB] text-center relative overflow-hidden">
