@@ -1,310 +1,480 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import PublicNavbar from "../components/public/PublicNavbar";
+import Footer from "../components/public/Footer";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
-  ArrowRight, Heart, Users, Globe, Building2, BookOpen, 
-  Laptop, ChevronRight, Play, Star, Shield, Trophy, 
-  Target, Sparkles, TrendingUp, HandHeart
-} from 'lucide-react';
+  ArrowRight, Users, Globe, Target, Eye, Heart, 
+  MapPin, Award, BookOpen, Briefcase, Star, Building2,
+  Plus, Minus, Search, Laptop, Network, BookOpenCheck, LineChart, Sparkles, Flame
+} from "lucide-react";
 
-import PublicNavbar from '../components/public/PublicNavbar';
-import Footer from '../components/public/Footer';
+// --- ANIMATION VARIANTS ---
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+};
 
-// Animated Counter Component
-const StatCounter = ({ end, suffix = "", label, colorClass = "text-blue-600" }) => {
+const stagger = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } }
+};
+
+const textReveal = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
+};
+
+// --- REUSABLE COMPONENTS ---
+
+const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) => {
   const [count, setCount] = useState(0);
   
   useEffect(() => {
-    let startTime;
-    const duration = 2000;
-    
-    const animate = (currentTime) => {
-      if (!startTime) startTime = currentTime;
-      const progress = (currentTime - startTime) / duration;
-      
-      if (progress < 1) {
-        setCount(Math.floor(end * progress));
-        requestAnimationFrame(animate);
-      } else {
+    let start = 0;
+    const duration = 5000;
+    const increment = end / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
         setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
       }
-    };
-    
-    requestAnimationFrame(animate);
+    }, 16);
+    return () => clearInterval(timer);
   }, [end]);
 
+  const textColor = colorClass || (theme === 'dark' ? 'text-white' : 'text-[#0F172A]');
+  const labelColor = theme === 'dark' ? 'text-slate-400 group-hover:text-white transition-colors' : 'text-slate-500';
+  
+  const containerClasses = theme === 'minimal' || theme === 'dark'
+    ? 'flex flex-col items-center justify-center'
+    : 'flex flex-col items-center justify-center p-6 bg-white border border-[#E2E8F0] rounded-[16px] shadow-sm';
+
   return (
-    <div className="flex flex-col items-center justify-center space-y-2">
-      <h3 className={`text-5xl lg:text-7xl font-black tracking-tight font-display ${colorClass}`}>
+    <div className={containerClasses}>
+      <div className={`text-4xl md:text-5xl font-black mb-2 font-display ${textColor}`}>
         {count.toLocaleString()}{suffix}
-      </h3>
-      <p className="text-sm font-bold uppercase tracking-widest text-slate-400">{label}</p>
+      </div>
+      {label && <div className={`text-xs font-bold uppercase tracking-widest text-center mt-1 ${labelColor}`}>{label}</div>}
     </div>
   );
 };
 
+
+
 export default function Landing() {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-
-  const stagger = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  };
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 20 } }
-  };
-
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-[#2563EB] selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#2563EB] selection:text-white font-sans overflow-x-hidden text-[#0F172A]">
+      
+      {/* 1. STICKY HEADER */}
       <PublicNavbar />
 
-      {/* 1. HERO SECTION (Minimal & Animated) */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#fafafa]">
-        {/* Subtle Parallax Background */}
-        <motion.div style={{ y, opacity }} className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          <div className="w-[800px] h-[800px] bg-gradient-to-tr from-blue-100/40 to-indigo-50/40 rounded-full blur-[120px] mix-blend-multiply opacity-70 animate-pulse" style={{ animationDuration: '8s' }} />
-        </motion.div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center flex flex-col items-center">
-          <motion.div initial="hidden" animate="show" variants={stagger} className="max-w-4xl mx-auto space-y-10">
-            
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 bg-white border border-slate-200 rounded-full px-5 py-2.5 shadow-sm hover:shadow-md transition-shadow cursor-default">
-              <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-ping absolute"></span>
-              <span className="flex h-2 w-2 rounded-full bg-blue-500 relative"></span>
-              <span className="text-xs font-bold text-slate-600 uppercase tracking-[0.2em]">Join 100,000+ Volunteers</span>
-            </motion.div>
-
-            <motion.h1 variants={fadeUp} className="text-6xl md:text-8xl font-bold text-[#0F172A] tracking-tighter leading-[1.05] font-display">
-              Empowering India's <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Youth & Future</span>
-            </motion.h1>
-
-            <motion.p variants={fadeUp} className="text-xl md:text-2xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
-              We build future-ready leaders through high-impact volunteering, skill development, and community-driven initiatives.
-            </motion.p>
-
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
-              <Link to="/register" className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-[20px] bg-[#0F172A] px-10 py-5 text-lg font-bold text-white overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-[0_20px_40px_-15px_rgba(15,23,42,0.5)]">
-                <span className="relative z-10">Start Your Journey</span>
-                <ArrowRight className="h-5 w-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </Link>
-              <a href="#about" className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[20px] bg-white border border-slate-200 px-10 py-5 text-lg font-bold text-[#0F172A] hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-95 shadow-sm hover:shadow-md">
-                Learn More
-              </a>
-            </motion.div>
-
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 2. LOGO CLOUD */}
-      <section className="py-16 bg-white border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] mb-10">Trusted by Leading Organizations</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-700 text-slate-800">
-            <div className="flex items-center gap-3 text-xl font-black tracking-tight"><Building2 className="h-7 w-7" /> Gov Partners</div>
-            <div className="flex items-center gap-3 text-xl font-black tracking-tight"><BookOpen className="h-7 w-7" /> State Univ</div>
-            <div className="flex items-center gap-3 text-xl font-black tracking-tight"><Globe className="h-7 w-7" /> Global NGO</div>
-            <div className="flex items-center gap-3 text-xl font-black tracking-tight"><Users className="h-7 w-7" /> India Cares</div>
+      {/* 2. HERO SECTION */}
+      <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-white border-b border-[#E2E8F0]">
+        {/* Soft Background Accents */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden flex justify-center">
+          <div className="w-full max-w-7xl relative">
+            <div className="absolute -top-24 right-0 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-50/50 rounded-full blur-3xl" />
           </div>
         </div>
-      </section>
 
-      {/* 3. BENTO BOX ABOUT SECTION */}
-      <section id="about" className="py-32 bg-[#fafafa]">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="mb-20"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight font-display text-[#0F172A] mb-6">Redefining Impact.</h2>
-            <p className="text-xl text-slate-500 max-w-2xl font-medium">We aren't just a volunteering platform. We are a movement dedicated to holistic youth development and tangible social change.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            {/* Main Large Card */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="md:col-span-2 bg-white rounded-[32px] p-10 md:p-16 border border-slate-200 shadow-xl shadow-slate-200/40 relative overflow-hidden group"
-            >
-              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="relative z-10 h-full flex flex-col justify-between">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-8 text-blue-600 group-hover:scale-110 transition-transform duration-500">
-                  <Target className="h-8 w-8" />
-                </div>
-                <div>
-                  <h3 className="text-3xl font-bold text-[#0F172A] mb-4 font-display">Our Mission</h3>
-                  <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
-                    We empower students and young professionals through volunteering, mentorship, skill development, and entrepreneurship, creating future-ready leaders who drive positive social change across India.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Top Right Card */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-[#0F172A] text-white rounded-[32px] p-10 border border-slate-800 shadow-2xl relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10">
-                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6 text-white backdrop-blur-sm">
-                  <Sparkles className="h-6 w-6" />
-                </div>
-                <h3 className="text-2xl font-bold mb-3 font-display">Our Vision</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  Empowering a skilled and progressive India where every individual has access to quality education, practical skills, and opportunities to lead a prosperous life.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Bottom Left Small Card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="bg-orange-50 rounded-[32px] p-10 border border-orange-100 group hover:bg-orange-100 transition-colors duration-500"
-            >
-              <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 text-orange-500 shadow-sm">
-                <HandHeart className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-[#0F172A] mb-2 font-display">Passion</h3>
-              <p className="text-orange-800/70 text-sm">Inspiring purpose-driven change every single day.</p>
-            </motion.div>
-
-            {/* Bottom Right Small Card */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="bg-emerald-50 rounded-[32px] p-10 border border-emerald-100 group hover:bg-emerald-100 transition-colors duration-500 md:col-span-2"
-            >
-              <div className="flex flex-col md:flex-row gap-8 items-center justify-between h-full">
-                <div>
-                  <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 text-emerald-600 shadow-sm">
-                    <TrendingUp className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#0F172A] mb-2 font-display">National Goal</h3>
-                  <p className="text-emerald-800/70 text-base max-w-md">Transforming communities nationwide by connecting youth, educators, and NGOs to create sustainable impact.</p>
-                </div>
-                <div className="hidden md:flex w-32 h-32 rounded-full bg-emerald-200/50 items-center justify-center relative">
-                  <Globe className="h-12 w-12 text-emerald-600 animate-pulse" />
-                </div>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 4. ANIMATED STATS */}
-      <section className="py-32 bg-white border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
-            <StatCounter end={100} suffix="K+" label="Lives Touched" colorClass="text-blue-600" />
-            <StatCounter end={500} suffix="+" label="Schools Covered" colorClass="text-indigo-600" />
-            <StatCounter end={10} suffix="K+" label="Active Volunteers" colorClass="text-purple-600" />
-            <StatCounter end={50} suffix="+" label="Cities Reached" colorClass="text-emerald-600" />
-          </div>
-        </div>
-      </section>
-
-      {/* 5. SUCCESS STORIES CAROUSEL */}
-      <section className="py-32 bg-[#0F172A] overflow-hidden relative">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          
-          <motion.div 
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <motion.div initial="hidden" animate="show" variants={stagger} className="flex-1 space-y-8 text-center lg:text-left">
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-2 text-xs font-bold text-[#2563EB] uppercase tracking-widest">
+                <Sparkles className="h-3 w-3" /> WE EMPOWER | WE MAKE THE DIFFERENCE
+              </motion.div>
+
+              <motion.div variants={textReveal} className="overflow-hidden">
+                <h1 className="text-5xl lg:text-7xl font-bold text-[#0F172A] tracking-tighter leading-[1.1] font-display">
+                  Everyone has <span className="text-[#2563EB]">Power</span> to create an Impact
+                </h1>
+              </motion.div>
+              
+              <motion.p variants={fadeUp} className="text-xl text-slate-500 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium tracking-wide">
+                Be a Volunteer with Disha For India. Invest your time, uplift lives, and build a better India — one community at a time.
+              </motion.p>
+              
+              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#2563EB] px-8 py-4 text-sm font-bold text-white transition-all hover:bg-[#1D4ED8] active:scale-[0.98] shadow-sm">
+                  Be a Volunteer with Disha
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-8 py-4 text-sm font-bold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-slate-300 transition-all active:scale-[0.98] shadow-sm">
+                  Explore Programs
+                </a>
+              </motion.div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="flex-1 w-full relative">
+              <div className="relative rounded-[24px] overflow-hidden border border-[#E2E8F0] shadow-2xl aspect-[4/3] bg-slate-100 group">
+                <img
+                  src="/disha-event.jpg"
+                  alt="DISHA for India Community Event"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.2, duration: 0.6 }}
+                  className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-[12px] p-4 border border-white shadow-lg"
+                >
+                  <p className="text-xs font-bold text-slate-700 italic leading-relaxed">"Education is the most powerful weapon which can be used to change the world."</p>
+                  <p className="text-[10px] font-bold text-[#2563EB] mt-1 uppercase tracking-widest">— Nelson Mandela</p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section id="about" className="py-24 bg-white border-b border-[#E2E8F0]">
+        <div className="max-w-7xl mx-auto px-6">
+
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#2563EB] bg-blue-50 border border-blue-100 rounded-full px-4 py-2 mb-4">Our Story</span>
+            <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={textReveal} className="text-3xl md:text-5xl font-bold tracking-tighter font-display mb-4">About DISHA</motion.h2>
+            <p className="text-slate-500 text-lg font-medium">Empowering India's youth through volunteering, leadership, skill development, and community impact.</p>
+          </div>
+
+          {/* Two-Column Layout */}
+          <div className="flex flex-col lg:flex-row items-start gap-12 mb-16">
+
+            {/* LEFT: Founders Image */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="lg:w-2/5 w-full shrink-0"
+            >
+              <div className="relative">
+                <div className="rounded-[24px] overflow-hidden border border-[#E2E8F0] shadow-xl">
+                  <img
+                    src="/disha-founders.png"
+                    alt="DISHA for India Founders"
+                    className="w-full object-cover"
+                  />
+                </div>
+                {/* Floating Badge */}
+                <div className="absolute -bottom-5 -right-5 bg-[#2563EB] text-white rounded-[16px] p-5 shadow-2xl">
+                  <p className="text-xs font-bold uppercase tracking-widest opacity-80">Founded with</p>
+                  <p className="text-2xl font-black font-display mt-1">Purpose</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* RIGHT: 2x2 Cards Grid */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6"
+            >
+              {/* Vision */}
+              <div className="bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-[20px] hover:border-blue-200 hover:shadow-lg transition-all group">
+                <div className="h-12 w-12 rounded-[12px] bg-blue-50 flex items-center justify-center mb-5 group-hover:bg-blue-100 transition-colors">
+                  <Eye className="h-6 w-6 text-[#2563EB]" />
+                </div>
+                <h3 className="text-lg font-black text-[#0F172A] mb-1">Vision</h3>
+                <p className="text-xs font-bold text-[#2563EB] mb-3 uppercase tracking-widest">Empowering a Skilled & Progressive India</p>
+                <p className="text-slate-500 text-sm leading-relaxed">We envision a society where every individual has access to quality education, practical skills, and opportunities to lead a healthy, happy, and prosperous life.</p>
+              </div>
+
+              {/* Mission */}
+              <div className="bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-[20px] hover:border-orange-200 hover:shadow-lg transition-all group">
+                <div className="h-12 w-12 rounded-[12px] bg-orange-50 flex items-center justify-center mb-5 group-hover:bg-orange-100 transition-colors">
+                  <Target className="h-6 w-6 text-[#F97316]" />
+                </div>
+                <h3 className="text-lg font-black text-[#0F172A] mb-1">Mission</h3>
+                <p className="text-xs font-bold text-[#F97316] mb-3 uppercase tracking-widest">Building Future-Ready Youth</p>
+                <p className="text-slate-500 text-sm leading-relaxed">We empower students and young professionals through volunteering, mentorship, skill development, and entrepreneurship, creating leaders who drive positive social change.</p>
+              </div>
+
+              {/* Passion */}
+              <div className="bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-[20px] hover:border-emerald-200 hover:shadow-lg transition-all group">
+                <div className="h-12 w-12 rounded-[12px] bg-emerald-50 flex items-center justify-center mb-5 group-hover:bg-emerald-100 transition-colors">
+                  <Flame className="h-6 w-6 text-emerald-500" />
+                </div>
+                <h3 className="text-lg font-black text-[#0F172A] mb-1">Passion</h3>
+                <p className="text-xs font-bold text-emerald-600 mb-3 uppercase tracking-widest">Inspiring Purpose-Driven Change</p>
+                <p className="text-slate-500 text-sm leading-relaxed">We believe in leading by example, encouraging individuals to discover their potential, contribute to society, and make a meaningful impact every day.</p>
+              </div>
+
+              {/* Goal */}
+              <div className="bg-[#F8FAFC] border border-[#E2E8F0] p-8 rounded-[20px] hover:border-purple-200 hover:shadow-lg transition-all group">
+                <div className="h-12 w-12 rounded-[12px] bg-purple-50 flex items-center justify-center mb-5 group-hover:bg-purple-100 transition-colors">
+                  <Sparkles className="h-6 w-6 text-purple-500" />
+                </div>
+                <h3 className="text-lg font-black text-[#0F172A] mb-1">Goal</h3>
+                <p className="text-xs font-bold text-purple-600 mb-3 uppercase tracking-widest">Transforming Communities Nationwide</p>
+                <p className="text-slate-500 text-sm leading-relaxed">Our goal is to expand across India by connecting youth, educators, NGOs, and communities to create sustainable impact and lifelong opportunities.</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Quote Banner */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            transition={{ duration: 0.6 }}
+            className="bg-[#0F172A] rounded-[24px] p-12 text-center text-white flex flex-col items-center"
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display text-white mb-6">Voices of Impact</h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">Hear directly from the young leaders transforming India through our programs.</p>
+            <div className="text-5xl mb-4 opacity-30 font-serif leading-none">"</div>
+            <p className="text-2xl md:text-3xl font-bold font-display leading-snug italic max-w-3xl mx-auto text-white">
+              Education is the most powerful weapon which can be used to change the world.
+            </p>
+            <p className="text-slate-400 text-sm font-bold mt-6 uppercase tracking-widest">— Nelson Mandela</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        </div>
+      </section>
+
+      {/* 3. IMPACT & PARTNERS (Ultra-Minimal Professional) */}
+      <section className="py-24 bg-white relative overflow-hidden border-t border-[#E2E8F0]">
+        <div className="max-w-7xl mx-auto px-6">
+          
+          {/* Partners Row */}
+          <div className="mb-24 text-center">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-12">Trusted by Leading Organizations</p>
+            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-700 text-slate-500">
+              <div className="flex items-center gap-2 text-lg font-black"><Building2 className="h-6 w-6" /> Gov Partners</div>
+              <div className="flex items-center gap-2 text-lg font-black"><BookOpen className="h-6 w-6" /> State Univ</div>
+              <div className="flex items-center gap-2 text-lg font-black"><Globe className="h-6 w-6" /> Global NGO</div>
+              <div className="flex items-center gap-2 text-lg font-black"><Users className="h-6 w-6" /> India Cares</div>
+              <div className="flex items-center gap-2 text-lg font-black"><Laptop className="h-6 w-6" /> Tech CSR</div>
+            </div>
+          </div>
+
+          <div className="w-full max-w-4xl mx-auto h-px bg-slate-100 mb-24"></div>
+
+          {/* Minimal Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-8">
             {[
-              { name: "Priya S.", role: "Lead Tech Volunteer", txt: "The verified certificates helped me secure my first tech internship. The platform is incredible." },
-              { name: "Rahul V.", role: "Environment Advocate", txt: "The XP and leaderboard system made volunteering so much fun. I logged over 200 hours this year!" },
-              { name: "Ananya P.", role: "Event Coordinator", txt: "Managing volunteers used to be a nightmare. DISHA's dashboard streamlined our entire process." }
-            ].map((story, i) => (
-              <motion.div 
+              { end: 10000, suffix: "+", label: "Healthcare Impact" },
+              { end: 500, suffix: "+", label: "Schools Covered" },
+              { end: 100000, suffix: "+", label: "People Trained" },
+              { end: 5000, suffix: "+", label: "Financial Literacy" },
+              { end: 5000, suffix: "+", label: "Community Development" }
+            ].map((stat, i) => (
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-[32px] hover:bg-white/10 transition-colors group"
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="text-center group"
               >
-                <div className="flex gap-1 mb-8">
-                  {[1,2,3,4,5].map(s => <Star key={s} className="h-4 w-4 fill-yellow-500 text-yellow-500" />)}
+                <StatCounter end={stat.end} suffix={stat.suffix} label={stat.label} theme="minimal" colorClass="text-[#0F172A]" />
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 6. WHY CHOOSE DISHA (Asymmetric Layout) */}
+      <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            
+            {/* Left: Text & Features */}
+            <div className="lg:w-1/2">
+              <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#F97316] bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-6">
+                Why Choose Us
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display text-[#0F172A] mb-6">
+                Why Choose Disha For India?
+              </h2>
+              <p className="text-slate-500 text-lg leading-relaxed mb-12">
+                Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {[
+                  {
+                    icon: Search,
+                    iconColor: "text-[#2563EB]",
+                    iconBg: "bg-blue-50",
+                    title: "Meaningful Volunteering",
+                    desc: "Engage in purpose-driven campaigns across education, healthcare, and sustainability to create measurable, real-world impact.",
+                  },
+                  {
+                    icon: BookOpenCheck,
+                    iconColor: "text-[#F97316]",
+                    iconBg: "bg-orange-50",
+                    title: "Practical Skill Building",
+                    desc: "Cultivate essential competencies in leadership, communication, and project management through hands-on experience and expert mentorship.",
+                  },
+                  {
+                    icon: Target,
+                    iconColor: "text-emerald-600",
+                    iconBg: "bg-emerald-50",
+                    title: "Empowered Leadership",
+                    desc: "Spearhead grassroots initiatives, coordinate volunteer cohorts, and execute high-impact projects that drive lasting social change.",
+                  },
+                  {
+                    icon: LineChart,
+                    iconColor: "text-purple-600",
+                    iconBg: "bg-purple-50",
+                    title: "Accelerated Career Growth",
+                    desc: "Fortify your professional portfolio with demonstrable social impact, distinguishing yourself for top-tier internships and higher education.",
+                  },
+                  {
+                    icon: Award,
+                    iconColor: "text-rose-500",
+                    iconBg: "bg-rose-50",
+                    title: "Verified Certification",
+                    desc: "Earn officially recognized credentials that validate your dedication, leadership, and tangible contributions to the community.",
+                  },
+                  {
+                    icon: Globe,
+                    iconColor: "text-indigo-600",
+                    iconBg: "bg-indigo-50",
+                    title: "Sustainable Impact",
+                    desc: "Play a pivotal role in scalable initiatives designed to uplift marginalized groups, democratize education, and build resilient societies.",
+                  }
+                ].map((f, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="flex flex-col"
+                  >
+                    <div className={`h-12 w-12 rounded-xl ${f.iconBg} flex items-center justify-center mb-4`}>
+                      <f.icon className={`h-6 w-6 ${f.iconColor}`} />
+                    </div>
+                    <h4 className="text-lg font-bold text-[#0F172A] mb-2">{f.title}</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed font-medium">{f.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Modern 4-Image Grid */}
+            <div className="lg:w-1/2 w-full relative">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
+                    <img src="/disha-event1.jpg" alt="DISHA Seminar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
+                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
+                    <img src="/disha-event2.jpg" alt="DISHA Event" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
                 </div>
-                <p className="text-slate-300 leading-relaxed mb-10 text-lg italic font-medium">"{story.txt}"</p>
-                <div className="flex items-center gap-4 pt-8 border-t border-white/10">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                    {story.name.charAt(0)}
+                <div className="space-y-4 pt-12">
+                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
+                    <img src="/disha-event3.jpg" alt="DISHA Workshop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
                   </div>
-                  <div>
-                    <h4 className="text-base font-bold text-white">{story.name}</h4>
-                    <p className="text-sm font-semibold text-blue-400">{story.role}</p>
+                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
+                    <img src="/disha-event4.jpg" alt="DISHA Training" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
                   </div>
+                </div>
+              </div>
+              
+              {/* Decorative Floating Element */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-xl z-10 flex items-center gap-4 border border-white/40"
+              >
+                <div className="bg-[#2563EB]/10 p-3 rounded-full">
+                  <Heart className="h-6 w-6 text-[#2563EB] fill-[#2563EB]" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Lives Touched</p>
+                  <p className="text-2xl font-black text-[#0F172A]">100,000+</p>
                 </div>
               </motion.div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      {/* 9. SUCCESS STORIES */}
+      <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={textReveal} className="text-3xl md:text-5xl font-bold tracking-tighter font-display mb-4">Success Stories</motion.h2>
+            <p className="text-slate-500 text-lg">Real impact from India's most dedicated student volunteers.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { name: "Priya Sharma", role: "Taught 50+ students coding", txt: "The verified certificates helped me secure my first tech internship! The platform is incredible.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" },
+              { name: "Rahul Verma", role: "Planted 200 trees", txt: "The XP and leaderboard system made volunteering so much fun. I logged over 200 hours this year.", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=200" },
+              { name: "Ananya Patel", role: "Organized blood drive", txt: "Managing volunteers used to be a nightmare. DISHA's dashboard streamlined our entire process.", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200" }
+            ].map((story, i) => (
+              <div key={i} className="bg-white border border-[#E2E8F0] p-8 rounded-[16px] shadow-sm flex flex-col relative">
+                <div className="flex gap-1 mb-4">
+                  {[1,2,3,4,5].map(s => <Star key={s} className="h-4 w-4 fill-[#F97316] text-[#F97316]" />)}
+                </div>
+                <p className="text-slate-600 leading-relaxed mb-8 flex-1 italic">"{story.txt}"</p>
+                <div className="flex items-center gap-4 pt-6 border-t border-slate-50">
+                  <img src={story.img} alt={story.name} className="h-12 w-12 rounded-full object-cover border border-[#E2E8F0]" />
+                  <div>
+                    <h4 className="text-sm font-bold text-[#0F172A]">{story.name}</h4>
+                    <p className="text-xs font-semibold text-[#2563EB]">{story.role}</p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 6. PREMIUM CTA */}
-      <section className="py-32 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[40px] p-12 md:p-24 text-center text-white shadow-2xl relative overflow-hidden"
-          >
-            {/* Animated Glare */}
-            <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-40 animate-[shimmer_3s_infinite]" />
+
+
+
+
+      {/* 14. FINAL CALL TO ACTION */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="bg-[#0F172A] rounded-[32px] overflow-hidden relative shadow-2xl">
+            {/* Dark background elements */}
+            <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4" />
             
-            <h2 className="text-4xl md:text-7xl font-bold tracking-tight font-display mb-8 relative z-10">
-              Ready to Shape <br /> the Future?
-            </h2>
-            <p className="text-blue-100 text-lg md:text-2xl mb-12 max-w-2xl mx-auto font-medium relative z-10">
-              Join the fastest growing network of young change-makers in India. Elevate your skills and transform communities today.
-            </p>
-            
-            <div className="relative z-10">
-              <Link to="/register" className="inline-flex items-center justify-center gap-3 rounded-full bg-white px-12 py-6 text-xl font-bold text-blue-600 transition-transform hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.5)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.8)]">
-                Register as a Volunteer
-                <ArrowRight className="h-6 w-6" />
-              </Link>
+            <div className="relative z-10 py-24 px-6 text-center max-w-4xl mx-auto">
+              <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={textReveal} className="text-4xl md:text-6xl font-bold text-white tracking-tighter font-display mb-6 leading-tight">
+                Become a Volunteer.<br />Create Impact. Build Your Future.
+              </motion.h2>
+              <p className="text-slate-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-medium">
+                Join the fastest growing network of young change-makers in India. Elevate your skills and transform communities today.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white px-10 py-5 text-base font-bold text-[#0F172A] transition-all hover:bg-slate-100 active:scale-[0.98] shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)]">
+                  Register Now <ArrowRight className="h-5 w-5" />
+                </Link>
+                <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 px-10 py-5 text-base font-bold text-white transition-all hover:bg-white/10 active:scale-[0.98] backdrop-blur-sm">
+                  Explore Programs
+                </a>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
+      {/* 15. FOOTER */}
       <Footer />
 
     </div>
