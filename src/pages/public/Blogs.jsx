@@ -11,41 +11,7 @@ export default function Blogs() {
     <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#2563EB] selection:text-white font-sans overflow-x-hidden text-[#0F172A]">
       <PublicNavbar />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-white overflow-hidden border-b border-[#E2E8F0]">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden flex justify-center">
-          <div className="w-full max-w-7xl relative">
-            <div className="absolute -top-24 right-0 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-50/50 rounded-full blur-3xl" />
-          </div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-sm font-semibold text-[#2563EB] mb-6"
-          >
-            DISHA Journal
-          </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight font-display mb-6"
-          >
-            Stories of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Change</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto font-medium"
-          >
-            Insights, updates, and inspiring stories from our volunteers and partners across India.
-          </motion.p>
-        </div>
-      </section>
+
 
       {/* Indu Aggarwal Intro */}
       <section className="py-24 relative">
