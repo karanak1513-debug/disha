@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PublicNavbar from '../../components/public/PublicNavbar';
 import Footer from '../../components/public/Footer';
+import LoginModal from '../../components/public/LoginModal';
 import { Mail, Phone, MapPin, Send, ArrowRight, UserCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Contact() {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   return (
     <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#2563EB] selection:text-white font-sans overflow-x-hidden text-[#0F172A]">
       <PublicNavbar />
@@ -60,17 +62,20 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] hover:shadow-[0_20px_50px_rgb(0,0,0,0.06)] transition-all text-center flex flex-col items-center"
+              className="bg-white p-8 md:p-10 rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-2 border-[#2563EB]/20 hover:border-[#2563EB]/40 hover:shadow-[0_20px_50px_rgb(37,99,235,0.1)] transition-all text-center flex flex-col items-center relative overflow-hidden"
             >
-              <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 text-purple-600">
+              {/* Highlight line at the top */}
+              <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#00D09C] to-[#0066FF]"></div>
+
+              <div className="w-16 h-16 bg-[#f9f5ff] rounded-[24px] flex items-center justify-center mb-6 text-[#9333ea]">
                 <UserCircle className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-bold mb-2">Dashboard</h3>
               <p className="text-slate-500 mb-6">Access your volunteer portal.</p>
               <div className="flex gap-4 mt-auto w-full justify-center">
-                <Link to="/login" className="text-[#2563EB] font-semibold hover:underline">Login</Link>
-                <span className="text-slate-300">|</span>
-                <Link to="/register" className="text-[#2563EB] font-semibold hover:underline">Register</Link>
+                <button onClick={() => setIsLoginModalOpen(true)} className="text-[#2563EB] font-bold hover:underline cursor-pointer">Login</button>
+                <span className="text-slate-200">|</span>
+                <Link to="/register" className="text-[#2563EB] font-bold hover:underline">Register</Link>
               </div>
             </motion.div>
 
@@ -92,6 +97,11 @@ export default function Contact() {
       </section>
 
       <Footer />
+
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+      />
     </div>
   );
 }
