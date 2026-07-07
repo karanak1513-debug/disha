@@ -30,7 +30,7 @@ export default function PublicNavbar() {
         <div className="hidden lg:flex items-center gap-1">
           <a href="/#home" className="px-3 py-2 text-sm font-medium text-[#64748B] hover:text-[#0EA5E9] hover:bg-sky-50 rounded-md transition-all">Home</a>
           <a href="/#about" className="px-3 py-2 text-sm font-medium text-[#64748B] hover:text-[#0EA5E9] hover:bg-sky-50 rounded-md transition-all">About</a>
-          <a href="/#programs" className="px-3 py-2 text-sm font-medium text-[#64748B] hover:text-[#0EA5E9] hover:bg-sky-50 rounded-md transition-all">Programs</a>
+
           <Link
             to="/blogs"
             className={`px-3 py-2 text-sm font-medium rounded-md transition-all ${isActive('/blogs') ? 'text-[#0EA5E9] bg-sky-50' : 'text-[#64748B] hover:text-[#0EA5E9] hover:bg-sky-50'}`}

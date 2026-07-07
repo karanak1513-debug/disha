@@ -21,7 +21,8 @@ import {
   Users,
   FileSpreadsheet,
   BarChart3,
-  ChevronDown
+  ChevronDown,
+  Image
 } from "lucide-react";
 
 export default function Sidebar({ isOpen, toggleSidebar }) {
@@ -89,6 +90,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
         { name: "Users", path: "/admin/users", icon: Users },
         { name: "Leaderboard", path: "/admin/leaderboard", icon: Trophy },
         { name: "Programs Mgmt", path: "/admin/programs", icon: Calendar },
+        { name: "Blog Photos", path: "/admin/blog-photos", icon: Image },
         { name: "Applications Mgmt", path: "/admin/applications", icon: ClipboardList },
         { name: "Attendance Mgmt", path: "/admin/attendance", icon: CheckSquare },
         { name: "Reports", path: "/admin/reports", icon: FileSpreadsheet },

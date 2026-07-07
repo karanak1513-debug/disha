@@ -2,82 +2,116 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PublicNavbar from '../../components/public/PublicNavbar';
 import Footer from '../../components/public/Footer';
+import { motion } from 'framer-motion';
+
+const AnimatedHighlight = ({ children, color = "bg-sky-200/60" }) => (
+  <span className="relative inline-block whitespace-nowrap">
+    <motion.span
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+      style={{ originX: 0 }}
+      className={`absolute inset-0 ${color} rounded-sm -z-10`}
+    />
+    <span className="relative z-10">{children}</span>
+  </span>
+);
 
 const pageData = {
   'help-center': { 
     title: 'Help Center', 
     isComplete: true,
     content: (
-      <div className="space-y-8">
-        <div>
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">Welcome to the Disha For India Help Center</h2>
-          <p>We're here to help you with volunteering, programs, registrations, partnerships, donations, and general inquiries. Browse the topics below to find quick answers.</p>
+      <div className="space-y-12">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-800 mb-6"><AnimatedHighlight color="bg-sky-200/80">Welcome to the Disha For India Help Center</AnimatedHighlight></h2>
+          <p className="text-lg text-slate-600">We're here to help you with volunteering, programs, registrations, partnerships, donations, and general inquiries. Browse the topics below to find quick answers.</p>
         </div>
 
-        <div>
-          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Volunteer Support</h2>
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How do I become a volunteer?</h3>
-          <p>Visit the <strong>Volunteer Registration</strong> page, complete the application form, and our team will contact you with the next steps.</p>
-          
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Is there any registration fee?</h3>
-          <p>Most volunteer opportunities are free to join. Any program-specific requirements will be mentioned during registration.</p>
-          
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Can students volunteer?</h3>
-          <p>Yes. Students, working professionals, and individuals passionate about community service are welcome to participate.</p>
-          
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Will I receive a certificate?</h3>
-          <p>Eligible volunteers receive a certificate of participation after successfully completing the required activities.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Volunteer Support */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h2 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-indigo-100/60">Volunteer Support</AnimatedHighlight></h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">How do I become a volunteer?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Visit the <strong>Volunteer Registration</strong> page, complete the application form, and our team will contact you with the next steps.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">Is there any registration fee?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Most volunteer opportunities are free to join. Any program-specific requirements will be mentioned during registration.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">Can students volunteer?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Yes. Students, working professionals, and individuals passionate about community service are welcome to participate.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">Will I receive a certificate?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Eligible volunteers receive a certificate of participation after successfully completing the required activities.</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Programs & Events */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h2 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-emerald-100/60">Programs & Events</AnimatedHighlight></h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">How can I join a program?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Browse our available programs, choose the one that interests you, and complete the registration process.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">Are programs available online?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Some workshops and awareness sessions are conducted online, while community activities are held on-site.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">Can I participate in multiple programs?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Yes. You may join multiple initiatives based on your interests and availability.</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Donations & Partnerships */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h2 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-rose-100/60">Donations & Partnerships</AnimatedHighlight></h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">How can I support Disha For India?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">You can support us by volunteering, donating, partnering with us, or spreading awareness about our initiatives.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">How do I become a partner?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Organizations, institutions, and businesses can contact us through the Partnership or Contact page to discuss collaboration opportunities.</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Account & Registration */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h2 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-amber-100/60">Account & Registration</AnimatedHighlight></h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">How do I update my information?</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Please contact our support team with your updated details, and we will assist you.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">I didn't receive a confirmation email.</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">Check your Spam or Promotions folder. If you still can't find it, contact our support team for assistance.</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        <div>
-          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Programs & Events</h2>
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How can I join a program?</h3>
-          <p>Browse our available programs, choose the one that interests you, and complete the registration process.</p>
-          
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Are programs available online?</h3>
-          <p>Some workshops and awareness sessions are conducted online, while community activities are held on-site.</p>
-          
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">Can I participate in multiple programs?</h3>
-          <p>Yes. You may join multiple initiatives based on your interests and availability.</p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Donations & Partnerships</h2>
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How can I support Disha For India?</h3>
-          <p>You can support us by volunteering, donating, partnering with us, or spreading awareness about our initiatives.</p>
-          
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How do I become a partner?</h3>
-          <p>Organizations, institutions, and businesses can contact us through the Partnership or Contact page to discuss collaboration opportunities.</p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Account & Registration</h2>
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">How do I update my information?</h3>
-          <p>Please contact our support team with your updated details, and we will assist you.</p>
-          
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">I didn't receive a confirmation email.</h3>
-          <p>Check your Spam or Promotions folder. If you still can't find it, contact our support team for assistance.</p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-bold text-slate-800 mb-4 border-b pb-2">Technical Support</h2>
-          <h3 className="text-lg font-bold text-slate-700 mt-6 mb-2">I'm having trouble accessing the website.</h3>
-          <ul className="list-disc pl-6 space-y-2 mt-2">
-            <li>Refresh your browser.</li>
-            <li>Clear your browser cache.</li>
-            <li>Try another browser or device.</li>
-            <li>Ensure you have a stable internet connection.</li>
-          </ul>
-          <p className="mt-4">If the issue continues, please contact our support team.</p>
-        </div>
-
-        <div className="bg-sky-50 p-6 rounded-2xl border border-sky-100 mt-8">
-          <h2 className="text-xl font-bold text-blue-900 mb-2">Still Need Help?</h2>
-          <p className="text-blue-800 mb-4">If you couldn't find the answer you're looking for, we're happy to help. Submit your query through our Contact Us page, and our team will get back to you as soon as possible.</p>
-          <Link to="/contact" className="inline-block bg-blue-600 text-white font-bold px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors shadow-sm">
-            Contact Support
-          </Link>
-        </div>
+        <motion.div whileHover={{ scale: 1.01 }} className="bg-gradient-to-br from-sky-50 to-indigo-50 p-8 rounded-2xl border border-sky-100 mt-12 text-center">
+          <h2 className="text-2xl font-bold text-blue-900 mb-3"><AnimatedHighlight color="bg-white/80">Still Need Help?</AnimatedHighlight></h2>
+          <p className="text-blue-800/80 mb-6 font-medium">If your question isn't answered here, we're always ready to help you directly.</p>
+          <p>
+            <Link to="/contact" className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white bg-[#0EA5E9] hover:bg-[#0284C7] transition-all rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5">
+              Contact Support
+            </Link>
+          </p>
+        </motion.div>
       </div>
     )
   },
@@ -95,42 +129,77 @@ const pageData = {
     title: 'Privacy Policy', 
     isComplete: true,
     content: (
-      <div className="space-y-6">
-        <p className="font-medium"><strong>Last Updated:</strong> July 2026</p>
-        <p>At <strong>Disha For India</strong>, we value your privacy and are committed to protecting your personal information.</p>
-        
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Information We Collect</h3>
-        <p>We may collect:</p>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>Name</li>
-          <li>Email address</li>
-          <li>Phone number</li>
-          <li>Location</li>
-          <li>Volunteer registration details</li>
-          <li>Messages submitted through our contact forms</li>
-        </ul>
+      <div className="space-y-12">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-800 mb-6"><AnimatedHighlight color="bg-sky-200/80">Privacy Policy</AnimatedHighlight></h2>
+          <p className="font-medium text-slate-500 mb-4"><strong>Last Updated:</strong> July 2026</p>
+          <p className="text-lg text-slate-600">At <strong>Disha For India</strong>, we value your privacy and are committed to protecting your personal information.</p>
+        </div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">How We Use Your Information</h3>
-        <p>Your information is used to:</p>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>Register volunteers</li>
-          <li>Respond to inquiries</li>
-          <li>Share program updates and events</li>
-          <li>Improve our services</li>
-          <li>Maintain communication regarding campaigns and initiatives</li>
-        </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Information We Collect */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-sky-100/60">Information We Collect</AnimatedHighlight></h3>
+            <p className="mb-4 text-slate-600">We may collect:</p>
+            <ul className="list-disc pl-6 space-y-2 text-slate-600">
+              <li>Name & Contact Details</li>
+              <li>Email address & Phone number</li>
+              <li>Location & Address</li>
+              <li>Volunteer registration details</li>
+              <li>Messages submitted through our contact forms</li>
+            </ul>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Data Security</h3>
-        <p>We implement appropriate security measures to protect your personal information from unauthorized access, alteration, or disclosure.</p>
+          {/* How We Use Your Information */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-indigo-100/60">How We Use Information</AnimatedHighlight></h3>
+            <p className="mb-4 text-slate-600">Your information is used to:</p>
+            <ul className="list-disc pl-6 space-y-2 text-slate-600">
+              <li>Register volunteers & members</li>
+              <li>Respond to inquiries & support requests</li>
+              <li>Share program updates and events</li>
+              <li>Improve our platform & services</li>
+              <li>Maintain communication regarding campaigns</li>
+            </ul>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Third-Party Sharing</h3>
-        <p>We do not sell or rent your personal information. Information may only be shared with trusted partners when necessary to deliver our programs or comply with legal obligations.</p>
+          {/* Data Security */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-emerald-100/60">Data Security</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              We implement appropriate security measures to protect your personal information from unauthorized access, alteration, or disclosure. We use secure servers and standard encryption protocols to ensure data safety.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Your Rights</h3>
-        <p>You may request access, correction, or deletion of your personal information by contacting us.</p>
+          {/* Third-Party Sharing */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-rose-100/60">Third-Party Sharing</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              We <strong>never</strong> sell or rent your personal information. Information may only be shared with trusted partners or authorities when necessary to deliver our programs or comply with strict legal obligations.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Contact</h3>
-        <p>If you have any questions regarding this Privacy Policy, please contact us through our Contact Us page.</p>
+          {/* Your Rights */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-amber-100/60">Your Rights</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              You retain full control over your data. You may request access, correction, or deletion of your personal information at any time by contacting our privacy compliance team.
+            </p>
+          </motion.div>
+
+          {/* Contact */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-sky-100/60">Contact Us</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              If you have any questions or concerns regarding this Privacy Policy, please reach out to us through our secure Contact page.
+            </p>
+            <div className="mt-4">
+              <Link to="/contact" className="text-sky-600 font-bold hover:underline inline-flex items-center gap-1">
+                Contact Privacy Team
+              </Link>
+            </div>
+          </motion.div>
+        </div>
       </div>
     )
   },
@@ -138,28 +207,62 @@ const pageData = {
     title: 'Terms of Service', 
     isComplete: true,
     content: (
-      <div className="space-y-6">
-        <p className="font-medium"><strong>Last Updated:</strong> July 2026</p>
-        <p>Welcome to <strong>Disha For India</strong>.</p>
-        <p>By accessing or using our website, you agree to these Terms of Service.</p>
+      <div className="space-y-12">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-800 mb-6"><AnimatedHighlight color="bg-sky-200/80">Terms of Service</AnimatedHighlight></h2>
+          <p className="font-medium text-slate-500 mb-4"><strong>Last Updated:</strong> July 2026</p>
+          <p className="text-lg text-slate-600">Welcome to <strong>Disha For India</strong>. By accessing or using our website, you agree to these Terms of Service.</p>
+        </div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Use of Website</h3>
-        <p>You agree to use this website only for lawful purposes and in a respectful manner.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Use of Website */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-sky-100/60">Use of Website</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              You agree to use this website only for lawful purposes and in a respectful manner. You must not use our platform in any way that causes, or may cause, damage to the website or impairment of the availability or accessibility of the website.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Volunteer Participation</h3>
-        <p>Participation in our programs is voluntary. Volunteers are expected to follow organizational guidelines and maintain professional conduct.</p>
+          {/* Volunteer Participation */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-indigo-100/60">Volunteer Participation</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              Participation in our programs is entirely voluntary. Volunteers are expected to follow organizational guidelines, maintain professional conduct, and uphold the values of the Disha For India foundation.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Intellectual Property</h3>
-        <p>All website content, including text, graphics, logos, and images, is the property of Disha For India unless otherwise stated.</p>
+          {/* Intellectual Property */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-emerald-100/60">Intellectual Property</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              All website content, including text, graphics, logos, and images, is the property of Disha For India unless otherwise stated. Unauthorized use of this property is strictly prohibited.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">User Content</h3>
-        <p>By submitting information through forms or participating in activities, you grant us permission to use the content for communication and organizational purposes.</p>
+          {/* User Content */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-amber-100/60">User Content</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              By submitting information through forms or participating in activities, you grant us permission to use the content for communication, awareness, and organizational purposes.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Limitation of Liability</h3>
-        <p>Disha For India is not responsible for any direct or indirect damages arising from the use of this website or participation in our activities.</p>
+          {/* Limitation of Liability */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-rose-100/60">Limitation of Liability</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              Disha For India is not responsible for any direct or indirect damages arising from the use of this website or participation in our physical or virtual activities.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Changes to Terms</h3>
-        <p>We may update these Terms of Service at any time. Continued use of the website constitutes acceptance of the revised terms.</p>
+          {/* Changes to Terms */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-sky-100/60">Changes to Terms</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              We may update these Terms of Service at any time without prior notice. Continued use of the website constitutes your acceptance of the revised terms.
+            </p>
+          </motion.div>
+        </div>
       </div>
     )
   },
@@ -167,30 +270,58 @@ const pageData = {
     title: 'Cookie Policy', 
     isComplete: true,
     content: (
-      <div className="space-y-6">
-        <p className="font-medium"><strong>Last Updated:</strong> July 2026</p>
-        <p>This website uses cookies to improve your browsing experience.</p>
+      <div className="space-y-12">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-800 mb-6"><AnimatedHighlight color="bg-sky-200/80">Cookie Policy</AnimatedHighlight></h2>
+          <p className="font-medium text-slate-500 mb-4"><strong>Last Updated:</strong> July 2026</p>
+          <p className="text-lg text-slate-600">This website uses cookies to improve your browsing experience and provide tailored services.</p>
+        </div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">What Are Cookies?</h3>
-        <p>Cookies are small text files stored on your device that help the website function efficiently.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* What Are Cookies? */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-sky-100/60">What Are Cookies?</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              Cookies are small text files stored on your device that help the website function efficiently. They allow us to recognize your device and remember your preferences.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Why We Use Cookies</h3>
-        <p>We use cookies to:</p>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>Remember your preferences</li>
-          <li>Improve website performance</li>
-          <li>Analyze visitor traffic</li>
-          <li>Enhance user experience</li>
-        </ul>
+          {/* Why We Use Cookies */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-indigo-100/60">Why We Use Cookies</AnimatedHighlight></h3>
+            <p className="mb-4 text-slate-600">We use cookies to:</p>
+            <ul className="list-disc pl-6 space-y-2 text-slate-600">
+              <li>Remember your site preferences</li>
+              <li>Improve website speed and performance</li>
+              <li>Analyze anonymous visitor traffic</li>
+              <li>Enhance overall user experience</li>
+            </ul>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Managing Cookies</h3>
-        <p>You can control or disable cookies through your browser settings. Some features of the website may not function properly if cookies are disabled.</p>
+          {/* Managing Cookies */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-emerald-100/60">Managing Cookies</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              You can control, block, or disable cookies through your browser settings at any time. However, some core features of the website may not function properly if cookies are disabled.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Third-Party Cookies</h3>
-        <p>We may use trusted analytics services that place cookies to help us understand website usage.</p>
+          {/* Third-Party Cookies */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-amber-100/60">Third-Party Cookies</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              We may use trusted analytics services (such as Google Analytics) that place cookies to help us understand website usage and improve our community outreach.
+            </p>
+          </motion.div>
 
-        <h3 className="text-xl font-bold text-slate-800 mt-8 mb-4">Updates</h3>
-        <p>This Cookie Policy may be updated periodically to reflect changes in technology or legal requirements.</p>
+          {/* Updates */}
+          <motion.div whileHover={{ y: -4 }} className="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-4"><AnimatedHighlight color="bg-rose-100/60">Updates</AnimatedHighlight></h3>
+            <p className="text-slate-600 leading-relaxed">
+              This Cookie Policy may be updated periodically to reflect changes in technology, privacy laws, or operational requirements. We recommend checking back regularly.
+            </p>
+          </motion.div>
+        </div>
       </div>
     )
   }
@@ -205,14 +336,28 @@ export default function GenericPage() {
       <PublicNavbar />
       
       <div className="flex-grow max-w-4xl mx-auto w-full px-6 py-32">
-        <div className="mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-10"
+        >
           <Link to="/" className="text-[#0EA5E9] font-bold text-sm hover:underline mb-4 inline-block">
             &larr; Back to Home
           </Link>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight">{data.title}</h1>
-        </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight font-display">
+            {data.title.split(' ').slice(0, -1).join(' ')}{' '}
+            <AnimatedHighlight color="bg-sky-200/80">
+              {data.title.split(' ').slice(-1)}
+            </AnimatedHighlight>
+          </h1>
+        </motion.div>
 
-        <div className="bg-white p-8 md:p-12 rounded-[32px] shadow-[0_20px_60px_-15px_rgb(0,0,0,0.05)] border border-[#E2E8F0] relative overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="bg-white p-8 md:p-12 rounded-[32px] shadow-sm border border-[#E2E8F0] relative overflow-hidden"
+        >
           {/* Decorative element */}
           <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#00D09C] to-[#0066FF]"></div>
           
@@ -239,7 +384,7 @@ export default function GenericPage() {
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <Footer />

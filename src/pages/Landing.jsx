@@ -20,6 +20,31 @@ const stagger = {
   show: { opacity: 1, transition: { staggerChildren: 0.1 } }
 };
 
+const sectionHeaderStagger = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.05 } }
+};
+
+const slideUp = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+};
+
+const badgePop = {
+  hidden: { opacity: 0, scale: 0.8 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] } }
+};
+
+const underlineGrow = {
+  hidden: { scaleX: 0, opacity: 0 },
+  show: { scaleX: 1, opacity: 1, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 } }
+};
+
+const listStagger = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.09, delayChildren: 0.1 } }
+};
+
 // --- REUSABLE COMPONENTS ---
 
 const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) => {
@@ -27,7 +52,7 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
   
   useEffect(() => {
     let start = 0;
-    const duration = 5000;
+    const duration = 2500;
     const increment = end / (duration / 16);
     const timer = setInterval(() => {
       start += increment;
@@ -54,6 +79,94 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
         {count.toLocaleString()}{suffix}
       </div>
       {label && <div className={`text-xs font-bold uppercase tracking-widest text-center mt-1 ${labelColor}`}>{label}</div>}
+    </div>
+  );
+};
+
+// ─── HERO HEADING ANIMATION ───────────────────────────────────────────
+const HERO_PHRASES = [
+  { highlight: "Power", rest: "to Shape Tomorrow" },
+  { highlight: "Purpose", rest: "to Create Impact" },
+  { highlight: "Dreams", rest: "to Transform India" },
+  { highlight: "Potential", rest: "to Lead Change" },
+  { highlight: "A Voice", rest: "to Inspire Millions" }
+];
+
+const AnimatedHeroHeading = ({ variants }) => {
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+
+  useEffect(() => {
+    let timer;
+    const i = loopNum % HERO_PHRASES.length;
+    const currentPhrase = HERO_PHRASES[i];
+    const fullText = currentPhrase.highlight + " " + currentPhrase.rest;
+
+    if (!isDeleting && text === fullText) {
+      timer = setTimeout(() => setIsDeleting(true), 2500); // Pause when fully typed
+    } else if (isDeleting && text === "") {
+      setIsDeleting(false);
+      setLoopNum((prev) => prev + 1);
+    } else {
+      const nextDelay = isDeleting ? 60 : 120 + Math.random() * 50; // Slower delete, natural typing
+      timer = setTimeout(() => {
+        setText(fullText.substring(0, text.length + (isDeleting ? -1 : 1)));
+      }, nextDelay);
+    }
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, loopNum]);
+
+  const currentPhrase = HERO_PHRASES[loopNum % HERO_PHRASES.length];
+  const highlightLen = currentPhrase.highlight.length;
+  const typedHighlight = text.substring(0, highlightLen);
+  const typedRest = text.length > highlightLen ? text.substring(highlightLen) : "";
+
+  return (
+    <motion.h1 variants={variants} className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0F172A] tracking-tight leading-[1.2] font-display min-h-[120px] md:min-h-[100px] lg:min-h-[130px]">
+      <span className="block md:inline-block md:mr-3 mb-2 md:mb-0">Everyone has</span>
+      <span className="inline-block relative">
+        <span className="text-[#0EA5E9]">{typedHighlight}</span>
+        <span className="text-[#0F172A]">{typedRest}</span>
+        <span className="animate-pulse ml-[4px] text-[#0EA5E9] font-light -translate-y-[2px] inline-block">|</span>
+      </span>
+    </motion.h1>
+  );
+};
+
+// ─── ANIMATED PARTNER HEADING ─────────────────────────────────────────
+const PARTNER_PHRASES = [
+  "Trusted by Schools, Colleges & Community Partners",
+  "Collaborating with Educational Institutions & NGOs",
+  "Supported by Community Leaders & Partner Organizations",
+  "Working Together for Social Impact"
+];
+
+const AnimatedPartnerHeading = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % PARTNER_PHRASES.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="h-8 relative overflow-hidden mb-10 flex justify-center items-center w-full">
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={index}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-[0.15em] absolute text-center w-full px-4"
+        >
+          {PARTNER_PHRASES[index]}
+        </motion.p>
+      </AnimatePresence>
     </div>
   );
 };
@@ -311,23 +424,59 @@ function FeatureAccordion() {
 
   return (
     <div className="lg:w-1/2">
-      {/* Header */}
-      <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#F97316] bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-6">
-        Why Choose Us
-      </span>
-      <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] mb-4">
-        Why Choose Disha For India?
-      </h2>
-      <p className="text-[#64748B] text-lg leading-relaxed mb-10">
-        Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.
-      </p>
+      {/* Header — animated */}
+      <motion.div
+        variants={sectionHeaderStagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-60px" }}
+        className="mb-8"
+      >
+        {/* Badge with pop + ring pulse */}
+        <motion.span
+          variants={badgePop}
+          className="relative inline-flex items-center text-xs font-bold uppercase tracking-widest text-[#F97316] bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-6"
+        >
+          <motion.span
+            className="absolute inset-0 rounded-full border-2 border-orange-300/60"
+            initial={{ scale: 1, opacity: 0.7 }}
+            animate={{ scale: 1.55, opacity: 0 }}
+            transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut", repeatDelay: 0.6 }}
+          />
+          Why Choose Us
+        </motion.span>
 
-      {/* Clickable Items */}
+        {/* Heading with animated gradient underline */}
+        <motion.div variants={slideUp} className="mb-1">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] mb-1">
+            Why Choose Disha For India?
+          </h2>
+          <motion.span
+            variants={underlineGrow}
+            style={{ originX: 0 }}
+            className="block h-1 rounded-full bg-gradient-to-r from-orange-300 via-[#F97316] to-amber-400 mb-4"
+          />
+        </motion.div>
+
+        <motion.p variants={slideUp} className="text-[#64748B] text-lg leading-relaxed">
+          Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.
+        </motion.p>
+      </motion.div>
+
+      {/* Clickable Items — swipe-in on scroll */}
       <div className="space-y-2">
         {FEATURES.map((f, i) => {
           const isOpen = active === i;
+          const fromLeft = i % 2 === 0;
           return (
-            <div key={i}>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: fromLeft ? -80 : 80, scale: 0.96 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ x: fromLeft ? 6 : -6, transition: { duration: 0.2 } }}
+            >
               {/* Row – click to toggle */}
               <button
                 onClick={() => setActive(isOpen ? null : i)}
@@ -377,7 +526,7 @@ function FeatureAccordion() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           );
         })}
       </div>
@@ -431,19 +580,77 @@ function TestimonialsCarousel() {
   const t = TESTIMONIALS[current];
 
   return (
-    <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0] overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="bg-white border-b border-[#E2E8F0] overflow-hidden">
 
-        {/* Header */}
-        <div className="text-center mb-14">
-          <span className="inline-flex items-center gap-1.5 bg-sky-50 border border-sky-100 rounded-full px-4 py-1.5 text-xs font-bold text-[#0EA5E9] uppercase tracking-widest mb-5">
-            Our Testimonials
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-3 text-[#0F172A]">
-            What they are talking about
-          </h2>
-          <p className="text-[#64748B] text-base font-medium">Disha For India</p>
+      {/* ── PROFESSIONAL LIGHT HEADER ── */}
+      <div className="relative overflow-hidden">
+
+        {/* Soft background glow — centered */}
+        <div
+          className="absolute inset-x-0 top-0 h-full pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 60% 80% at 50% 0%, rgba(14,165,233,0.07) 0%, transparent 70%)" }}
+        />
+
+        <div className="max-w-3xl mx-auto px-6 pt-20 pb-14 text-center relative z-10">
+          <motion.div
+            variants={sectionHeaderStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex flex-col items-center"
+          >
+
+            {/* Badge */}
+            <motion.span
+              variants={badgePop}
+              className="relative inline-flex items-center gap-2 bg-sky-50 border border-sky-200 rounded-full px-4 py-1.5 text-[11px] font-bold text-[#0EA5E9] uppercase tracking-widest mb-6"
+            >
+              <motion.span
+                className="absolute inset-0 rounded-full border border-[#0EA5E9]/30"
+                animate={{ scale: [1, 1.6], opacity: [0.5, 0] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+              />
+              Our Testimonials
+            </motion.span>
+
+            {/* Headline */}
+            <motion.div variants={slideUp}>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] leading-[1.15] mb-2">
+                What they are{" "}
+                <span className="relative inline-block">
+                  {/* Highlight background chip */}
+                  <span className="relative z-10 text-[#0EA5E9]">talking</span>
+                  <motion.span
+                    className="absolute inset-x-0 bottom-0 h-[38%] bg-sky-100 rounded-md -z-0"
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    style={{ originX: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </span>{" "}
+                about
+              </h2>
+            </motion.div>
+
+            {/* Animated underline */}
+            <motion.span
+              variants={underlineGrow}
+              style={{ originX: 0.5 }}
+              className="block h-[3px] w-16 rounded-full bg-gradient-to-r from-sky-400 to-indigo-400 mt-4 mb-5"
+            />
+
+            {/* Subtext */}
+            <motion.p variants={slideUp} className="text-slate-400 text-sm font-medium tracking-widest uppercase">
+              Disha For India
+            </motion.p>
+
+          </motion.div>
         </div>
+      </div>
+
+      {/* ── CAROUSEL BELOW ── */}
+      <div className="max-w-4xl mx-auto px-6 py-16">
 
         {/* Carousel */}
         <div className="relative">
@@ -557,22 +764,29 @@ export default function Landing() {
                 <Sparkles className="h-3 w-3" /> WE EMPOWER | WE MAKE THE DIFFERENCE
               </motion.div>
 
-              <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-bold text-[#0F172A] tracking-tight leading-[1.1] font-display">
-                Everyone has <span className="text-[#0EA5E9]">Power</span> to create an Impact
-              </motion.h1>
+              <AnimatedHeroHeading variants={fadeUp} />
               
               <motion.p variants={fadeUp} className="text-lg text-slate-500 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
                 Be a Volunteer with Disha For India. Invest your time, uplift lives, and build a better India — one community at a time.
               </motion.p>
               
               <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#0EA5E9] px-8 py-4 text-sm font-bold text-white transition-all hover:bg-[#0284C7] active:scale-[0.98] shadow-sm">
-                  Be a Volunteer with Disha
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-8 py-4 text-sm font-bold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-slate-300 transition-all active:scale-[0.98] shadow-sm">
-                  Explore Programs
-                </a>
+                <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+                  <Link to="/register" className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[12px] bg-[#0EA5E9] px-8 py-4 text-sm font-bold text-white transition-all hover:bg-[#0284C7] hover:shadow-lg hover:shadow-sky-500/20 shadow-sm relative overflow-hidden">
+                    <span className="relative z-10 flex items-center gap-2">
+                      Be a Volunteer with Disha
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                    {/* Hover sweep effect */}
+                    <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-out" />
+                  </Link>
+                </motion.div>
+                
+                <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+                  <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center rounded-[12px] bg-white border border-[#E2E8F0] px-8 py-4 text-sm font-bold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-slate-300 transition-all shadow-sm hover:shadow-md">
+                    Explore Programs
+                  </a>
+                </motion.div>
               </motion.div>
             </motion.div>
 
@@ -603,12 +817,43 @@ export default function Landing() {
       <section id="about" className="py-24 bg-white border-b border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-6">
 
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#0EA5E9] bg-sky-50 border border-sky-100 rounded-full px-4 py-2 mb-4">Our Story</span>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight font-display mb-4">About DISHA</h2>
-            <p className="text-slate-500 text-lg font-medium">Empowering India's youth through volunteering, leadership, skill development, and community impact.</p>
-          </div>
+          {/* Section Header — animated */}
+          <motion.div
+            className="text-center max-w-3xl mx-auto mb-16"
+            variants={sectionHeaderStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+          >
+            {/* Badge with pop + ring pulse */}
+            <motion.span
+              variants={badgePop}
+              className="relative inline-flex items-center text-xs font-bold uppercase tracking-widest text-[#0EA5E9] bg-sky-50 border border-sky-100 rounded-full px-4 py-2 mb-5"
+            >
+              {/* Animated ring */}
+              <motion.span
+                className="absolute inset-0 rounded-full border-2 border-sky-300/60"
+                initial={{ scale: 1, opacity: 0.7 }}
+                animate={{ scale: 1.55, opacity: 0 }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut", repeatDelay: 0.6 }}
+              />
+              Our Story
+            </motion.span>
+
+            {/* Heading with animated gradient underline */}
+            <motion.div variants={slideUp} className="relative inline-block">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight font-display mb-1">About DISHA</h2>
+              <motion.span
+                variants={underlineGrow}
+                style={{ originX: 0.5 }}
+                className="block h-1 rounded-full bg-gradient-to-r from-sky-300 via-[#0EA5E9] to-indigo-400 mt-1 mb-4"
+              />
+            </motion.div>
+
+            <motion.p variants={slideUp} className="text-slate-500 text-lg font-medium">
+              Empowering India's youth through volunteering, leadership, skill development, and community impact.
+            </motion.p>
+          </motion.div>
 
           {/* Two-Column Layout */}
           <div className="flex flex-col lg:flex-row items-start gap-12 mb-16">
@@ -649,13 +894,74 @@ export default function Landing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-[#0F172A] rounded-[24px] p-12 text-center text-white flex flex-col items-center"
+            className="bg-[#0F172A] rounded-[24px] p-12 text-center text-white flex flex-col items-center relative overflow-hidden"
           >
-            <div className="text-5xl mb-4 opacity-30 font-serif leading-none">"</div>
-            <p className="text-2xl md:text-3xl font-bold font-display leading-snug italic max-w-3xl mx-auto text-white">
-              Education is the most powerful weapon which can be used to change the world.
-            </p>
-            <p className="text-slate-400 text-sm font-bold mt-6 uppercase tracking-widest">— Nelson Mandela</p>
+            {/* Subtle glow behind */}
+            <div className="absolute inset-0 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse 60% 60% at 50% 100%, rgba(14,165,233,0.12) 0%, transparent 70%)" }}
+            />
+
+            {/* Animated quote mark */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, y: -10 }}
+              whileInView={{ opacity: 0.3, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+              className="text-5xl mb-4 font-serif leading-none text-[#0EA5E9]"
+            >
+              "
+            </motion.div>
+
+            {/* Word-by-word animated quote */}
+            <motion.p
+              className="text-2xl md:text-3xl font-bold font-display leading-snug italic max-w-3xl mx-auto relative z-10"
+              variants={sectionHeaderStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              {[
+                { word: "Together", highlight: false },
+                { word: "we", highlight: false },
+                { word: "learn,", highlight: true },
+                { word: "together", highlight: false },
+                { word: "we", highlight: false },
+                { word: "lead,", highlight: true },
+                { word: "together", highlight: false },
+                { word: "we", highlight: false },
+                { word: "build", highlight: true },
+                { word: "a", highlight: true },
+                { word: "better", highlight: true },
+                { word: "India.", highlight: true },
+              ].map(({ word, highlight }, i) => (
+                <motion.span
+                  key={i}
+                  variants={slideUp}
+                  className={`inline-block mr-[0.25em] ${highlight ? "bg-gradient-to-r from-sky-300 to-cyan-300 bg-clip-text text-transparent" : "text-white"}`}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.p>
+
+            {/* Author */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="mt-8 flex flex-col items-center gap-2 relative z-10"
+            >
+              <motion.span
+                className="block h-px w-10 bg-gradient-to-r from-sky-400 to-indigo-400"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                style={{ originX: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+              />
+              <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">— Disha For India</p>
+            </motion.div>
           </motion.div>
 
         </div>
@@ -665,28 +971,49 @@ export default function Landing() {
       <section className="py-24 bg-white relative overflow-hidden border-t border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-6">
           
-          {/* Partners Row */}
+          {/* Partners Row - Infinite Swipe Marquee */}
           <div className="mb-24 text-center">
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-12">Trusted by Leading Organizations</p>
-            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-700 text-slate-500">
-              <div className="flex items-center gap-2 text-lg font-black"><Building2 className="h-6 w-6" /> Gov Partners</div>
-              <div className="flex items-center gap-2 text-lg font-black"><BookOpen className="h-6 w-6" /> State Univ</div>
-              <div className="flex items-center gap-2 text-lg font-black"><Globe className="h-6 w-6" /> Global NGO</div>
-              <div className="flex items-center gap-2 text-lg font-black"><Users className="h-6 w-6" /> India Cares</div>
-              <div className="flex items-center gap-2 text-lg font-black"><Laptop className="h-6 w-6" /> Tech CSR</div>
+            <AnimatedPartnerHeading />
+            <div className="relative w-full overflow-hidden flex items-center">
+              {/* Left/Right fading edges for smooth enter/exit */}
+              <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+              <motion.div
+                className="flex w-max items-center opacity-60 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-700 text-slate-500"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+              >
+                {/* First Set */}
+                <div className="flex items-center gap-12 md:gap-24 pr-12 md:pr-24">
+                  <div className="flex items-center gap-2 text-lg font-black"><Building2 className="h-6 w-6" /> Gov Partners</div>
+                  <div className="flex items-center gap-2 text-lg font-black"><BookOpen className="h-6 w-6" /> State Univ</div>
+                  <div className="flex items-center gap-2 text-lg font-black"><Globe className="h-6 w-6" /> Global NGO</div>
+                  <div className="flex items-center gap-2 text-lg font-black"><Users className="h-6 w-6" /> India Cares</div>
+                  <div className="flex items-center gap-2 text-lg font-black"><Laptop className="h-6 w-6" /> Tech CSR</div>
+                </div>
+                {/* Second Set (Duplicate for seamless loop) */}
+                <div className="flex items-center gap-12 md:gap-24 pr-12 md:pr-24">
+                  <div className="flex items-center gap-2 text-lg font-black"><Building2 className="h-6 w-6" /> Gov Partners</div>
+                  <div className="flex items-center gap-2 text-lg font-black"><BookOpen className="h-6 w-6" /> State Univ</div>
+                  <div className="flex items-center gap-2 text-lg font-black"><Globe className="h-6 w-6" /> Global NGO</div>
+                  <div className="flex items-center gap-2 text-lg font-black"><Users className="h-6 w-6" /> India Cares</div>
+                  <div className="flex items-center gap-2 text-lg font-black"><Laptop className="h-6 w-6" /> Tech CSR</div>
+                </div>
+              </motion.div>
             </div>
           </div>
 
           <div className="w-full max-w-4xl mx-auto h-px bg-slate-100 mb-24"></div>
 
-          {/* Minimal Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-8">
+          {/* Minimal Stats Grid with Highlights */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-4">
             {[
-              { end: 10000, suffix: "+", label: "Healthcare Impact" },
+              { end: 10, suffix: "K+", label: "Healthcare Impact" },
               { end: 500, suffix: "+", label: "Schools Covered" },
-              { end: 100000, suffix: "+", label: "People Trained" },
-              { end: 5000, suffix: "+", label: "Financial Literacy" },
-              { end: 5000, suffix: "+", label: "Community Development" }
+              { end: 100, suffix: "K+", label: "People Trained" },
+              { end: 5, suffix: "K+", label: "Financial Literacy" },
+              { end: 5, suffix: "K+", label: "Community Development" }
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -694,9 +1021,21 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="text-center group"
+                whileHover={{ y: -6 }}
+                className="text-center group relative p-6 rounded-2xl cursor-default"
               >
-                <StatCounter end={stat.end} suffix={stat.suffix} label={stat.label} theme="minimal" colorClass="text-[#0F172A]" />
+                {/* Animated Highlight Background */}
+                <div className="absolute inset-0 bg-gradient-to-b from-sky-50/80 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
+                
+                <div className="relative z-10">
+                  <StatCounter 
+                    end={stat.end} 
+                    suffix={stat.suffix} 
+                    label={stat.label} 
+                    theme="minimal" 
+                    colorClass="text-[#0F172A] group-hover:bg-gradient-to-r group-hover:from-[#0EA5E9] group-hover:to-indigo-500 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300" 
+                  />
+                </div>
               </motion.div>
             ))}
           </div>
@@ -770,32 +1109,158 @@ export default function Landing() {
 
 
 
-      {/* 14. FINAL CALL TO ACTION */}
+      {/* 14. FINAL CALL TO ACTION — Premium Redesign */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 relative">
-          <div className="bg-[#0F172A] rounded-[32px] overflow-hidden relative shadow-2xl">
-            {/* Dark background elements */}
-            <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-500/30 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3" />
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4" />
-            
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative rounded-[32px] overflow-hidden shadow-2xl bg-slate-50 border border-[#E2E8F0]"
+          >
+            {/* ── Animated floating orbs ── */}
+            <motion.div
+              className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full"
+              style={{ background: "radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)" }}
+              animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] rounded-full"
+              style={{ background: "radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)" }}
+              animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.9, 0.5] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+            />
+
+            {/* ── Grid lines decoration ── */}
+            <div className="absolute inset-0 opacity-[0.3] pointer-events-none"
+              style={{ backgroundImage: "linear-gradient(rgba(14,165,233,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.1) 1px, transparent 1px)", backgroundSize: "40px 40px" }}
+            />
+
+            {/* ── Main Content ── */}
             <div className="relative z-10 py-24 px-6 text-center max-w-4xl mx-auto">
-              <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight font-display mb-6 leading-tight">
-                Become a Volunteer.<br />Create Impact. Build Your Future.
-              </h2>
-              <p className="text-slate-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-medium">
-                Join the fastest growing network of young change-makers in India. Elevate your skills and transform communities today.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-                <Link to="/register" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white px-10 py-5 text-base font-bold text-[#0F172A] transition-all hover:bg-slate-100 active:scale-[0.98] shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)]">
-                  Register Now <ArrowRight className="h-5 w-5" />
-                </Link>
-                <a href="#programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 px-10 py-5 text-base font-bold text-white transition-all hover:bg-white/10 active:scale-[0.98] backdrop-blur-sm">
+
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1], delay: 0.1 }}
+                className="inline-flex items-center gap-2 bg-sky-100/80 border border-sky-200 rounded-full px-4 py-2 mb-8 backdrop-blur-sm"
+              >
+                <motion.span
+                  className="h-2 w-2 rounded-full bg-[#0EA5E9]"
+                  animate={{ opacity: [1, 0.3, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
+                <span className="text-[10px] sm:text-xs font-bold text-[#0EA5E9] uppercase tracking-widest">Join 10,000+ Volunteers Across India</span>
+              </motion.div>
+
+              {/* Headline — word by word */}
+              <motion.h2
+                className="text-4xl md:text-6xl font-bold tracking-tight font-display mb-6 leading-[1.1]"
+                variants={sectionHeaderStagger}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+              >
+                {["Become", "a", "Volunteer."].map((word, i) => (
+                  <motion.span key={i} variants={slideUp} className="inline-block mr-3 text-[#0F172A]">{word}</motion.span>
+                ))}
+                <br />
+                {["Create"].map((word, i) => (
+                  <motion.span key={i} variants={slideUp} className="inline-block mr-3 text-[#0F172A]">{word}</motion.span>
+                ))}
+                <motion.span
+                  variants={slideUp}
+                  className="inline-block mr-3 relative"
+                >
+                  <span className="relative z-10 bg-gradient-to-r from-[#0EA5E9] to-indigo-500 bg-clip-text text-transparent">
+                    Impact.
+                  </span>
+                  {/* shimmer sweep */}
+                  <motion.span
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-12"
+                    initial={{ x: "-100%" }}
+                    animate={{ x: "200%" }}
+                    transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: "easeInOut" }}
+                  />
+                </motion.span>
+                {["Build", "Your", "Future."].map((word, i) => (
+                  <motion.span key={i} variants={slideUp} className="inline-block mr-3 text-[#0F172A]">{word}</motion.span>
+                ))}
+              </motion.h2>
+
+              {/* Subtext */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.45 }}
+                className="text-slate-500 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-medium leading-relaxed"
+              >
+                Join the fastest growing network of young change-makers in India.
+                Elevate your skills and transform communities today.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.55 }}
+                className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16"
+              >
+                {/* Primary — glowing */}
+                <div className="relative group w-full sm:w-auto">
+                  <motion.span
+                    className="absolute inset-0 rounded-xl bg-[#0EA5E9]/30 blur-md transition-opacity duration-300 group-hover:bg-[#0EA5E9]/50"
+                  />
+                  <Link
+                    to="/register"
+                    className="relative w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#0EA5E9] px-10 py-4 text-base font-bold text-white transition-all hover:bg-[#0284C7] active:scale-[0.98] shadow-lg shadow-sky-500/20"
+                  >
+                    Register Now <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+
+                {/* Secondary — ghost */}
+                <a
+                  href="#programs"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white border border-[#E2E8F0] px-10 py-4 text-base font-bold text-[#0F172A] transition-all hover:bg-slate-50 active:scale-[0.98] shadow-sm hover:shadow"
+                >
                   Explore Programs
                 </a>
-              </div>
+              </motion.div>
+
+              {/* Floating stat chips */}
+              <motion.div
+                className="flex flex-wrap justify-center gap-4"
+                variants={sectionHeaderStagger}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+              >
+                {[
+                  { value: "10,000+", label: "Volunteers" },
+                  { value: "50+", label: "Cities" },
+                  { value: "1,00,000+", label: "Lives Touched" },
+                ].map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    variants={slideUp}
+                    whileHover={{ y: -2 }}
+                    className="flex items-center gap-2 bg-white border border-[#E2E8F0] rounded-full px-5 py-2.5 shadow-sm transition-shadow hover:shadow-md cursor-default"
+                  >
+                    <span className="text-sm font-black text-[#0F172A]">{stat.value}</span>
+                    <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">{stat.label}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

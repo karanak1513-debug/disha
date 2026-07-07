@@ -4,6 +4,20 @@ import { ChevronDown } from 'lucide-react';
 import PublicNavbar from '../../components/public/PublicNavbar';
 import Footer from '../../components/public/Footer';
 
+const AnimatedHighlight = ({ children, color = "bg-sky-200/60" }) => (
+  <span className="relative inline-block whitespace-nowrap">
+    <motion.span
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+      style={{ originX: 0 }}
+      className={`absolute inset-0 ${color} rounded-sm -z-10`}
+    />
+    <span className="relative z-10">{children}</span>
+  </span>
+);
+
 const faqs = [
   {
     question: "What is Disha For India?",
@@ -55,8 +69,8 @@ export default function FAQ() {
             <span className="inline-block py-1.5 px-4 rounded-full bg-sky-100 text-blue-700 text-xs font-black tracking-widest uppercase mb-4">
               Support Center
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-6">
-              Frequently Asked Questions
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-6 font-display">
+              Frequently Asked <AnimatedHighlight color="bg-sky-200/80">Questions</AnimatedHighlight>
             </h1>
             <p className="text-lg text-slate-500 max-w-xl mx-auto font-medium">
               Everything you need to know about DISHA, volunteering, and how to make a verifiable impact in your community.

@@ -6,6 +6,20 @@ import { ArrowRight, Calendar, User, Clock } from 'lucide-react';
 
 
 
+const AnimatedHighlight = ({ children, color = "bg-yellow-200/60" }) => (
+  <span className="relative inline-block">
+    <motion.span
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+      style={{ originX: 0 }}
+      className={`absolute inset-0 ${color} rounded-sm -z-10`}
+    />
+    <span className="relative z-10 font-bold text-slate-900">{children}</span>
+  </span>
+);
+
 export default function Blogs() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] selection:bg-[#0EA5E9] selection:text-white font-sans overflow-x-hidden text-[#0F172A]">
@@ -56,10 +70,10 @@ export default function Blogs() {
               <div className="space-y-6 relative">
                 <p className="text-slate-600 text-lg leading-relaxed relative z-10">
                   <span className="text-6xl text-blue-100 font-serif absolute -top-6 -left-6 -z-10 opacity-50">"</span>
-                  Indu Aggarwal is enriching everyone’s lives by being the LEADING LIGHT and touching the lives of people through her Training and Health awareness programs.
+                  Indu Aggarwal is enriching everyone’s lives by being the <AnimatedHighlight color="bg-sky-200/70">LEADING LIGHT</AnimatedHighlight> and touching the lives of people through her Training and Health awareness programs.
                 </p>
                 <p className="text-slate-600 text-lg leading-relaxed">
-                  To pursue her passion of making a difference in the lives of people, she said goodbye to her lucrative corporate career and started her organization <span className="font-semibold text-slate-900">“DISHA FOR SUCCESS”</span> and <span className="font-semibold text-slate-900">“DISHA FOR INDIA FOUNDATION AND EDUCATIONAL TRUST.”</span>
+                  To pursue her passion of making a difference in the lives of people, she said goodbye to her lucrative corporate career and started her organization <AnimatedHighlight color="bg-indigo-200/70">“DISHA FOR SUCCESS”</AnimatedHighlight> and <AnimatedHighlight color="bg-[#0EA5E9]/20">“DISHA FOR INDIA FOUNDATION AND EDUCATIONAL TRUST.”</AnimatedHighlight>
                 </p>
               </div>
             </div>
@@ -69,19 +83,40 @@ export default function Blogs() {
 
 
       {/* Visual Impact Gallery */}
-      <section className="py-24 bg-[#0F172A] relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-white mb-4">A Picture Speaks a Thousand Words</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">Browse through our curated gallery of ongoing field events.</p>
+      <section className="py-24 bg-white border-t border-[#E2E8F0] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 mb-12">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-slate-900 mb-4">A Picture Speaks a Thousand Words</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto font-medium">Browse through our curated gallery of ongoing field events.</p>
           </div>
+        </div>
+
+        {/* Infinite Swipe Gallery */}
+        <div className="relative w-full overflow-hidden flex items-center">
+          {/* Left/Right fading edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-40 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="/blog_gallery_new_2.jpg" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 1" />
-            <img src="/blog_gallery_new_3.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 2" />
-            <img src="/blog_gallery_new_4.png" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 3" />
-            <img src="/blog_gallery_new_5.jpg" className="rounded-2xl h-48 w-full object-cover" alt="Gallery 4" />
-          </div>
+          <motion.div
+            className="flex w-max items-center"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ repeat: Infinity, duration: 45, ease: "linear" }}
+          >
+            {/* First Set */}
+            <div className="flex gap-4 md:gap-6 pr-4 md:pr-6">
+              <img src="/blog_gallery_new_2.jpg" className="shrink-0 rounded-[24px] h-48 md:h-72 w-[280px] md:w-[450px] object-cover shadow-xl border border-slate-100" alt="Gallery 1" />
+              <img src="/blog_gallery_new_3.png" className="shrink-0 rounded-[24px] h-48 md:h-72 w-[280px] md:w-[450px] object-cover shadow-xl border border-slate-100" alt="Gallery 2" />
+              <img src="/blog_gallery_new_4.png" className="shrink-0 rounded-[24px] h-48 md:h-72 w-[280px] md:w-[450px] object-cover shadow-xl border border-slate-100" alt="Gallery 3" />
+              <img src="/blog_gallery_new_5.jpg" className="shrink-0 rounded-[24px] h-48 md:h-72 w-[280px] md:w-[450px] object-cover shadow-xl border border-slate-100" alt="Gallery 4" />
+            </div>
+            {/* Second Set (Duplicate for seamless loop) */}
+            <div className="flex gap-4 md:gap-6 pr-4 md:pr-6">
+              <img src="/blog_gallery_new_2.jpg" className="shrink-0 rounded-[24px] h-48 md:h-72 w-[280px] md:w-[450px] object-cover shadow-xl border border-slate-100" alt="Gallery 1" />
+              <img src="/blog_gallery_new_3.png" className="shrink-0 rounded-[24px] h-48 md:h-72 w-[280px] md:w-[450px] object-cover shadow-xl border border-slate-100" alt="Gallery 2" />
+              <img src="/blog_gallery_new_4.png" className="shrink-0 rounded-[24px] h-48 md:h-72 w-[280px] md:w-[450px] object-cover shadow-xl border border-slate-100" alt="Gallery 3" />
+              <img src="/blog_gallery_new_5.jpg" className="shrink-0 rounded-[24px] h-48 md:h-72 w-[280px] md:w-[450px] object-cover shadow-xl border border-slate-100" alt="Gallery 4" />
+            </div>
+          </motion.div>
         </div>
       </section>
 
