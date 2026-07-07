@@ -52,7 +52,7 @@ export default function Contact() {
                 </div>
                 <h3 className="text-xl font-bold mb-2">Email Us</h3>
                 <p className="text-slate-500 mb-4">Our friendly team is here to help.</p>
-                <a href="mailto:hello@disha.org.in" className="text-[#2563EB] font-semibold hover:underline">hello@disha.org.in</a>
+                <a href="mailto:inaggarwal76@gmail.com" className="text-[#2563EB] font-semibold hover:underline">inaggarwal76@gmail.com</a>
               </motion.div>
 
               <motion.div 
@@ -84,11 +84,11 @@ export default function Contact() {
                 </div>
                 <h3 className="text-xl font-bold mb-2">Call Us</h3>
                 <p className="text-slate-500 mb-4">Mon-Fri from 9am to 6pm.</p>
-                <a href="tel:+919876543210" className="text-[#0F172A] font-medium hover:text-[#2563EB]">+91 98765 43210</a>
+                <a href="tel:+919888877722" className="text-[#0F172A] font-medium hover:text-[#2563EB]">+91-9888877722</a>
               </motion.div>
             </div>
 
-            {/* Contact Form */}
+            {/* Login Form */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -96,30 +96,11 @@ export default function Contact() {
               className="lg:col-span-2 bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_50px_rgb(0,0,0,0.05)] border border-[#E2E8F0]"
             >
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-2 font-display">Send us a message</h2>
-                <p className="text-slate-500">We'll get back to you within 24 hours.</p>
+                <h2 className="text-2xl font-bold mb-2 font-display">Login to your account</h2>
+                <p className="text-slate-500">Welcome back! Please enter your details.</p>
               </div>
 
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700">First Name</label>
-                    <input 
-                      type="text" 
-                      placeholder="John" 
-                      className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700">Last Name</label>
-                    <input 
-                      type="text" 
-                      placeholder="Doe" 
-                      className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
-                    />
-                  </div>
-                </div>
-
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-700">Email Address</label>
                   <input 
@@ -130,19 +111,22 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-700">Message</label>
-                  <textarea 
-                    rows="5"
-                    placeholder="How can we help you?" 
-                    className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all resize-none"
-                  ></textarea>
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-semibold text-slate-700">Password</label>
+                    <a href="#" className="text-xs font-semibold text-[#2563EB] hover:underline">Forgot password?</a>
+                  </div>
+                  <input 
+                    type="password" 
+                    placeholder="••••••••" 
+                    className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
+                  />
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#2563EB] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#1D4ED8] active:scale-[0.98] shadow-lg shadow-blue-500/30"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#2563EB] px-8 py-4 text-base font-bold text-white transition-all hover:bg-[#1D4ED8] active:scale-[0.98] shadow-lg shadow-blue-500/30 mt-4"
                 >
-                  Send Message <Send className="h-4 w-4" />
+                  Log In <ArrowRight className="h-4 w-4" />
                 </button>
               </form>
             </motion.div>
