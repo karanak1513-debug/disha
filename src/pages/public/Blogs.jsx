@@ -4,35 +4,7 @@ import Footer from '../../components/public/Footer';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, User, Clock } from 'lucide-react';
 
-const blogPosts = [
-  {
-    title: "How Student Volunteering is Shaping the Future of Education",
-    excerpt: "Discover the transformative power of peer-to-peer mentoring and how our latest initiative is bringing quality education to remote villages.",
-    category: "Education",
-    author: "Priya Sharma",
-    date: "Oct 12, 2026",
-    readTime: "5 min read",
-    image: "/volunteers_teaching_1783425889312.png"
-  },
-  {
-    title: "Sustainability 101: Starting a Community Garden",
-    excerpt: "A step-by-step guide to mobilizing your neighborhood and creating a sustainable source of fresh produce.",
-    category: "Environment",
-    author: "Rahul Verma",
-    date: "Oct 08, 2026",
-    readTime: "7 min read",
-    image: "/volunteers_planting_1783425900568.png"
-  },
-  {
-    title: "The Silent Pandemic: Addressing Mental Health in Youth",
-    excerpt: "Our mental health awareness campaign reached over 10,000 students this month. Here's what we learned.",
-    category: "Health",
-    author: "Dr. Aisha Khan",
-    date: "Oct 01, 2026",
-    readTime: "6 min read",
-    image: "/volunteers_tech_1783425911491.png"
-  }
-];
+
 
 export default function Blogs() {
   return (
@@ -125,58 +97,6 @@ export default function Blogs() {
         </div>
       </section>
 
-      {/* Recent Posts Grid */}
-      <section className="pb-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between mb-12">
-            <h3 className="text-2xl font-bold font-display">Recent Articles</h3>
-            <button className="text-sm font-bold text-[#2563EB] hover:text-[#1D4ED8] transition-colors flex items-center gap-2">
-              View all <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, i) => (
-              <motion.article 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#E2E8F0] group cursor-pointer hover:shadow-xl transition-all"
-              >
-                <div className="h-48 overflow-hidden relative">
-                  <img 
-                    src={post.image} 
-                    alt={post.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold text-slate-700 uppercase tracking-wide">
-                    {post.category}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-4 text-xs text-slate-400 font-medium mb-3">
-                    <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" /> {post.date}</span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" /> {post.readTime}</span>
-                  </div>
-                  <h4 className="text-xl font-bold font-display mb-3 group-hover:text-[#2563EB] transition-colors line-clamp-2">
-                    {post.title}
-                  </h4>
-                  <p className="text-slate-500 text-sm mb-6 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center gap-2 text-sm font-medium text-slate-900 border-t border-[#E2E8F0] pt-4">
-                    <User className="w-4 h-4 text-slate-400" />
-                    {post.author}
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Visual Impact Gallery */}
       <section className="py-24 bg-[#0F172A] relative overflow-hidden">
