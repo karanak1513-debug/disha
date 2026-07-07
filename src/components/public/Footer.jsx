@@ -45,9 +45,7 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Resources</h4>
             <ul className="space-y-4">
               <li><Link to="/p/help-center" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />Help Center</Link></li>
-              <li><Link to="/p/volunteer-guidelines" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />Volunteer Guidelines</Link></li>
               <li><Link to="/blogs" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />Blog</Link></li>
-              <li><Link to="/p/ngo-portal" className="text-sm text-slate-400 hover:text-white font-medium transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />NGO Portal</Link></li>
             </ul>
           </div>
 
