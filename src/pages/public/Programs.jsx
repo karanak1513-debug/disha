@@ -25,12 +25,12 @@ function FillBar({ registered = 0, limit = 1 }) {
   const pct = Math.min((registered / limit) * 100, 100);
   const full = registered >= limit;
   return (
-    <div className="space-y-1">
-      <div className="flex justify-between text-[10px] font-bold text-slate-400">
-        <span className="flex items-center gap-1"><Users className="h-3 w-3" /> {registered}/{limit} spots</span>
+    <div className="space-y-2">
+      <div className="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-widest">
+        <span className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" /> {registered}/{limit} spots</span>
         <span className={full ? "text-rose-500" : "text-slate-400"}>{full ? "Full" : Math.round(pct) + "% filled"}</span>
       </div>
-      <div className="h-1 bg-slate-100 rounded-full overflow-hidden">
+      <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
         <motion.div
           className={`h-full rounded-full ${full ? "bg-rose-400" : "bg-gradient-to-r from-blue-500 to-cyan-400"}`}
           initial={{ width: 0 }} animate={{ width: `${pct}%` }}
@@ -49,75 +49,75 @@ function ProgramCard({ prog }) {
   return (
     <motion.article
       variants={fadeUp}
-      whileHover={{ y: -4, boxShadow: "0 12px 32px rgba(0,0,0,0.06)" }}
-      transition={{ duration: 0.2 }}
-      className="group bg-white rounded-2xl border border-slate-200 overflow-hidden flex flex-col hover:border-slate-300 transition-all"
+      whileHover={{ y: -8, boxShadow: "0 20px 40px -12px rgba(0,0,0,0.15)" }}
+      transition={{ duration: 0.3 }}
+      className="group bg-white rounded-[24px] border border-[#E2E8F0] overflow-hidden flex flex-col hover:border-[#CBD5E1] transition-all"
     >
       {/* ── Compact Header Image ── */}
-      <div className="relative h-32 overflow-hidden bg-slate-100 flex-shrink-0">
+      <div className="relative h-48 overflow-hidden bg-slate-100 flex-shrink-0">
         {prog.bannerURL ? (
-          <img src={prog.bannerURL} alt={prog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <img src={prog.bannerURL} alt={prog.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
         ) : (
-          <div className={`w-full h-full bg-gradient-to-br ${cfg.grad} relative flex items-center justify-center`}>
-            <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle,rgba(255,255,255,0.1) 1px,transparent 1px)", backgroundSize: "16px 16px" }} />
-            <Icon className="h-10 w-10 text-white/20" />
+          <div className={`w-full h-full bg-gradient-to-br ${cfg.grad} relative flex items-center justify-center group-hover:scale-105 transition-transform duration-700`}>
+            <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle,rgba(255,255,255,0.15) 1px,transparent 1px)", backgroundSize: "20px 20px" }} />
+            <Icon className="h-16 w-16 text-white/20" />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent opacity-80" />
         
         {/* Top Badges */}
-        <div className="absolute top-3 left-3 flex gap-1.5">
-          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${cfg.pill} shadow-sm`}>
-            <Icon className="h-2 w-2" /> {prog.category}
+        <div className="absolute top-4 left-4 flex gap-2">
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest ${cfg.pill} shadow-lg backdrop-blur-md`}>
+            <Icon className="h-3 w-3" /> {prog.category}
           </span>
-          {isFull && <span className="px-2 py-0.5 rounded-md text-[9px] font-bold bg-rose-500 text-white shadow-sm uppercase tracking-wider">FULL</span>}
+          {isFull && <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-extrabold bg-rose-500 text-white shadow-lg uppercase tracking-widest backdrop-blur-md">FULL</span>}
         </div>
       </div>
 
       {/* ── Body ── */}
-      <div className="flex-1 p-4 flex flex-col">
+      <div className="flex-1 p-6 flex flex-col">
         {/* Title & Description */}
-        <div className="mb-4 flex-1">
-          <h3 className="font-bold text-slate-800 text-[15px] leading-snug line-clamp-1 mb-1 group-hover:text-blue-600 transition-colors">{prog.title}</h3>
-          <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">{prog.description}</p>
+        <div className="mb-6 flex-1">
+          <h3 className="font-extrabold text-[#0F172A] text-xl leading-snug line-clamp-1 mb-2 group-hover:text-[#2563EB] transition-colors">{prog.title}</h3>
+          <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">{prog.description}</p>
         </div>
 
         {/* Stats Row */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-100 text-[10px] font-bold text-slate-600">
-            <Clock className="h-3 w-3 text-slate-400" /> {prog.hours} Hrs
+        <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-100 text-xs font-bold text-slate-600">
+            <Clock className="h-4 w-4 text-slate-400" /> {prog.hours} Hrs
           </div>
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 border border-amber-100 text-[10px] font-bold text-amber-700">
-            <Zap className="h-3 w-3 text-amber-500" /> +{prog.xp} XP
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-100 text-xs font-bold text-amber-700">
+            <Zap className="h-4 w-4 text-amber-500" /> +{prog.xp} XP
           </div>
         </div>
 
         {/* Info Grid */}
-        <div className="grid grid-cols-2 gap-2 text-[10px] text-slate-500 mb-4 pt-4 border-t border-slate-100">
-          <div className="flex items-center gap-1.5">
-            <MapPin className="h-3 w-3 text-slate-400 shrink-0" />
+        <div className="grid grid-cols-2 gap-3 text-xs font-semibold text-slate-500 mb-6 pt-6 border-t border-slate-100">
+          <div className="flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-slate-400 shrink-0" />
             <span className="truncate">{prog.location}</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Calendar className="h-3 w-3 text-slate-400 shrink-0" />
+          <div className="flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-slate-400 shrink-0" />
             <span className="truncate">{prog.deadline}</span>
           </div>
         </div>
 
         {/* Progress */}
-        <div className="mb-5">
+        <div className="mb-8">
           <FillBar registered={prog.registeredCount || 0} limit={prog.volunteerLimit} />
         </div>
 
         {/* Action Button */}
         <div className="mt-auto">
           {isFull ? (
-            <div className="flex items-center justify-center w-full py-2 rounded-xl bg-slate-100 text-[11px] font-bold text-slate-400 cursor-not-allowed">
+            <div className="flex items-center justify-center w-full py-3.5 rounded-xl bg-slate-100 text-xs font-bold text-slate-400 cursor-not-allowed">
               Capacity Reached
             </div>
           ) : (
-            <Link to="/login" className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-bold transition-colors">
-              Log in to Apply <ArrowUpRight className="h-3 w-3" />
+            <Link to="/login" className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-bold transition-all hover:shadow-lg hover:shadow-blue-500/25 active:scale-[0.98]">
+              Log in to Apply <ArrowUpRight className="h-4 w-4" />
             </Link>
           )}
         </div>
