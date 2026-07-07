@@ -312,142 +312,130 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* 6. WHY CHOOSE DISHA (9 Features) */}
-      <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0]">
+      {/* 6. WHY CHOOSE DISHA (Asymmetric Layout) */}
+      <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0] overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            
+            {/* Left: Text & Features */}
+            <div className="lg:w-1/2">
+              <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#F97316] bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-6">
+                Why Choose Us
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-display text-[#0F172A] mb-6">
+                Why Choose Disha For India?
+              </h2>
+              <p className="text-slate-500 text-lg leading-relaxed mb-12">
+                Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.
+              </p>
 
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#F97316] bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-4">Why Choose Us</span>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight font-display text-[#0F172A] mb-4">Why Choose Disha For India?</h2>
-            <p className="text-slate-500 text-lg leading-relaxed">Empowering individuals to create meaningful social impact through volunteering, leadership, and community engagement.</p>
-          </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {[
+                  {
+                    icon: Search,
+                    iconColor: "text-[#2563EB]",
+                    iconBg: "bg-blue-50",
+                    title: "Volunteer Opportunities",
+                    desc: "Join impactful campaigns in education, sustainability, healthcare, and community development.",
+                  },
+                  {
+                    icon: BookOpenCheck,
+                    iconColor: "text-[#F97316]",
+                    iconBg: "bg-orange-50",
+                    title: "Skill Development",
+                    desc: "Enhance your communication, leadership, and teamwork through practical mentoring.",
+                  },
+                  {
+                    icon: Target,
+                    iconColor: "text-emerald-600",
+                    iconBg: "bg-emerald-50",
+                    title: "Leadership",
+                    desc: "Lead initiatives, coordinate volunteers, and drive projects that create lasting change.",
+                  },
+                  {
+                    icon: LineChart,
+                    iconColor: "text-purple-600",
+                    iconBg: "bg-purple-50",
+                    title: "Career Growth",
+                    desc: "Build a strong profile with real-world social impact experience for higher education.",
+                  },
+                  {
+                    icon: Award,
+                    iconColor: "text-rose-500",
+                    iconBg: "bg-rose-50",
+                    title: "Verified Certificates",
+                    desc: "Receive recognized certificates for your participation and outstanding contribution.",
+                  },
+                  {
+                    icon: Globe,
+                    iconColor: "text-indigo-600",
+                    iconBg: "bg-indigo-50",
+                    title: "Community Impact",
+                    desc: "Contribute to initiatives that improve education and support sustainable development.",
+                  }
+                ].map((f, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="flex flex-col"
+                  >
+                    <div className={`h-12 w-12 rounded-xl ${f.iconBg} flex items-center justify-center mb-4`}>
+                      <f.icon className={`h-6 w-6 ${f.iconColor}`} />
+                    </div>
+                    <h4 className="text-lg font-bold text-[#0F172A] mb-2">{f.title}</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed font-medium">{f.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
 
-          {/* Bento Box Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: Search,
-                number: "01",
-                iconColor: "text-[#2563EB]",
-                iconBg: "bg-blue-50",
-                borderHover: "hover:border-blue-200",
-                title: "Volunteer Opportunities",
-                desc: "Join impactful campaigns in education, environmental sustainability, healthcare, and community development.",
-                colSpan: "md:col-span-1",
-                rowSpan: "md:row-span-2",
-                img: "/disha-event1.jpg",
-                imgPos: "top",
-              },
-              {
-                icon: BookOpenCheck,
-                number: "02",
-                iconColor: "text-[#F97316]",
-                iconBg: "bg-orange-50",
-                borderHover: "hover:border-orange-200",
-                title: "Skill Development",
-                desc: "Enhance your communication, leadership, teamwork, and project management skills through practical volunteering experiences and mentorship.",
-                colSpan: "md:col-span-2",
-                img: "/disha-event2.jpg",
-                imgPos: "right",
-              },
-              {
-                icon: Target,
-                number: "03",
-                iconColor: "text-emerald-600",
-                iconBg: "bg-emerald-50",
-                borderHover: "hover:border-emerald-200",
-                title: "Leadership",
-                desc: "Lead initiatives, coordinate volunteers, and drive projects that create lasting change while developing confidence.",
-                colSpan: "md:col-span-1",
-              },
-              {
-                icon: LineChart,
-                number: "04",
-                iconColor: "text-purple-600",
-                iconBg: "bg-purple-50",
-                borderHover: "hover:border-purple-200",
-                title: "Career Growth",
-                desc: "Build a strong profile with real-world social impact experience, making you stand out for higher education and internships.",
-                colSpan: "md:col-span-1",
-              },
-              {
-                icon: Award,
-                number: "05",
-                iconColor: "text-rose-500",
-                iconBg: "bg-rose-50",
-                borderHover: "hover:border-rose-200",
-                title: "Verified Certificates",
-                desc: "Receive recognized certificates for your participation and contribution, showcasing your commitment to community service.",
-                colSpan: "md:col-span-2",
-                img: "/disha-event3.jpg",
-                imgPos: "left",
-              },
-              {
-                icon: Globe,
-                number: "06",
-                iconColor: "text-white",
-                iconBg: "bg-white/20 backdrop-blur-md border border-white/20",
-                borderHover: "border-transparent",
-                title: "Community Impact",
-                desc: "Contribute to initiatives that improve education, empower communities, and support sustainable development across India.",
-                colSpan: "md:col-span-1",
-                img: "/disha-event4.jpg",
-                imgPos: "bg",
-                isDark: true
-              }
-            ].map((f, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+            {/* Right: Modern 4-Image Grid */}
+            <div className="lg:w-1/2 w-full relative">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
+                    <img src="/disha-event1.jpg" alt="DISHA Seminar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
+                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
+                    <img src="/disha-event2.jpg" alt="DISHA Event" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
+                </div>
+                <div className="space-y-4 pt-12">
+                  <div className="rounded-3xl overflow-hidden h-[200px] shadow-sm group relative">
+                    <img src="/disha-event3.jpg" alt="DISHA Workshop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
+                  <div className="rounded-3xl overflow-hidden h-[300px] shadow-sm group relative">
+                    <img src="/disha-event4.jpg" alt="DISHA Training" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 border border-black/5 rounded-3xl" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative Floating Element */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className={`group bg-white border border-[#E2E8F0] ${f.borderHover} hover:shadow-xl transition-all duration-300 rounded-[32px] relative overflow-hidden flex ${
-                  f.imgPos === "right" ? "flex-col md:flex-row-reverse" : 
-                  f.imgPos === "left" ? "flex-col md:flex-row" : 
-                  "flex-col"
-                } ${f.colSpan || ""} ${f.rowSpan || ""}`}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-xl z-10 flex items-center gap-4 border border-white/40"
               >
-                {f.imgPos === "bg" ? (
-                  <>
-                    <div className="absolute inset-0 z-0">
-                      <img src={f.img} alt={f.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                      <div className="absolute inset-0 bg-slate-900/70 group-hover:bg-slate-900/60 transition-colors duration-500" />
-                    </div>
-                    <div className={`p-8 md:p-10 flex-1 flex flex-col justify-end relative z-10 h-full min-h-[320px]`}>
-                      <span className="absolute top-6 right-6 text-xs font-black text-white/20 tracking-widest font-display">{f.number}</span>
-                      <div className={`h-14 w-14 rounded-2xl ${f.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                        <f.icon className={`h-7 w-7 ${f.iconColor}`} />
-                      </div>
-                      <h4 className="text-xl font-black text-white mb-3">{f.title}</h4>
-                      <p className="text-sm text-slate-200 leading-relaxed font-medium">{f.desc}</p>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {f.img && (
-                      <div className={`relative overflow-hidden shrink-0 ${
-                        f.imgPos === "right" || f.imgPos === "left" ? "w-full md:w-[45%]" : "w-full h-56 md:h-1/2 min-h-[220px]"
-                      }`}>
-                        <img src={f.img} alt={f.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                      </div>
-                    )}
-
-                    <div className={`p-8 md:p-10 flex-1 flex flex-col justify-center relative`}>
-                      <span className="absolute top-6 right-6 text-xs font-black text-slate-200 tracking-widest font-display">{f.number}</span>
-                      <div className={`h-14 w-14 rounded-2xl ${f.iconBg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                        <f.icon className={`h-7 w-7 ${f.iconColor}`} />
-                      </div>
-                      <h4 className="text-xl font-black text-[#0F172A] mb-3">{f.title}</h4>
-                      <p className="text-sm text-slate-500 leading-relaxed font-medium">{f.desc}</p>
-                    </div>
-                  </>
-                )}
+                <div className="bg-[#2563EB]/10 p-3 rounded-full">
+                  <Heart className="h-6 w-6 text-[#2563EB] fill-[#2563EB]" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Lives Touched</p>
+                  <p className="text-2xl font-black text-[#0F172A]">100,000+</p>
+                </div>
               </motion.div>
-            ))}
-          </div>
+            </div>
 
+          </div>
         </div>
       </section>
 
