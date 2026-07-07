@@ -1,0 +1,9 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Open rules: Allow read and write access to all files in Storage during testing
+    match /{allPaths=**} {
+      allow read, write: if true;
+    }
+  }
+}
