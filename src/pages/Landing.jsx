@@ -495,59 +495,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* 10. EVENTS & WORKSHOPS */}
-      <section id="events" className="py-24 bg-white border-b border-[#E2E8F0]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight font-display mb-4">Events & Workshops</h2>
-              <p className="text-slate-500 text-lg">Join hackathons, drives, and training sessions to boost your skills.</p>
-            </div>
-            <Link to="/register" className="inline-flex items-center gap-2 text-sm font-bold text-[#2563EB] hover:text-[#1D4ED8]">
-              View All Events <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              { type: "Workshop", title: "Leadership in Social Impact", date: "Aug 15, 2026", loc: "Online" },
-              { type: "Hackathon", title: "Tech for Good 2026", date: "Sep 01, 2026", loc: "Bangalore" },
-              { type: "Training", title: "First Aid Certification", date: "Sep 15, 2026", loc: "Delhi" },
-              { type: "Volunteer Drive", title: "National Beach Cleanup", date: "Oct 05, 2026", loc: "Mumbai" }
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between p-6 rounded-[16px] border border-[#E2E8F0] hover:border-slate-300 bg-[#F8FAFC] transition-all group gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="h-14 w-14 rounded-xl bg-white border border-[#E2E8F0] flex flex-col items-center justify-center shrink-0 shadow-sm text-[#2563EB]">
-                    <span className="text-[10px] font-bold uppercase">{item.date.split(' ')[0]}</span>
-                    <span className="text-lg font-black leading-none">{item.date.split(' ')[1].replace(',', '')}</span>
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-1 block">{item.type}</span>
-                    <h4 className="text-base font-bold text-[#0F172A]">{item.title}</h4>
-                    <p className="text-xs font-semibold text-slate-500 mt-1"><MapPin className="inline h-3 w-3 mr-1" /> {item.loc}</p>
-                  </div>
-                </div>
-                <button className="px-4 py-2 bg-white border border-[#E2E8F0] rounded-lg text-sm font-bold text-[#0F172A] hover:bg-slate-50 transition-colors w-full sm:w-auto shrink-0">
-                  Register
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-
-      {/* 12. PARTNERS (Expanded) */}
-      <section id="partners" className="py-24 bg-white border-b border-[#E2E8F0]">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight font-display mb-12 text-[#0F172A]">Our Partners</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            <div className="flex flex-col items-center gap-3"><Building2 className="h-10 w-10 text-slate-700" /><span className="font-bold text-slate-800">Gov. Initiatives</span></div>
-            <div className="flex flex-col items-center gap-3"><BookOpen className="h-10 w-10 text-slate-700" /><span className="font-bold text-slate-800">Top Universities</span></div>
-            <div className="flex flex-col items-center gap-3"><Globe className="h-10 w-10 text-slate-700" /><span className="font-bold text-slate-800">Global NGOs</span></div>
-            <div className="flex flex-col items-center gap-3"><Laptop className="h-10 w-10 text-slate-700" /><span className="font-bold text-slate-800">Corporate CSR</span></div>
-          </div>
-        </div>
-      </section>
 
       {/* 13. FAQ */}
       <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0]">
