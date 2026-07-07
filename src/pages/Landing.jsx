@@ -58,7 +58,153 @@ const StatCounter = ({ end, suffix = "", label, theme = "light", colorClass }) =
   );
 };
 
+// ─── TESTIMONIALS DATA ───────────────────────────────────────────────
+const TESTIMONIALS = [
+  {
+    name: "Jaswinder Singh",
+    quote: "I am associated with NGO for last 5 years, they are doing a great work by uplifting lives of youth.",
+    initials: "JS",
+    color: "bg-[#0EA5E9]",
+  },
+  {
+    name: "Neeru Garg",
+    quote: "I know Indu for last 10 years and she is a very powerful personality.",
+    initials: "NG",
+    color: "bg-[#6366F1]",
+  },
+  {
+    name: "Mandeep Singh",
+    quote: "I attended the \"Break the limits\" event — it really changed my perception about life and success.",
+    initials: "MS",
+    color: "bg-[#10B981]",
+  },
+];
 
+// ─── TESTIMONIALS CAROUSEL ────────────────────────────────────────────
+function TestimonialsCarousel() {
+  const [[current, dir], setCurrent] = useState([0, 0]);
+  const total = TESTIMONIALS.length;
+
+  const paginate = (newDir) => {
+    setCurrent(([c]) => [(c + newDir + total) % total, newDir]);
+  };
+
+  // Auto-play every 4 s
+  useEffect(() => {
+    const id = setInterval(() => paginate(1), 4000);
+    return () => clearInterval(id);
+  });
+
+  const variants = {
+    enter: (d) => ({ x: d > 0 ? "100%" : "-100%", opacity: 0 }),
+    center: { x: 0, opacity: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+    exit: (d) => ({ x: d > 0 ? "-100%" : "100%", opacity: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }),
+  };
+
+  const t = TESTIMONIALS[current];
+
+  return (
+    <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0] overflow-hidden">
+      <div className="max-w-4xl mx-auto px-6">
+
+        {/* Header */}
+        <div className="text-center mb-14">
+          <span className="inline-flex items-center gap-1.5 bg-sky-50 border border-sky-100 rounded-full px-4 py-1.5 text-xs font-bold text-[#0EA5E9] uppercase tracking-widest mb-5">
+            Our Testimonials
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-3 text-[#0F172A]">
+            What they are talking about
+          </h2>
+          <p className="text-[#64748B] text-base font-medium">Disha For India</p>
+        </div>
+
+        {/* Carousel */}
+        <div className="relative">
+          {/* Animated Card */}
+          <div className="overflow-hidden rounded-2xl">
+            <AnimatePresence initial={false} custom={dir} mode="wait">
+              <motion.div
+                key={current}
+                custom={dir}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(_, info) => {
+                  if (info.offset.x < -60) paginate(1);
+                  else if (info.offset.x > 60) paginate(-1);
+                }}
+                className="bg-white border border-[#E2E8F0] rounded-2xl p-10 md:p-14 shadow-sm cursor-grab active:cursor-grabbing select-none"
+              >
+                {/* Big quote mark */}
+                <div className="text-7xl leading-none text-[#0EA5E9] opacity-15 font-serif mb-4 select-none">"</div>
+
+                {/* Stars */}
+                <div className="flex gap-1 mb-6">
+                  {[1,2,3,4,5].map(s => <Star key={s} className="h-5 w-5 fill-[#F97316] text-[#F97316]" />)}
+                </div>
+
+                {/* Quote */}
+                <p className="text-[#0F172A] text-xl md:text-2xl font-medium leading-relaxed mb-10">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <div className={`h-14 w-14 rounded-full ${t.color} flex items-center justify-center text-white text-base font-bold shadow-md flex-shrink-0`}>
+                    {t.initials}
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-[#0F172A]">{t.name}</h4>
+                    <p className="text-sm text-[#0EA5E9] font-semibold mt-0.5">Disha For India</p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Prev / Next Buttons */}
+          <button
+            onClick={() => paginate(-1)}
+            className="absolute -left-5 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-white border border-[#E2E8F0] shadow-md flex items-center justify-center text-[#0F172A] hover:bg-sky-50 hover:border-sky-200 hover:text-[#0EA5E9] transition-all z-10"
+            aria-label="Previous"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={() => paginate(1)}
+            className="absolute -right-5 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-white border border-[#E2E8F0] shadow-md flex items-center justify-center text-[#0F172A] hover:bg-sky-50 hover:border-sky-200 hover:text-[#0EA5E9] transition-all z-10"
+            aria-label="Next"
+          >
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Dot Indicators */}
+        <div className="flex justify-center gap-2.5 mt-8">
+          {TESTIMONIALS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent([i, i > current ? 1 : -1])}
+              className={`transition-all duration-300 rounded-full ${i === current ? 'bg-[#0EA5E9] w-7 h-2.5' : 'bg-slate-300 w-2.5 h-2.5 hover:bg-sky-300'}`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Swipe hint */}
+        <p className="text-center text-xs text-slate-400 mt-4 font-medium">Swipe or drag to navigate</p>
+      </div>
+    </section>
+  );
+}
 
 export default function Landing() {
   return (
@@ -403,69 +549,10 @@ export default function Landing() {
       </section>
 
 
-      {/* 9. TESTIMONIALS */}
-      <section className="py-24 bg-[#F8FAFC] border-b border-[#E2E8F0]">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* 9. TESTIMONIALS CAROUSEL */}
+      <TestimonialsCarousel />
 
-          {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="inline-flex items-center gap-1.5 bg-sky-50 border border-sky-100 rounded-full px-4 py-1.5 text-xs font-bold text-[#0EA5E9] uppercase tracking-widest mb-5">
-              Our Testimonials
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-[#0F172A]">
-              What they are talking about
-            </h2>
-            <p className="text-[#64748B] text-lg font-medium">Disha For India</p>
-          </div>
 
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Jaswinder Singh",
-                quote: "I am associated with NGO for last 5 years, they are doing a great work by uplifting lives of youth.",
-                initials: "JS",
-                color: "bg-sky-500"
-              },
-              {
-                name: "Neeru Garg",
-                quote: "I know Indu for last 10 years and she is a very powerful personality.",
-                initials: "NG",
-                color: "bg-indigo-500"
-              },
-              {
-                name: "Mandeep Singh",
-                quote: "I attended the \"Break the limits\" event — it really changed my perception about life and success.",
-                initials: "MS",
-                color: "bg-emerald-500"
-              }
-            ].map((t, i) => (
-              <div key={i} className="bg-white border border-[#E2E8F0] rounded-xl p-8 shadow-sm flex flex-col gap-6 hover:border-sky-200 hover:shadow-md transition-all">
-                {/* Stars */}
-                <div className="flex gap-1">
-                  {[1,2,3,4,5].map(s => <Star key={s} className="h-4 w-4 fill-[#F97316] text-[#F97316]" />)}
-                </div>
-
-                {/* Quote */}
-                <p className="text-[#0F172A] text-base leading-relaxed flex-1">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                  <div className={`h-11 w-11 rounded-full ${t.color} flex items-center justify-center text-white text-sm font-bold flex-shrink-0 shadow-sm`}>
-                    {t.initials}
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-[#0F172A]">{t.name}</h4>
-                    <p className="text-xs text-[#0EA5E9] font-semibold mt-0.5">Disha For India</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
 
