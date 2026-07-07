@@ -9,6 +9,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 
 // Public Pages
 import Landing from "./pages/Landing";
+import ProgramsPage from "./pages/public/Programs";
+import ImpactPage from "./pages/public/Impact";
+import BlogsPage from "./pages/public/Blogs";
 
 
 // Layout
@@ -104,6 +107,9 @@ function Bootstrapper() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/our-programs" element={<ProgramsPage />} />
+      <Route path="/our-impact" element={<ImpactPage />} />
+      <Route path="/blogs" element={<BlogsPage />} />
 
       {/* Public Auth Routes */}
       <Route path="/login" element={<Login />} />

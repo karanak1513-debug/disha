@@ -81,11 +81,11 @@ export default function Landing() {
           </div>
           
           <div className="hidden lg:flex items-center gap-8">
-            {['Home', 'About', 'Programs', 'Impact'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">
-                {item}
-              </a>
-            ))}
+            <a href="#home" className="text-sm font-bold text-[#2563EB]">Home</a>
+            <a href="#about" className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">About</a>
+            <Link to="/our-programs" className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">Programs</Link>
+            <Link to="/our-impact" className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">Impact</Link>
+            <Link to="/blogs" className="text-sm font-semibold text-slate-600 hover:text-[#2563EB] transition-colors">Blogs</Link>
           </div>
 
           <div className="flex items-center gap-4">
